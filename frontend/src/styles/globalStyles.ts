@@ -8,6 +8,13 @@ const GlobalStyle = createGlobalStyle`
 		margin: 0;
 		padding: 0;
 		box-sizing: border-box;
+		font-weight: 400;
+		font-family: 'Poppins', sans-serif;
+		color: ${({ theme }) => theme.colors.white};
+	}
+
+	body {
+		background: ${({ theme }) => theme.colors.black};
 	}
 `;
 
