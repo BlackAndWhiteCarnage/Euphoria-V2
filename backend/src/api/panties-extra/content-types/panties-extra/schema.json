@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "panties_extras",
+  "info": {
+    "singularName": "panties-extra",
+    "pluralName": "panties-extras",
+    "displayName": "Extras",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "extras": {
+      "type": "json",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}
