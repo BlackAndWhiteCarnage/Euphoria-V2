@@ -2,9 +2,13 @@
  * External dependencies
  */
 import type { AppProps } from 'next/app';
+import GlobalStyle from '../src/styles/globalStyles';
 
 const App = ({ Component, pageProps }: AppProps) => (
-	<Component {...pageProps} />
+	<>
+		<GlobalStyle />
+		<Component {...pageProps} />
+	</>
 );
 
 export default App;
