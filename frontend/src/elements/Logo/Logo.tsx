@@ -2,15 +2,14 @@
  * External dependencies
  */
 import { FC } from 'react';
-import Image from 'next/image'
 
 /**
  * Internal dependencies
  */
-import { ReactComponent as LogoImage } from "images/logo.svg";
+import { StyledLogo } from './Logo.styles'
 
 const Logo: FC = () => (
-	<LogoImage />
+	<StyledLogo />
 )
 
 export default Logo;
