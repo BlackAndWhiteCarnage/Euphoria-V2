@@ -9,7 +9,6 @@ module.exports = {
     "@storybook/addon-interactions",
     "storybook-addon-next",
     "storybook-addon-styled-component-theme/dist/preset",
-    "@storybook/addon-backgrounds"
   ],
   staticDirs: ['../public'],
   "framework": "@storybook/react",
