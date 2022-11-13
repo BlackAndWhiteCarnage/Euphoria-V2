@@ -1,3 +1,5 @@
-const Home = () => <h1>hi</h1>;
+import { Logo } from "../src/elements";
+
+const Home = () => <Logo />;
 
 export default Home;
