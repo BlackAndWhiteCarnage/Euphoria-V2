@@ -5,6 +5,7 @@ const nextConfig = {
 	compiler: {
 		styledComponents: true,
 	},
+	webpack: require('./webpack.config'),
 };
 
 module.exports = nextConfig;
