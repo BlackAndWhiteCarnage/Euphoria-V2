@@ -7,7 +7,7 @@ import styled from 'styled-components';
  * Internal dependencies
  */
 import { ReactComponent as LogoImage } from 'images/logo.svg';
-import { color, breakpoint } from 'styles/utils'
+import { color, breakpoint } from 'styles/utils';
 
 export const StyledLogo = styled(LogoImage)`
 	width: 180px;
@@ -21,4 +21,4 @@ export const StyledLogo = styled(LogoImage)`
 		width: 120px;
 		height: 32px;
 	}
-`
+`;

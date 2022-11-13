@@ -20,6 +20,7 @@ module.exports = {
 		'react/jsx-props-no-spreading': 'off',
 		'import/prefer-default-export': 'off',
 		'no-param-reassign': 'off',
+		'global-require': 0,
 		'import/extensions': [
 			'error',
 			'ignorePackages',
@@ -42,8 +43,16 @@ module.exports = {
 		'prettier/prettier': [
 			'warn',
 			{
-				endOfLine: 'CRLF',
+				endOfLine: 'auto',
 			},
 		],
+	},
+	settings: {
+		'import/resolver': {
+			node: {
+				extensions: ['.ts', '.tsx'],
+				moduleDirectory: ['src', 'node_modules'],
+			},
+		},
 	},
 };

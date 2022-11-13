@@ -6,10 +6,8 @@ import { FC } from 'react';
 /**
  * Internal dependencies
  */
-import { StyledLogo } from './Logo.styles'
+import { StyledLogo } from './Logo.styles';
 
-const Logo: FC = () => (
-	<StyledLogo />
-)
+const Logo: FC = () => <StyledLogo />;
 
 export default Logo;

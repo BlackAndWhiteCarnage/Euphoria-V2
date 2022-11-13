@@ -27,7 +27,7 @@
   "prettier/prettier": [
     "warn",
     {
-      "endOfLine": "CRLF"
+      "endOfLine": "auto"
     }
   ]
 }

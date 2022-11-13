@@ -1,6 +1,6 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
-const svgrRule = require('./svgr-rule');
+const svgrRule = require('./svgr-rule.js');
 
 module.exports = (config) => {
 	config.module.rules.push(svgrRule);
