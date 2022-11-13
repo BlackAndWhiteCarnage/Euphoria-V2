@@ -7,6 +7,7 @@ import { withThemesProvider } from "storybook-addon-styled-component-theme";
 /**
  * Internal dependencies
  */
+import viewports from './viewports';
 import { theme } from 'styles/theme'
 
 addDecorator(withThemesProvider([theme]));
@@ -19,4 +20,9 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  viewport: {
+		viewports: {
+			...viewports,
+		},
+	},
 }
