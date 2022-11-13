@@ -5,9 +5,9 @@ import 'styled-components';
 
 declare module 'styled-components' {
 	export interface DefaultTheme {
-		breakpoints: Record<string, string>;
+		breakpoints: Record<string, number>;
 		colors: Record<string, string>;
-		fontSizes: Record<string, string>;
-		radius: string;
+		fontSizes: Record<string, number>;
+		radius: number;
 	}
 }

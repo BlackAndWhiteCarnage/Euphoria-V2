@@ -2,6 +2,7 @@
  * External dependencies
  */
 import { createGlobalStyle } from 'styled-components';
+import { color } from './utils';
 
 const GlobalStyle = createGlobalStyle`
 	*,*::before, *::after {
@@ -10,11 +11,11 @@ const GlobalStyle = createGlobalStyle`
 		box-sizing: border-box;
 		font-weight: 400;
 		font-family: 'Poppins', sans-serif;
-		color: ${({ theme }) => theme.colors.white};
+		color: ${color('white')};
 	}
 
 	body {
-		background: ${({ theme }) => theme.colors.black};
+		background: ${color('black')};
 	}
 `;
 
