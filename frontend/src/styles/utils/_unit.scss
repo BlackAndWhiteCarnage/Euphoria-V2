@@ -1,0 +1,19 @@
+/**
+ * Helper Functions
+ */
+@use "sass:math";
+@use "sass:string";
+
+$rem-base: 16 !default;
+
+@function is-unitless($value) {
+	@return 0 == string.length(math.unit($value));
+}
+
+@function rem-calc($size) {
+	@return math.div($size, $rem-base) * 1rem;
+}
+
+@function em-calc($value, $base: 16) {
+	@return math.div($value, $base) * 1em;
+}

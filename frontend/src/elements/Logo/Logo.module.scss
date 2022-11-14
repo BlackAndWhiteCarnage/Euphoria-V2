@@ -1,0 +1,12 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+
+.logo {
+	height: u.rem-calc(48);
+	width: u.rem-calc(180);
+
+	@include bp.down(sm) {
+		height: u.rem-calc(32);
+		width: u.rem-calc(120);
+	}
+}

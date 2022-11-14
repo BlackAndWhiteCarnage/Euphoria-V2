@@ -1,0 +1,16 @@
+/**
+ * Theme utils
+ */
+@use "color";
+@use "sass:map";
+@use "styles/config/theme";
+
+@function color($themeColorName) {
+	@if map.has-key(theme.$colors, $themeColorName) {
+		@return color.get(map.get(theme.$colors, $themeColorName));
+	} @else {
+		@error "Invalid theme color: #{$themeColorName}.";
+	}
+
+	@return null;
+}

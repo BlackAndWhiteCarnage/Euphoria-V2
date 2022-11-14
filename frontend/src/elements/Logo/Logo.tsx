@@ -6,8 +6,9 @@ import { FC } from 'react';
 /**
  * Internal dependencies
  */
-import { StyledLogo } from './Logo.styles';
+import { ReactComponent as LogoImage } from 'images/logo.svg';
+import classes from './Logo.module.scss';
 
-const Logo: FC = () => <StyledLogo />;
+const Logo: FC = () => <LogoImage className={classes.logo} />;
 
 export default Logo;

@@ -1,0 +1,22 @@
+/**
+ * Global styles
+ */
+
+@use "styles/utils/font" as f;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+body {
+	background-color: t.color(page-background);
+	font-family: f.get(primary);
+	overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	color: t.color(page-color);
+	margin: 0;
+	padding: 0;
+}
