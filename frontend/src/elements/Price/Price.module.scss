@@ -1,0 +1,26 @@
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.price {
+	display: flex;
+	font-size: u.rem-calc(16);
+	font-weight: 600;
+	gap: u.rem-calc(8);
+
+	.is-crossed-out {
+		color: t.color(price-discounted-color);
+		position: relative;
+
+		&::before {
+			background: t.color(price-cross-color);
+			border-radius: u.rem-calc(2);
+			content: '';
+			display: block;
+			height: u.rem-calc(2);
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 100%;
+		}
+	}
+}
