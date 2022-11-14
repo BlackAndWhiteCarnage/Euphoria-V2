@@ -1,0 +1,52 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.linkedIcon {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	height: u.rem-calc(36);
+	justify-content: center;
+	position: relative;
+	width: u.rem-calc(36);
+	
+	@include bp.down(sm) {
+		height: u.rem-calc(32);
+		width: u.rem-calc(32);
+	}
+
+	svg {
+		height: 100%;
+		width: 100%;
+	}
+
+	path {
+		fill: t.color(linked-icon-color);
+	}
+}
+
+.count {
+	align-items: center;
+	background: t.color(linked-icon-count-background);
+	border-radius: 50%;
+	border: u.rem-calc(3) solid t.color(linked-icon-count-border);
+	color: t.color(linked-icon-count-color);
+	display: flex;
+	font-size: u.rem-calc(14);
+	font-weight: 600;
+	height: u.rem-calc(26);
+	justify-content: center;
+	position: absolute;
+	right: u.rem-calc(-10);
+	top: u.rem-calc(-4);
+	width: u.rem-calc(26);
+
+	@include bp.down(sm) {
+		border-width: u.rem-calc(2);
+		height: u.rem-calc(24);
+		right: u.rem-calc(-10);
+		top: u.rem-calc(-2);
+		width: u.rem-calc(24);
+	}
+}
