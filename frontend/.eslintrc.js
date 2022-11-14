@@ -34,6 +34,8 @@ module.exports = {
 		'prefer-arrow-callback': 'off',
 		'react/jsx-filename-extension': 'off',
 		'react/require-default-props': 'off',
+		'react/button-has-type': 'off',
+		'react/destructuring-assignment': 'off',
 		'react/function-component-definition': [
 			'error',
 			{
