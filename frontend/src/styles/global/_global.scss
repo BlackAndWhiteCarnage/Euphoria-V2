@@ -7,7 +7,7 @@
 @use "styles/utils/unit" as u;
 
 body {
-	background-color: t.color(page-background);
+	background: t.color(page-background);
 	font-family: f.get(primary);
 	overflow-x: hidden;
 }
