@@ -1,9 +1,14 @@
 @use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
 @use "styles/utils/unit" as u;
 
 .logo {
 	height: u.rem-calc(48);
 	width: u.rem-calc(180);
+	
+	path {
+		fill: t.color(logo-color);
+	}
 
 	@include bp.down(sm) {
 		height: u.rem-calc(32);
