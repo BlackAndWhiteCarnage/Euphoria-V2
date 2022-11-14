@@ -1,0 +1,10 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+
+.header {
+	font-size: u.rem-calc(36);
+	
+	@include bp.down(sm) {
+		font-size: u.rem-calc(32);
+	}
+}

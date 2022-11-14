@@ -1,4 +1,4 @@
-import { Logo } from '../src/elements';
+import { Logo } from 'elements';
 
 const Home = () => <Logo />;
 
