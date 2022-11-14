@@ -3,6 +3,7 @@
  */
 import { FC, ReactElement } from 'react';
 import Link from 'next/link';
+import classnames from 'classnames';
 
 /**
  * Internal dependencies
@@ -19,7 +20,13 @@ const LinkedIcon: FC<LinkedIconProps> = ({ count, href, icon }) => (
 	<Link href={href}>
 		<div className={classes.linkedIcon}>
 			{icon}
-			{count && <span className={classes.count}>{count}</span>}
+			<span
+				className={classnames(classes.count, {
+					[classes['is-visible']]: count,
+				})}
+			>
+				{count}
+			</span>
 		</div>
 	</Link>
 );

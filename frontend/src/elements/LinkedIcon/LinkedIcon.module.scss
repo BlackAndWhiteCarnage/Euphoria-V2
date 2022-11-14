@@ -40,7 +40,15 @@
 	position: absolute;
 	right: u.rem-calc(-10);
 	top: u.rem-calc(-4);
+	transform: scale(0);
+	opacity: 0;
+	transition: 0.25s cubic-bezier(1, 2, 0.55, 1);
 	width: u.rem-calc(26);
+	
+	&.is-visible {
+		opacity: 1;
+		transform: scale(1);
+	}
 
 	@include bp.down(sm) {
 		border-width: u.rem-calc(2);
