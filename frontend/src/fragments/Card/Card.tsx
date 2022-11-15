@@ -12,7 +12,7 @@ import { Price, Favorites } from 'elements';
 import Link from 'next/link';
 import classes from './Card.module.scss';
 
-type CardProps = {
+export type CardProps = {
 	href: string;
 	image: string;
 	name: string;

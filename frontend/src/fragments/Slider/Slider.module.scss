@@ -1,0 +1,9 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/font" as f;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.swiper {
+	border: 1px solid red;
+
+}
