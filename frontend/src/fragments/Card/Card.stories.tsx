@@ -10,7 +10,7 @@ import welcome from 'images/welcome.png';
 import Card from '.';
 
 export default {
-	title: 'Elements/Card',
+	title: 'Fragments/Card',
 	component: Card,
 } as ComponentMeta<typeof Card>;
 

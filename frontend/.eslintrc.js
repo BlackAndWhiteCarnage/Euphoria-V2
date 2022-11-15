@@ -40,6 +40,7 @@ module.exports = {
 		'no-unused-vars': 'off',
 		'no-nested-ternary': 'off',
 		'jsx-a11y/label-has-associated-control': 'off',
+		'react/no-array-index-key': 'off',
 		'react/function-component-definition': [
 			'error',
 			{
