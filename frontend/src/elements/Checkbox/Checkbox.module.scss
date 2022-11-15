@@ -2,7 +2,7 @@
 @use "styles/utils/unit" as u;
 
 .checkboxMark {
-	border: u.rem-calc(1) solid t.color(checkbox-color);
+	border: u.rem-calc(1) solid t.color(checkbox);
 	border-radius: u.rem-calc(2);
 	display: block;
 	height: u.rem-calc(16);
@@ -17,7 +17,7 @@
 	}
 
 	.input:checked + & {
-		background: t.color(checkbox-color);
+		background: t.color(checkbox);
 	}
 
 	.input:disabled + & {
