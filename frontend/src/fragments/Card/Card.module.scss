@@ -57,11 +57,11 @@
 	}
 
 	@include bp.down(sm) {
-		height: u.rem-calc(310);
+		height: u.rem-calc(280);
 	}
 
 	@include bp.down(xs) {
-		height: u.rem-calc(230);
+		height: u.rem-calc(240);
 	}
 
 	img {

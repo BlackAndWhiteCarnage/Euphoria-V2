@@ -21,16 +21,17 @@ const Template: ComponentStory<typeof Grid> = (args) => (
 	</div>
 );
 
-const children = new Array(9).fill(
-	<Card
-		href="/"
-		image={welcome.src}
-		name="Seksowna sesja zdjęciowa Króliczka Playboya"
-		price={160}
-	/>
-);
+const childrenArr = new Array(9).fill(1);
 
 export const Default = Template.bind({});
 Default.args = {
-	children,
+	children: childrenArr.map((_, i) => (
+		<Card
+			key={i}
+			href="/"
+			image={welcome.src}
+			name="Seksowna sesja zdjęciowa Króliczka Playboya"
+			price={160}
+		/>
+	)),
 };
