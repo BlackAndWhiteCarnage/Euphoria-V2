@@ -1,0 +1,43 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+%separator-line {
+	background: t.color(separator);
+	border-radius: u.rem-calc(2);
+	content: "";
+	display: inline-block;
+	height: u.rem-calc(2);
+	width: 100%;
+}
+
+.separator {
+	display: flex;
+	margin-bottom: var(--margin-bottom);
+	margin-top: var(--margin-top);
+	max-height: fit-content;
+
+	@include bp.down(sm) {
+		margin-bottom: var(--margin-mobile-bottom);
+		margin-top: var(--margin-mobile-top);
+	}
+
+	&::after {
+		@extend %separator-line;
+	}
+
+	&.has-text {
+		align-items: center;
+		color: t.color(separator);
+		display: flex;
+		font-size: u.rem-calc(14);
+		gap: u.rem-calc(12);
+		text-transform: uppercase;
+		white-space: nowrap;
+		width: 100%;
+
+		&::before {
+			@extend %separator-line;
+		}
+	}
+}

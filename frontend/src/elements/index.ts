@@ -6,3 +6,4 @@ export { default as LinkedIcon } from './LinkedIcon';
 export { default as Logo } from './Logo';
 export { default as Popup } from './Popup';
 export { default as Price } from './Price';
+export { default as Separator } from './Separator';
