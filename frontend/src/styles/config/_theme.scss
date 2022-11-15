@@ -3,6 +3,10 @@
  */
 
 $colors: (
+	button-alert: red,
+	button-disabled: darkGrey-2,
+	button-hover-color: black,
+	button-primary: white,
 	favories-background: black,
 	favories-icon-color: white,
 	linked-icon-color: white,
@@ -12,10 +16,6 @@ $colors: (
 	logo-color: white,
 	page-background: black,
 	page-color: white,
-	price-discounted-color: gray,
 	price-cross-color: white,
-	button-primary: white,
-	button-hover-color: black,
-	button-alert: red,
-	button-disabled: darkGrey-2,
+	price-discounted-color: gray,
 );
