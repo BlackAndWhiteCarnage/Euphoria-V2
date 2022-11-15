@@ -1,4 +1,4 @@
-type DiscountedPrice = {
+export type DiscountedPrice = {
 	discount: number;
 	isFree?: never;
 	price: number;
