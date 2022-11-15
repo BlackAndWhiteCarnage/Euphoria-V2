@@ -1,0 +1,77 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/font" as f;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	font-family: f.get(primary);
+	font-size: u.rem-calc(12);
+	font-weight: 600;
+	justify-content: center;
+	padding: 0 u.rem-calc(4);
+	position: relative;
+	text-decoration: none;
+	transition: 0.15s ease;
+	width: fit-content;
+
+	&.primary {
+		color: t.color(button-primary);
+
+		&::before {
+			background: t.color(button-primary);
+		}
+	}
+
+	&.alert {
+		color: t.color(button-alert);
+
+		&::before {
+			background: t.color(button-alert);
+		}
+	}
+
+	&[disabled] {
+		cursor: not-allowed;
+		color: t.color(button-disabled);
+
+		&::before {
+			background: t.color(button-disabled);;
+		}
+	}
+
+	&.large {
+		font-size: u.rem-calc(16);
+	}
+
+	&.medium {
+		font-size: u.rem-calc(14);
+	}
+
+	&.small {
+		font-size: u.rem-calc(12);
+	}
+
+	&::before {
+		content: '';
+		display: block;
+		width: 100%;
+		height: u.rem-calc(2);
+		border-radius: u.rem-calc(2);
+		position: absolute;
+		bottom: u.rem-calc(-3);
+		transition: 0.2s cubic-bezier(1, 2, 0.1, 1);
+		z-index: -1;
+	}
+
+	&:not([disabled]):hover {
+		color: t.color(button-hover-color);
+
+		&::before {
+			height: calc(100% + u.rem-calc(6));
+		}
+	}
+}
