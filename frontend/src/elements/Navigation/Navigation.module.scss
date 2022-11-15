@@ -1,0 +1,48 @@
+@use "styles/utils/font" as f;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.navigation {
+	border-bottom: u.rem-calc(1) solid t.color(navigation-border);
+	display: flex;
+	position: relative;
+	width: 100%;
+
+	&.hidden {
+		pointer-events: none;
+		position: absolute;
+		visibility: hidden;
+		width: 100%;
+	}
+}
+
+.itemWrap {
+	height: 100%;
+}
+
+.wrap {
+	display: flex;
+	justify-content: space-between;
+	list-style: none;
+	width: 100%;
+}
+
+.indicator {
+	background: t.color(navigation-item-color);
+	bottom: u.rem-calc(-1);
+	height: u.rem-calc(2);
+	position: absolute;
+	transition: 0.25s cubic-bezier(0.4, 1.35, 0.55, 1);
+}
+
+.item {
+	background: none;
+	border: none;
+	color: t.color(navigation-item-color);
+	cursor: pointer;
+	font-family: f.get(primary);
+	font-size: u.rem-calc(18);
+	line-height: u.rem-calc(20);
+	padding: 0 u.rem-calc(4) u.rem-calc(8);
+	width: 100%;
+}
