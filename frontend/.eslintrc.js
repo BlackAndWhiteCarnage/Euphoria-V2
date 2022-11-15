@@ -36,7 +36,9 @@ module.exports = {
 		'react/require-default-props': 'off',
 		'react/button-has-type': 'off',
 		'react/destructuring-assignment': 'off',
-		"no-unused-expressions": "off",
+		'no-unused-expressions': 'off',
+		'no-return-assign': 'off',
+		'no-unused-vars': 'off',
 		'no-nested-ternary': 'off',
 		'react/function-component-definition': [
 			'error',
