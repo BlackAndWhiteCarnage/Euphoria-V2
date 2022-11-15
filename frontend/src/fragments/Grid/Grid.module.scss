@@ -1,0 +1,19 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: u.rem-calc(40);
+	width: 100%;
+	
+	@include bp.down(lg) {
+		gap: u.rem-calc(20);
+	}
+	
+	@include bp.down(md) {
+		grid-template-columns: repeat(2, 1fr);
+		gap: u.rem-calc(15);
+	}
+}
