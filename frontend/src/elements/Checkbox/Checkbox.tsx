@@ -23,7 +23,7 @@ const Checkbox: FC<CheckboxProps> = ({
 	onChange,
 	...props
 }) => (
-	<label htmlFor={id} className={classes.checkbox}>
+	<label htmlFor={id}>
 		<input
 			{...props}
 			type="checkbox"
