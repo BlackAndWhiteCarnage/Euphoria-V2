@@ -1,0 +1,32 @@
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.checkboxMark {
+	border: u.rem-calc(1) solid t.color(checkbox);
+	border-radius: u.rem-calc(2);
+	display: block;
+	height: u.rem-calc(16);
+	margin-right: u.rem-calc(8);
+	transition: 0.2s;
+	cursor: pointer;
+	width: u.rem-calc(16);
+
+	&.is-large {
+		height: u.rem-calc(20);
+		width: u.rem-calc(20);
+	}
+
+	.input:checked + & {
+		background: t.color(checkbox);
+	}
+
+	.input:disabled + & {
+		opacity: 0.4;
+	}
+}
+
+.input {
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+}
