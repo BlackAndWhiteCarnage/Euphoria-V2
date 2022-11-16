@@ -30,6 +30,7 @@ module.exports = {
 			},
 		],
 		'consistent-return': 'off',
+		'import/no-cycle': 'off',
 		'arrow-body-style': 'off',
 		'prefer-arrow-callback': 'off',
 		'react/jsx-filename-extension': 'off',
