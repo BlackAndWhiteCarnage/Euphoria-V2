@@ -10,7 +10,7 @@ import classnames from 'classnames';
  */
 import classes from './LinkedIcon.module.scss';
 
-type LinkedIconProps = {
+export type LinkedIconProps = {
 	count?: number;
 	href: string;
 	icon: ReactElement;
