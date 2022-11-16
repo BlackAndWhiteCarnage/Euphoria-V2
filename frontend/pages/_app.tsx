@@ -10,13 +10,9 @@ import { Provider, createClient } from 'urql';
  */
 import 'styles/index.scss';
 
-import 'swiper/swiper.scss'; // core Swiper
-import 'swiper/modules/navigation/navigation.scss'; // Navigation module
-import 'swiper/modules/pagination/pagination.scss'; // Pagination module
-
 const client = createClient({ url: process.env.NEXT_PUBLIC_GRAPHQL });
 
-const App: FC = ({ Component, pageProps }: AppProps) => (
+const App: FC<AppProps> = ({ Component, pageProps }) => (
 	<Provider value={client}>
 		<Component {...pageProps} />
 	</Provider>
