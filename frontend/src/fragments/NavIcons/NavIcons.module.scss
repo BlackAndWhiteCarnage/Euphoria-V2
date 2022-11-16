@@ -1,0 +1,6 @@
+@use "styles/utils/unit" as u;
+
+.navIcons {
+	display: flex;
+	gap: u.rem-calc(12);
+}
