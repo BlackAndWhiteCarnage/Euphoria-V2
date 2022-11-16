@@ -1,0 +1,30 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+
+.topBar {
+	padding-top: u.rem-calc(20);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+
+	@include bp.down(md) {
+		padding-top: u.rem-calc(10);
+	}
+}
+
+.navigation {
+	display: flex;
+	justify-content: space-between;
+}
+
+.layoutWrapper {
+	margin: auto;
+	width: 100%;
+	max-width: u.rem-calc(1300);
+	min-height: 100vh;
+	padding: 0 u.rem-calc(30);
+
+	@include bp.down(md) {
+		padding: 0 u.rem-calc(15);
+	}
+}
