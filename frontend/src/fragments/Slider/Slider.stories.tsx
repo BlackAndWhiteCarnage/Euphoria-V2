@@ -20,46 +20,14 @@ const Template: ComponentStory<typeof Slider> = (args) => (
 	</div>
 );
 
-const childrenArr = new Array(6).fill(1);
+const items = new Array(9).fill({
+	href: '/',
+	image: welcome.src,
+	name: 'Seksowna sesja zdjęciowa Króliczka Playboya',
+	price: 160,
+});
 
 export const Default = Template.bind({});
 Default.args = {
-	items: [
-		{
-			href: '/',
-			image: welcome.src,
-			name: 'Seksowna sesja zdjęciowa Króliczka Playboya',
-			price: 160,
-		},
-		{
-			href: '/',
-			image: welcome.src,
-			name: 'Seksowna sesja zdjęciowa Króliczka Playboya',
-			price: 160,
-		},
-		{
-			href: '/',
-			image: welcome.src,
-			name: 'Seksowna sesja zdjęciowa Króliczka Playboya',
-			price: 160,
-		},
-		{
-			href: '/',
-			image: welcome.src,
-			name: 'Seksowna sesja zdjęciowa Króliczka Playboya',
-			price: 160,
-		},
-		{
-			href: '/',
-			image: welcome.src,
-			name: 'Seksowna sesja zdjęciowa Króliczka Playboya',
-			price: 160,
-		},
-		{
-			href: '/',
-			image: welcome.src,
-			name: 'Seksowna sesja zdjęciowa Króliczka Playboya',
-			price: 160,
-		},
-	],
+	items,
 };
