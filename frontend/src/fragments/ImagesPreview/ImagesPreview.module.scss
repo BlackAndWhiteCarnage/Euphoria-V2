@@ -1,0 +1,109 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+$imagesPreviewHeight: u.rem-calc(926);
+$imagesPreviewHeight-mobile: u.rem-calc(478);
+
+$gap: u.rem-calc(15);
+$gap-mobile: u.rem-calc(8);
+
+.imagesPreview {
+	display: flex;
+	gap: $gap;
+	width: 100%;
+
+	@include bp.down(sm) {
+		flex-direction: column;
+		gap: $gap-mobile;
+	}
+}
+
+.bigImageWrap {
+	border-radius: u.rem-calc(2);
+	height: $imagesPreviewHeight;
+	max-width: u.rem-calc(693);
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	
+	@include bp.down(md) {
+		height: $imagesPreviewHeight-mobile;
+	}
+}
+
+.bigImage {
+	&.is-visible {
+		img {
+			opacity: 1;
+		}
+	}
+	
+	img {
+		object-fit: cover;
+		opacity: 0;
+		transition: 0.5s ease;
+	}
+}
+
+.imagesNav {
+	display: flex;
+	flex-direction: column;
+	gap: $gap;
+	height: $imagesPreviewHeight;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding-right: u.rem-calc(4);
+	position: relative;
+	width: u.rem-calc(86);
+
+	@include bp.down(md) {
+		height: $imagesPreviewHeight-mobile;
+	}
+
+	@include bp.down(sm) {
+		flex-direction: row;
+		gap: $gap-mobile;
+		height: unset;
+		overflow-x: auto;
+		overflow-y: hidden;
+		width: 100%;
+	}
+}
+
+.imagesNavItem {
+	background: none;
+	border-radius: u.rem-calc(6);
+	border: none;
+	border: u.rem-calc(3) solid t.color(images-preview-nav-item-border);
+	cursor: pointer;
+	height: u.rem-calc(115);
+	overflow: hidden;
+	position: relative;
+	transition: 0.2s ease;
+	
+	@include bp.down(md) {
+		height: u.rem-calc(86);
+	}
+	
+	@include bp.down(sm) {
+		width: u.rem-calc(62);
+	}
+
+	&:hover {
+		img {
+			transform: scale(1.2) rotate(1deg);
+		}
+	}
+
+	&.is-active {
+		border: u.rem-calc(3) solid t.color(images-preview-nav-item-active-border);
+	}
+
+	img {
+		height: 100%;
+		object-fit: cover;
+		transition: 0.2s ease;
+		width: 100%;
+	}
+}
