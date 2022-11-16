@@ -1,0 +1,13 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.box {
+	border: u.rem-calc(2) solid t.color(box-border);
+	border-radius: u.rem-calc(2);
+	padding: u.rem-calc(30) u.rem-calc(34);
+	
+	@include bp.down(sm) {
+		padding: u.rem-calc(12) u.rem-calc(16);
+	}
+}
