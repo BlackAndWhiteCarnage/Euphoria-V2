@@ -1,0 +1,65 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+$offset: u.rem-calc(-80);
+$offset-mobile: u.rem-calc(10);
+
+%slider-button {
+	height: u.rem-calc(40);
+	width: u.rem-calc(40);
+	background: t.color(slider-button-background);
+	border-radius: u.rem-calc(2);
+
+	svg {
+		width: 100%;
+		height: 100%;
+		
+		path {
+			fill: t.color(slider-button-icon-color);
+		}
+	}
+}
+
+.slider {
+	position: relative;
+}
+
+.sliderButton {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	transform: translateY(-50%) scale(0.2);
+	opacity: 0;
+	transition: 0.25s cubic-bezier(1, 2, 0.55, 1);
+	cursor: pointer;
+
+	&.next {
+		@extend %slider-button;
+
+		right: $offset;
+
+		@include bp.down(xxl) {
+			right: $offset-mobile;
+		}
+	}
+
+	&.prev {
+		@extend %slider-button;
+
+		left: $offset;
+
+		@include bp.down(xxl) {
+			left: $offset-mobile;
+		}
+
+		svg {
+			transform: rotate(180deg);
+		}
+	}
+
+	&.is-active {
+		opacity: 1;
+		transform: scale(1) translateY(-50%);
+	}
+}

@@ -41,6 +41,8 @@ module.exports = {
 		'no-nested-ternary': 'off',
 		'jsx-a11y/label-has-associated-control': 'off',
 		'react/no-array-index-key': 'off',
+		'no-return-assign': 'off',
+		'import/no-extraneous-dependencies': 'off',
 		'react/function-component-definition': [
 			'error',
 			{
