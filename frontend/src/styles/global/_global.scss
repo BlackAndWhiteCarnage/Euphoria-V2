@@ -10,6 +10,21 @@ body {
 	background: t.color(page-background);
 	font-family: f.get(primary);
 	overflow-x: hidden;
+
+	::-webkit-scrollbar {
+        width: u.rem-calc(3);
+		border-radius: u.rem-calc(20);
+    }
+
+    ::-webkit-scrollbar-track {
+        background: t.color(scroll-track-color);
+		border-radius: u.rem-calc(8);
+    }
+	
+    ::-webkit-scrollbar-thumb {
+		background: t.color(scroll-thumb-color);
+		border-radius: u.rem-calc(8);
+    }
 }
 
 *,
