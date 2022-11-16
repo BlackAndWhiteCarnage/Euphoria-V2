@@ -77,7 +77,7 @@ $gap-mobile: u.rem-calc(8);
 	border: none;
 	border: u.rem-calc(3) solid t.color(images-preview-nav-item-border);
 	cursor: pointer;
-	height: u.rem-calc(115);
+	min-height: u.rem-calc(115);
 	overflow: hidden;
 	position: relative;
 	transition: 0.2s ease;
