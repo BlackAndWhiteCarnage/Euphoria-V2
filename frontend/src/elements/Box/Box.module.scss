@@ -8,6 +8,6 @@
 	padding: u.rem-calc(30) u.rem-calc(34);
 	
 	@include bp.down(sm) {
-		padding: u.rem-calc(12) u.rem-calc(16);
+		padding: u.rem-calc(20) u.rem-calc(16);
 	}
 }

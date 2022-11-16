@@ -17,6 +17,7 @@
 	text-decoration: none;
 	transition: 0.15s ease;
 	width: fit-content;
+	white-space: nowrap;
 
 	&.primary {
 		color: t.color(button-primary);

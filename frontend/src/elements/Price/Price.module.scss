@@ -10,10 +10,6 @@
 
 	font-size: u.rem-calc(16);
 
-	@include bp.down(md) {
-		font-size: u.rem-calc(14);
-	}
-
 	.is-crossed-out {
 		color: t.color(price-discounted-color);
 		position: relative;
