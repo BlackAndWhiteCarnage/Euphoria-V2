@@ -1,0 +1,22 @@
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.loader {
+	animation: rotation 1s linear infinite;
+	border-radius: 50%;
+	border-right: u.rem-calc(3) solid transparent;
+	border-top: u.rem-calc(3) solid t.color(loader);
+	box-sizing: border-box;
+	display: inline-block;
+	height: u.rem-calc(40);
+	width: u.rem-calc(40);
+}
+  
+@keyframes rotation {
+	0% {
+	  transform: rotate(0deg);
+	}
+	100% {
+	  transform: rotate(360deg);
+	}
+} 
