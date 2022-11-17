@@ -6,12 +6,12 @@ import { useQuery } from 'urql';
 /**
  * Internal dependencies
  */
-import { GET_ALL_CATEGORY_PRODUCTS } from 'graphqlQueries';
+import { GET_PRODUCT } from 'graphqlQueries';
 
-const useGetAllCategoryProducts = (category: string) => {
+const useGetAllCategoryProducts = (slug: string) => {
 	const [results] = useQuery({
-		query: GET_ALL_CATEGORY_PRODUCTS,
-		variables: { name: category },
+		query: GET_PRODUCT,
+		variables: { slug },
 	});
 
 	const { data, fetching, error } = results;

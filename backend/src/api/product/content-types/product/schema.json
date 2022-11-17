@@ -33,7 +33,7 @@
       "type": "decimal",
       "required": true
     },
-    "Extra": {
+    "extras": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::panties-extra.panties-extra"

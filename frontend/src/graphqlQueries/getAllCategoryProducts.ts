@@ -1,4 +1,4 @@
-export const GET_ALL_CATEGORY_PRODUCTS = `
+const GET_ALL_CATEGORY_PRODUCTS = `
 query getAllCategoryProducts($name: String!){
     categories(filters: { name: { eq: $name } }) {
     data {
@@ -18,7 +18,7 @@ query getAllCategoryProducts($name: String!){
               }
               price
               isPremium
-              Extra {
+              extras {
                 data {
                   attributes {
                     extras
@@ -33,3 +33,5 @@ query getAllCategoryProducts($name: String!){
   }
 }
 `;
+
+export default GET_ALL_CATEGORY_PRODUCTS;

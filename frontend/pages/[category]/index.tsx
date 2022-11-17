@@ -1,13 +1,19 @@
 /**
  * Internal dependencies
  */
+import { useRouter } from 'next/router';
 import { getNestedCategoryData } from 'utils';
 import { Grid, Card } from 'fragments';
 import { Loader } from 'elements';
 import { useGetAllCategoryProducts } from 'hooks';
 
-const Socks = () => {
-	const { data, fetching, error } = useGetAllCategoryProducts('skarpetki');
+const Category = () => {
+	const router = useRouter();
+
+	const { category } = router.query;
+	const { data, fetching, error } = useGetAllCategoryProducts(
+		category as string
+	);
 
 	if (fetching) return <Loader />;
 	if (error) return <p>Error: {error.message}</p>;
@@ -20,7 +26,7 @@ const Socks = () => {
 						key={slug}
 						name={title}
 						price={price}
-						href={`/skarpetki/${slug}`}
+						href={`/${category}/${slug}`}
 						image={images.data[0].attributes.formats.medium.url}
 					/>
 				)
@@ -29,4 +35,4 @@ const Socks = () => {
 	);
 };
 
-export default Socks;
+export default Category;
