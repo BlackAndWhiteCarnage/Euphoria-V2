@@ -1,5 +1,5 @@
-const Panties = () => {
-	return <h1>majtki produkt</h1>;
+const PantiesProductPreview = () => {
+	return <h1>Majtki produkt</h1>;
 };
 
-export default Panties;
+export default PantiesProductPreview;

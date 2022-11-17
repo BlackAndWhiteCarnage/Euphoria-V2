@@ -1,4 +1,4 @@
-export const formatPrice = (
+const formatPrice = (
 	price: number,
 	currency: string = 'PLN',
 	locale: string = 'pl-PL'
@@ -8,5 +8,4 @@ export const formatPrice = (
 		style: 'currency',
 	}).format(price);
 
-export const substractPriceByPercentage = (price: number, percentage: number) =>
-	formatPrice(price * (1 - percentage / 100));
+export default formatPrice;

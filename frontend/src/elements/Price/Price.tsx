@@ -8,7 +8,7 @@ import classnames from 'classnames';
  * Internal dependencies
  */
 import { PriceProps } from 'types/price';
-import { formatPrice, substractPriceByPercentage } from 'utils/formatPrice';
+import { formatPrice, substractPriceByPercentage } from 'utils';
 import classes from './Price.module.scss';
 
 const Price: FC<PriceProps> = ({ discount, isFree, price }) => (

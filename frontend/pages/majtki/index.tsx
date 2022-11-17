@@ -1,32 +1,22 @@
 /**
- * External dependencies
- */
-import { useQuery } from 'urql';
-
-/**
  * Internal dependencies
  */
-import { Loader } from 'elements';
+import { getNestedCategoryData } from 'utils';
 import { Grid, Card } from 'fragments';
-import { GET_ALL_CATEGORY_PRODUCTS } from 'graphql/getAllCategoryProducts';
+import { Loader } from 'elements';
+import { useGetAllCategoryProducts } from 'hooks';
 
 const Panties = () => {
-	const [results] = useQuery({
-		query: GET_ALL_CATEGORY_PRODUCTS,
-		variables: { name: 'majtki' },
-	});
-
-	const { data, fetching, error } = results;
+	const { data, fetching, error } = useGetAllCategoryProducts('majtki');
 
 	if (fetching) return <Loader />;
 	if (error) return <p>Error: {error.message}</p>;
 
-	const items = data.categories.data[0].attributes.products.data;
-
 	return (
 		<Grid>
-			{items.map(({ attributes }: any) => (
+			{getNestedCategoryData(data).map(({ attributes }: any) => (
 				<Card
+					key={attributes.slug}
 					name={attributes.title}
 					price={attributes.price}
 					href={`/majtki/${attributes.slug}`}
