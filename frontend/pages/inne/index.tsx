@@ -14,15 +14,17 @@ const Others = () => {
 
 	return (
 		<Grid>
-			{getNestedCategoryData(data).map(({ attributes }: any) => (
-				<Card
-					key={attributes.slug}
-					name={attributes.title}
-					price={attributes.price}
-					href={`/inne/${attributes.slug}`}
-					image={attributes.images.data[0].attributes.formats.medium.url}
-				/>
-			))}
+			{getNestedCategoryData(data).map(
+				({ attributes: { slug, title, price, images } }: any) => (
+					<Card
+						key={slug}
+						name={title}
+						price={price}
+						href={`/inne/${slug}`}
+						image={images.data[0].attributes.formats.medium.url}
+					/>
+				)
+			)}
 		</Grid>
 	);
 };

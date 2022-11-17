@@ -6,11 +6,7 @@
 @use "styles/utils/theme" as t;
 @use "styles/utils/unit" as u;
 
-body {
-	background: t.color(page-background);
-	font-family: f.get(primary);
-	overflow-x: hidden;
-
+%scroll-bar-style {
 	::-webkit-scrollbar {
         width: u.rem-calc(3);
 		border-radius: u.rem-calc(20);
@@ -25,6 +21,18 @@ body {
 		background: t.color(scroll-thumb-color);
 		border-radius: u.rem-calc(8);
     }
+}
+
+html {
+	@extend %scroll-bar-style;
+}
+
+body {
+	@extend %scroll-bar-style;
+
+	background: t.color(page-background);
+	font-family: f.get(primary);
+	overflow-x: hidden;
 }
 
 a {
