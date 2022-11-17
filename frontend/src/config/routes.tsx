@@ -12,11 +12,11 @@ export const routes = [
 		label: 'Skarpetki',
 	},
 	{
-		path: '/rajstopy',
+		path: '/rajstopy-i-ponczochy',
 		label: 'Rajstopy i Pończochy',
 	},
 	{
-		path: '/sesje',
+		path: '/sesje-zdjeciowe',
 		label: 'Sesje Zdjęciowe',
 	},
 	{

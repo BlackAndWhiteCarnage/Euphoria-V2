@@ -6,37 +6,32 @@ import { FC, PropsWithChildren } from 'react';
 /**
  * Internal dependencies
  */
-
-import { ReactComponent as Heart } from 'images/icons/heart.svg';
-import { ReactComponent as Person } from 'images/icons/person.svg';
-import { ReactComponent as Shopper } from 'images/icons/shopper.svg';
-import { routes } from 'config/routes';
 import { Logo } from 'elements';
-import { NavIcons } from 'fragments';
+import { routes } from 'config/routes';
 import Link from 'next/link';
 import classes from './WithNavigationLayout.module.scss';
 
-const WithNavigationLayout: FC<PropsWithChildren> = ({ children }) => (
-	<div className={classes.layoutWrapper}>
+type WithNavigationLayoutProps = PropsWithChildren<{
+	cart: any;
+	favorites: any;
+	user: any;
+}>;
+
+const WithNavigationLayout: FC<WithNavigationLayoutProps> = ({
+	cart,
+	children,
+	favorites,
+	user,
+}) => (
+	<>
 		<div className={classes.topBar}>
 			<Logo />
-			<NavIcons
-				items={[
-					{
-						href: '/',
-						icon: <Heart />,
-					},
-					{
-						href: '/',
-						icon: <Person />,
-					},
-					{
-						count: 12,
-						href: '/',
-						icon: <Shopper />,
-					},
-				]}
-			/>
+			{/* TODO */}
+			<div className={classes.functionalIcons}>
+				<div>{favorites}</div>
+				<div>{user}</div>
+				<div>{cart}</div>
+			</div>
 		</div>
 		{/* TODO */}
 		<nav className={classes.navigation}>
@@ -45,7 +40,7 @@ const WithNavigationLayout: FC<PropsWithChildren> = ({ children }) => (
 			))}
 		</nav>
 		{children}
-	</div>
+	</>
 );
 
 export default WithNavigationLayout;

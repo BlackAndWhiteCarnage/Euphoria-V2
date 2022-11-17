@@ -1,0 +1,14 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+
+.layout {
+	margin: auto;
+	width: 100%;
+	max-width: u.rem-calc(1300);
+	min-height: 100vh;
+	padding: 0 u.rem-calc(30);
+
+	@include bp.down(md) {
+		padding: 0 u.rem-calc(15);
+	}
+}

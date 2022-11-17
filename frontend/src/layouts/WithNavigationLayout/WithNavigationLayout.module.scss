@@ -6,25 +6,26 @@
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
-
+	margin-bottom: u.rem-calc(30);
+	
 	@include bp.down(md) {
 		padding-top: u.rem-calc(10);
+		margin-bottom: u.rem-calc(20);
 	}
 }
 
 .navigation {
 	display: flex;
 	justify-content: space-between;
+	margin-bottom: u.rem-calc(40);
+	
+	@include bp.down(md) {
+		margin-bottom: u.rem-calc(30);
+	}
 }
 
-.layoutWrapper {
-	margin: auto;
-	width: 100%;
-	max-width: u.rem-calc(1300);
-	min-height: 100vh;
-	padding: 0 u.rem-calc(30);
-
-	@include bp.down(md) {
-		padding: 0 u.rem-calc(15);
-	}
+.functionalIcons {
+	display: flex;
+	gap: u.rem-calc(12);
+	align-items: center;
 }
