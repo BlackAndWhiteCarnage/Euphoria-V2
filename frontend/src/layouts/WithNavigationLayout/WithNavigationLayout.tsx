@@ -35,8 +35,10 @@ const WithNavigationLayout: FC<WithNavigationLayoutProps> = ({
 		</div>
 		{/* TODO */}
 		<nav className={classes.navigation}>
-			{routes.map(({ label, path }) => (
-				<Link href={path}>{label}</Link>
+			{routes.map(({ label, path }, i) => (
+				<Link href={path} key={i}>
+					{label}
+				</Link>
 			))}
 		</nav>
 		{children}

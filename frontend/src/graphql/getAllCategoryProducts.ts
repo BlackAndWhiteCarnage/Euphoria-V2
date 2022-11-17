@@ -12,7 +12,7 @@ query getAllCategoryProducts($name: String!){
               images {
                 data {
                   attributes {
-                    previewUrl
+                    formats
                   }
                 }
               }
