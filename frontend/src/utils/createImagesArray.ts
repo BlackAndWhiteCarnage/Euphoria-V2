@@ -8,7 +8,7 @@ const createImagesArray = (images: any, title: string) => {
 
 	images.data.forEach(({ attributes: { formats } }: any) => {
 		formattedImages.push({
-			src: formats.medium.url,
+			src: formats.large ? formats.large.url : formats.medium.url,
 			alt: title,
 		});
 	});

@@ -2,7 +2,7 @@
 @use "styles/utils/theme" as t;
 @use "styles/utils/unit" as u;
 
-$imagesPreviewHeight: u.rem-calc(926);
+$imagesPreviewHeight: u.rem-calc(826);
 $imagesPreviewHeight-mobile: u.rem-calc(478);
 
 $gap: u.rem-calc(15);
@@ -22,7 +22,6 @@ $gap-mobile: u.rem-calc(8);
 .bigImageWrap {
 	border-radius: u.rem-calc(2);
 	height: $imagesPreviewHeight;
-	max-width: u.rem-calc(693);
 	overflow: hidden;
 	position: relative;
 	width: 100%;
