@@ -8,28 +8,28 @@ import Sticky from 'react-stickynode';
  * Internal dependencies
  */
 import { ButtonProps } from 'elements/Button/Button';
+import { HeaderProps } from 'elements/Header/Header';
 import { ImagesPreviewProps } from 'fragments/ImagesPreview/ImagesPreview';
-import { Loader, Header } from 'elements';
+import { Loader } from 'elements';
 import { PriceProps } from 'types/price';
 import { SliderProvider } from 'fragments';
 import { useGetAllCategoryProducts } from 'hooks';
-import { HeaderProps } from 'elements/Header/Header';
 import classes from './ProductLayout.module.scss';
 
 type ProductLayoutProps = {
+	button: ReactElement<ButtonProps>;
+	description: string;
 	header: ReactElement<HeaderProps>;
 	imagesPreview: ReactElement<ImagesPreviewProps>;
 	priceComponent: ReactElement<PriceProps>;
-	button: ReactElement<ButtonProps>;
-	description: string;
 };
 
 const ProductLayout: FC<ProductLayoutProps> = ({
+	button,
+	description,
 	header,
 	imagesPreview,
 	priceComponent,
-	button,
-	description,
 }) => {
 	const { ready, error, category } = useGetAllCategoryProducts();
 
@@ -56,8 +56,7 @@ const ProductLayout: FC<ProductLayoutProps> = ({
 				</Sticky>
 			</div>
 			<div className={classes.slider}>
-				<Header text={`Inne w kategorii ${category}`} />
-				<SliderProvider />
+				<SliderProvider label={`Inne w kategorii ${category}`} />
 			</div>
 		</>
 	);

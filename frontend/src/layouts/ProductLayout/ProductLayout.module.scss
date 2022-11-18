@@ -58,8 +58,9 @@
 }
 
 .slider {
-	display: flex;
-	flex-direction: column;
-	gap: u.rem-calc(40);
 	margin-top: u.rem-calc(80);
+	
+	@include bp.down(md) {
+		margin-top: u.rem-calc(40);
+	}
 }
