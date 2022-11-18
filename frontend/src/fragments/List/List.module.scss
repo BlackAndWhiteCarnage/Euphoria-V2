@@ -1,0 +1,14 @@
+@use "styles/utils/unit" as u;
+
+.list {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(22);
+}
+
+.listItem {
+	display: flex;
+	gap: u.rem-calc(10);
+	align-items: center;
+}
