@@ -44,6 +44,7 @@ module.exports = {
 		'react/no-array-index-key': 'off',
 		'no-return-assign': 'off',
 		'import/no-extraneous-dependencies': 'off',
+		'@next/next/no-img-element': 'off',
 		'react/function-component-definition': [
 			'error',
 			{

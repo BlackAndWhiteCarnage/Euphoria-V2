@@ -2,7 +2,7 @@
 @use "styles/utils/theme" as t;
 @use "styles/utils/unit" as u;
 
-.wrapper {
+.layout {
 	display: flex;
 	justify-content: space-between;
 	gap: u.rem-calc(40);
@@ -16,7 +16,7 @@
 .aside {
 	display: flex;
 	flex-direction: column;
-	gap: u.rem-calc(40);
+	gap: u.rem-calc(30);
 	transition: padding 0.2s ease;
 	
 	@include bp.down(lg) {
@@ -55,4 +55,11 @@
 	@include bp.down(lg) {
 		max-width: unset;
 	}
+}
+
+.slider {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(40);
+	margin-top: u.rem-calc(80);
 }

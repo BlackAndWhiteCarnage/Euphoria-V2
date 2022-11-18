@@ -8,7 +8,7 @@ import { FC } from 'react';
  */
 import classes from './Header.module.scss';
 
-type HeaderProps = {
+export type HeaderProps = {
 	text: string;
 	level?: 1 | 2;
 };

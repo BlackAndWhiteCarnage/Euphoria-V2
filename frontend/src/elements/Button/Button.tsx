@@ -15,7 +15,7 @@ import classnames from 'classnames';
 import Link from 'next/link';
 import classes from './Button.module.scss';
 
-type BaseButtonProps = {
+export type BaseButtonProps = {
 	children?: string | ReactElement;
 	size?: 'large' | 'medium' | 'small';
 	type?: 'primary' | 'alert';

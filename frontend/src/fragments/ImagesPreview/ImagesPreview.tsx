@@ -8,10 +8,9 @@ import classnames from 'classnames';
  * Internal dependencies
  */
 import { Image as ImageType } from 'types';
-import Image from 'next/image';
 import classes from './ImagesPreview.module.scss';
 
-type ImagesPreviewProps = {
+export type ImagesPreviewProps = {
 	images: Array<ImageType>;
 };
 
@@ -28,7 +27,7 @@ const ImagesPreview: FC<ImagesPreviewProps> = ({ images }) => {
 							[classes['is-visible']]: i === current,
 						})}
 					>
-						<Image src={src} alt={alt} fill />
+						<img src={src} alt={alt} />
 					</div>
 				))}
 			</div>
@@ -41,7 +40,7 @@ const ImagesPreview: FC<ImagesPreviewProps> = ({ images }) => {
 						})}
 						onClick={() => setCurrent(i)}
 					>
-						<Image src={src} alt={alt} fill />
+						<img src={src} alt={alt} />
 					</button>
 				))}
 			</div>

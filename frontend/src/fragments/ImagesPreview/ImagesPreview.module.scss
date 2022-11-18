@@ -39,9 +39,12 @@ $gap-mobile: u.rem-calc(8);
 	}
 	
 	img {
+		position: absolute;
 		object-fit: cover;
 		opacity: 0;
 		transition: 0.5s ease;
+		height: 100%;
+		width: 100%;
 	}
 }
 
