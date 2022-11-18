@@ -11,13 +11,13 @@ import { CardProps } from 'fragments/Card/Card';
 import { getImageUrl } from 'utils';
 import { useGetAllCategoryProducts } from 'hooks';
 
-const useGetSliderProducts = (count: number = 9) => {
+const useGetSliderProducts = (specyficCategory?: string, count: number = 9) => {
 	const {
 		products: allProducts,
 		ready,
 		error,
 		category,
-	} = useGetAllCategoryProducts();
+	} = useGetAllCategoryProducts(specyficCategory);
 
 	const router = useRouter();
 	const { slug: urlSlug } = router.query;
@@ -34,7 +34,9 @@ const useGetSliderProducts = (count: number = 9) => {
 			items.push({
 				name: title,
 				price,
-				href: `/${category}/${slug}`,
+				href: !specyficCategory
+					? `/${category}/${slug}`
+					: `/${specyficCategory}/${slug}`,
 				image: getImageUrl(images),
 			});
 		}

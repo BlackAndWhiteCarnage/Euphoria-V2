@@ -9,25 +9,19 @@ import SwiperCore from 'swiper';
 /**
  * Internal dependencies
  */
-import { Loader } from 'elements';
 import { Card } from 'fragments';
+import { CardProps } from 'fragments/Card/Card';
 import { ReactComponent as Arrow } from 'images/icons/arrow.svg';
-import { useGetSliderProducts } from 'hooks';
 import classes from './Slider.module.scss';
 
-// type SliderProps = {
-// 	items: Array<CardProps>;
-// };
+type SliderProps = {
+	items: Array<CardProps>;
+};
 
-const Slider: FC = () => {
+const Slider: FC<SliderProps> = ({ items }) => {
 	const [begenning, setBegenning] = useState(true);
 	const [end, setEnd] = useState(false);
 	const swiperRef = useRef<SwiperCore>();
-
-	const { items, ready, error } = useGetSliderProducts();
-
-	if (!ready) return <Loader />;
-	if (error) return <p>Error: {error.message}</p>;
 
 	return (
 		<div className={classes.slider}>

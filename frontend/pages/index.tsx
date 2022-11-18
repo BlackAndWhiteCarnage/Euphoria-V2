@@ -1,3 +1,5 @@
-const Home = () => <h1>Strona Główna</h1>;
+import { SliderProvider } from 'fragments';
+
+const Home = () => <SliderProvider category="majtki" />;
 
 export default Home;

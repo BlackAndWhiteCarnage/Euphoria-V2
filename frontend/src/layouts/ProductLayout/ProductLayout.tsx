@@ -11,7 +11,7 @@ import { ButtonProps } from 'elements/Button/Button';
 import { ImagesPreviewProps } from 'fragments/ImagesPreview/ImagesPreview';
 import { Loader, Header } from 'elements';
 import { PriceProps } from 'types/price';
-import { Slider } from 'fragments';
+import { SliderProvider } from 'fragments';
 import { useGetAllCategoryProducts } from 'hooks';
 import { HeaderProps } from 'elements/Header/Header';
 import classes from './ProductLayout.module.scss';
@@ -57,7 +57,7 @@ const ProductLayout: FC<ProductLayoutProps> = ({
 			</div>
 			<div className={classes.slider}>
 				<Header text={`Inne w kategorii ${category}`} />
-				<Slider />
+				<SliderProvider />
 			</div>
 		</>
 	);
