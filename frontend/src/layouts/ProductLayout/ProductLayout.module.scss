@@ -64,3 +64,8 @@
 		margin-top: u.rem-calc(40);
 	}
 }
+
+.buttons {
+	display: flex;
+	gap: u.rem-calc(20);
+}

@@ -9,19 +9,22 @@ import { MainLayout, WithNavigationLayout, WithFooterLayout } from 'layouts';
 /**
  * Internal dependencies
  */
+import { StateContext } from 'contexts/CartContext';
 import 'styles/index.scss';
 
 const client = createClient({ url: process.env.NEXT_PUBLIC_GRAPHQL });
 
 const App: FC<AppProps> = ({ Component, pageProps }) => (
 	<MainLayout>
-		<WithNavigationLayout cart="cart" favorites="favorites" user="user">
-			<WithFooterLayout>
-				<Provider value={client}>
-					<Component {...pageProps} />
-				</Provider>
-			</WithFooterLayout>
-		</WithNavigationLayout>
+		<StateContext>
+			<WithNavigationLayout>
+				<WithFooterLayout>
+					<Provider value={client}>
+						<Component {...pageProps} />
+					</Provider>
+				</WithFooterLayout>
+			</WithNavigationLayout>
+		</StateContext>
 	</MainLayout>
 );
 

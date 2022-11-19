@@ -1,28 +1,44 @@
 /**
  * External dependencies
  */
-import { FC, ReactElement, useState } from 'react';
+import { FC, useState } from 'react';
 import Sticky from 'react-stickynode';
 
 /**
  * Internal dependencies
  */
 import { Button, Loader, Price, Header } from 'elements';
-import { formatToImagesArray } from 'utils';
+import { formatToImagesArray, getImageUrl } from 'utils';
 import { ImagesPreview, ExtrasPopup } from 'fragments';
-import { useGetProduct, usePopup } from 'hooks';
+import { useGetProduct, usePopup, useIsInCart } from 'hooks';
+import { useStateContext } from 'contexts/CartContext';
+import { CheckboxProps } from 'elements/Checkbox/Checkbox';
 import classes from './ProductLayout.module.scss';
 
 const ProductLayout: FC = () => {
+	const isInCart = useIsInCart();
+	const [addedExtras, setAddedExtras] = useState<Array<string>>(
+		isInCart?.extras || []
+	);
+
+	const { add, updateExtras, remove } = useStateContext();
+
 	const { product, ready, error } = useGetProduct();
 	const popup = usePopup();
 
 	if (!ready) return <Loader />;
 	if (error) return <p>Error: {error.message}</p>;
 
-	const { title, price, extras, images } = product;
+	const { title, price, extras, images, slug } = product;
 
 	const hasExtras = !!extras.data;
+
+	const handleToggleSingle = (value: string) =>
+		setAddedExtras(
+			!addedExtras.includes(value)
+				? [...addedExtras, value]
+				: addedExtras.filter((el) => el !== value)
+		);
 
 	return (
 		<>
@@ -52,21 +68,45 @@ const ProductLayout: FC = () => {
 						</p>
 						<Price price={price} />
 						<Button
+							disabled={isInCart}
 							size="large"
-							onClick={() =>
-								hasExtras ? popup.open() : console.log('do smomething else')
-							}
+							onClick={() => {
+								add({
+									image: getImageUrl(images),
+									title,
+									price,
+									slug,
+								});
+
+								hasExtras && popup.open();
+							}}
 						>
-							<>Dodaj do koszyka {hasExtras && 'i wybierz dodatki'}</>
+							Dodaj do koszyka
 						</Button>
+						{isInCart && (
+							<div className={classes.buttons}>
+								{hasExtras && (
+									<Button size="large" onClick={() => popup.open()}>
+										Edytuj dodatki
+									</Button>
+								)}
+								<Button size="large" type="alert" onClick={() => remove(slug)}>
+									Usuń z koszyka
+								</Button>
+							</div>
+						)}
 					</div>
 				</Sticky>
 			</div>
 			{hasExtras && (
 				<ExtrasPopup
+					choosenItems={addedExtras}
 					items={extras.data.attributes.extras.extras}
 					count={extras.data.attributes.extras.count}
-					onChange={(e) => console.log(e)}
+					onChange={handleToggleSingle as CheckboxProps['onChange']}
+					onConfirm={() => {
+						updateExtras(slug, addedExtras);
+					}}
 					{...popup}
 				/>
 			)}

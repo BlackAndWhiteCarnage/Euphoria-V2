@@ -8,7 +8,7 @@ import { FC, InputHTMLAttributes } from 'react';
  */
 import classes from './Checkbox.module.scss';
 
-type CheckboxProps = {
+export type CheckboxProps = {
 	checked?: boolean;
 	id: string;
 	onChange: (value: string) => void;
