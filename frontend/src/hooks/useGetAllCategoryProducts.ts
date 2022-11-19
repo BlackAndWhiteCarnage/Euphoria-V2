@@ -33,7 +33,7 @@ const useGetAllCategoryProducts = (
 
 	useEffect(() => {
 		!fetching &&
-			data.categories.data.length > 0 &&
+			data?.categories?.data?.length > 0 &&
 			setProducts(data.categories.data[0].attributes.products.data);
 	}, [data, fetching]);
 

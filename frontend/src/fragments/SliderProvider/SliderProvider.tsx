@@ -12,12 +12,12 @@ import { useGetSliderProducts } from 'hooks';
 import classes from './SliderProvider.module.scss';
 
 type SliderProviderProps = {
-	category?: string;
-	label?: string;
+	specyficCategory?: string;
 };
 
-const SliderProvider: FC<SliderProviderProps> = ({ category, label }) => {
-	const { items, ready, error } = useGetSliderProducts(category);
+const SliderProvider: FC<SliderProviderProps> = ({ specyficCategory }) => {
+	const { items, ready, error, category } =
+		useGetSliderProducts(specyficCategory);
 
 	if (!ready) return <Loader />;
 	if (error) return <p>Error: {error.message}</p>;
@@ -25,7 +25,11 @@ const SliderProvider: FC<SliderProviderProps> = ({ category, label }) => {
 
 	return (
 		<div className={classes.sliderWrap}>
-			{label && <Header text={label} />}
+			<Header
+				text={
+					!specyficCategory ? `Inne w kategorii ${category}` : specyficCategory
+				}
+			/>
 			<Slider items={items} />
 		</div>
 	);

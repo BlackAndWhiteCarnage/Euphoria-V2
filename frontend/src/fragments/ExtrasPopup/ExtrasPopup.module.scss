@@ -1,0 +1,27 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.extras {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(15);
+	max-width: u.rem-calc(500);
+
+	@include bp.down(sm) {
+		gap: u.rem-calc(5);
+	}
+}
+
+.buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: u.rem-calc(20);
+	width: 100%;
+	justify-content: space-between;
+}
+
+.info {
+	color: t.color(extras-popup-info);
+	font-size: u.rem-calc(14);
+}

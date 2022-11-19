@@ -1,0 +1,10 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+
+.slider {
+	margin-top: u.rem-calc(80);
+	
+	@include bp.down(md) {
+		margin-top: u.rem-calc(40);
+	}
+}

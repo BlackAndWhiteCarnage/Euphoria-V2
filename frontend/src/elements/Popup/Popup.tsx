@@ -18,7 +18,7 @@ export type PopupProps = PropsWithChildren<{
 const Popup: FC<PopupProps> = ({ children, close, isOpen = false }) => {
 	useEffect(() => {
 		const rootElements = document
-			.querySelector<HTMLElement>('#root')
+			.querySelector<HTMLElement>('#__next')
 			?.querySelector<HTMLElement>('*');
 
 		if (rootElements) {

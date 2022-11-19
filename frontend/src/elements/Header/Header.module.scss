@@ -3,6 +3,10 @@
 
 .header {
 	font-size: u.rem-calc(36);
+
+	&::first-letter {
+		text-transform: uppercase;
+	}
 	
 	@include bp.down(sm) {
 		font-size: u.rem-calc(32);

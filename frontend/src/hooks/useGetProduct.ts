@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
  */
 import { GET_PRODUCT } from 'graphqlQueries';
 
-const useGetAllCategoryProducts = (): {
+const useGetProduct = (): {
 	product: any;
 	ready: boolean;
 	error: CombinedError | undefined;
@@ -39,4 +39,4 @@ const useGetAllCategoryProducts = (): {
 	return { ready, error, product };
 };
 
-export default useGetAllCategoryProducts;
+export default useGetProduct;
