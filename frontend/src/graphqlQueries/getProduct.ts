@@ -6,6 +6,13 @@ query getAllCategoryProducts($slug: String!){
        title
        slug
        price
+       description {
+        data {
+          attributes {
+            description
+          }
+        }
+      }
        extras {
          data {
            attributes {

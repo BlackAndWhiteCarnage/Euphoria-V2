@@ -34,6 +34,7 @@ const ProductLayout: FC = () => {
 		selected,
 		slug,
 		title,
+		description,
 	} = product;
 
 	return (
@@ -51,7 +52,9 @@ const ProductLayout: FC = () => {
 					bottomBoundary="#product-layout"
 				>
 					<div className={classes.aside}>
-						<p className={classes.description}>text</p>
+						<p className={classes.description}>
+							{description?.data && description.data.attributes.description}
+						</p>
 						<Price price={price} />
 						<Button
 							disabled={isInCart}
