@@ -54,7 +54,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
 		setSelected(isInCart.extras);
 	};
 
-	const hasExtras = selected.length > 0;
+	const hasExtras = selected?.length > 0;
 
 	return (
 		<Box>

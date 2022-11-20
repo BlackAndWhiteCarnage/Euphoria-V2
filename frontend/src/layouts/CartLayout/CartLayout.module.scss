@@ -13,12 +13,23 @@ $containers-height: calc(100vh - u.rem-calc(300));
 	display: flex;
 	gap: u.rem-calc(10);
 	height: $containers-height;
+	
+	@include bp.down(xl) {
+		height: unset;
+		flex-direction: column;
+	}
 }
 
 .cart {
 	display: flex;
 	flex-direction: column;
 	gap: u.rem-calc(25);
+	min-width: u.rem-calc(600);
+	
+	@include bp.down(xl) {
+		min-width: unset;
+		width: 100%;
+	}
 }
 
 .cartItems {
@@ -33,6 +44,5 @@ $containers-height: calc(100vh - u.rem-calc(300));
 
 .checkout {
 	width: 100%;
-	width: u.rem-calc(600);
-	display: block;
+	height: 100%;
 }

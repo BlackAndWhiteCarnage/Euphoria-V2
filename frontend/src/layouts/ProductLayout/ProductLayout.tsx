@@ -59,7 +59,7 @@ const ProductLayout: FC = () => {
 							onClick={() => {
 								add({
 									count: extrasCount,
-									extras: [],
+									extras: hasExtras ? [] : null,
 									image: getImageUrl(images),
 									options,
 									price,

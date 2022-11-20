@@ -52,9 +52,9 @@ const CartLayout: FC<PropsWithChildren> = () => {
 					</ul>
 				</div>
 				{isEmpty && (
-					<Box>
-						<div className={classes.checkout}>sup?</div>
-					</Box>
+					<div className={classes.checkout}>
+						<Box>sup?</Box>
+					</div>
 				)}
 			</div>
 		</div>
