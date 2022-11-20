@@ -1,0 +1,38 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+
+$containers-height: calc(100vh - u.rem-calc(300));
+
+.layout {
+	display: flex;
+	gap: u.rem-calc(20);
+	flex-direction: column;
+}
+
+.wrapper {
+	display: flex;
+	gap: u.rem-calc(10);
+	height: $containers-height;
+}
+
+.cart {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(25);
+}
+
+.cartItems {
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(25);
+	padding-right: u.rem-calc(10);
+}
+
+.checkout {
+	width: 100%;
+	width: u.rem-calc(600);
+	display: block;
+}

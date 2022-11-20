@@ -1,61 +1,116 @@
 /**
  * External dependencies
  */
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 /**
  * Internal dependencies
  */
 import { Box, Button, Price } from 'elements';
+import { CheckboxProps } from 'elements/Checkbox/Checkbox';
+import { ExtrasPopup } from 'fragments';
 import { Image as ImageType } from 'types';
 import { PriceProps } from 'types/price';
+import { useIsInCart, usePopup } from 'hooks';
+import { useStateContext } from 'contexts/CartContext';
 import Image from 'next/image';
 import classes from './ItemPreview.module.scss';
 
 type ItemPreviewProps = {
+	count: number | undefined;
 	extras?: Array<string>;
 	image: ImageType;
+	options: Array<string> | Array<never>;
+	slug: string;
 	title: string;
 } & PriceProps;
 
 const ItemPreview: FC<ItemPreviewProps> = ({
+	count,
 	extras,
 	image,
+	options,
+	slug,
 	title,
 	...props
-}) => (
-	<Box>
-		<div className={classes.itemPreview}>
-			<div className={classes.image}>
-				<Image src={image.src} alt={image.alt} fill />
-			</div>
-			<div className={classes.itemPreviewInner}>
-				<div className={classes.itemInfo}>
-					<h2 className={classes.name}>{title}</h2>
-					{extras && (
-						<>
-							<p className={classes.extrasLabel}>
-								Wybrane dodatki ({extras.length})
-							</p>
-							<ul className={classes.extras}>
-								{extras.map((el, i) => (
-									<li key={i} className={classes.extrasItem}>
-										{el}
-									</li>
-								))}
-							</ul>
-						</>
-					)}
+}) => {
+	const { remove, updateExtras } = useStateContext();
+	const isInCart = useIsInCart(slug);
+	const popup = usePopup();
+
+	const [selected, setSelected] = useState(isInCart.extras);
+
+	const onSelectChange = (itemId: string) => {
+		setSelected(
+			!selected.includes(itemId)
+				? [...selected, itemId]
+				: selected.filter((el: string) => el !== itemId)
+		);
+	};
+
+	const onSelectCancel = () => {
+		if (!isInCart?.extras) return;
+
+		setSelected(isInCart.extras);
+	};
+
+	const hasExtras = selected.length > 0;
+
+	return (
+		<Box>
+			<div className={classes.itemPreview}>
+				<div className={classes.image}>
+					<Image src={image.src} alt={image.alt} fill />
 				</div>
-				<div className={classes.otherInfo}>
-					{/* TODO */}
-					<Price {...props} />
-					{extras && <Button>Zmień dodatki</Button>}
-					<Button type="alert">Usuń</Button>
+				<div className={classes.itemPreviewInner}>
+					<div className={classes.itemInfo}>
+						<h2 className={classes.name}>{title}</h2>
+						{selected && (
+							<>
+								<p className={classes.extrasLabel}>
+									{hasExtras
+										? `Wybrane dodatki (${selected.length})`
+										: 'Nie wybrałeś żadnych dodatków!'}
+								</p>
+								<ul className={classes.extras}>
+									{selected.map((el: string) => (
+										<li key={el} className={classes.extrasItem}>
+											{el}
+										</li>
+									))}
+								</ul>
+							</>
+						)}
+					</div>
+					<div className={classes.otherInfo}>
+						{/* TODO */}
+						<Price {...props} />
+						{selected && (
+							<Button onClick={() => popup.open()}>
+								<>{hasExtras ? 'Zmień' : 'Wybierz'} dodatki</>
+							</Button>
+						)}
+						<Button type="alert" onClick={() => remove(slug)}>
+							Usuń
+						</Button>
+					</div>
 				</div>
 			</div>
-		</div>
-	</Box>
-);
+			<ExtrasPopup
+				label="Wybierz dodatki"
+				choosen={selected}
+				items={options}
+				count={count}
+				id={slug}
+				onChange={onSelectChange as CheckboxProps['onChange']}
+				onCancel={onSelectCancel}
+				onConfirm={() => {
+					updateExtras(slug, selected);
+				}}
+				{...popup}
+			/>
+		</Box>
+	);
+};
 
 export default ItemPreview;

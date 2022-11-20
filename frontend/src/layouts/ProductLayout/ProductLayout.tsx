@@ -41,7 +41,9 @@ const ProductLayout: FC = () => {
 			<div className={classes.layout} id="product-layout">
 				<div className={classes.images}>
 					<Header text={title} />
-					<ImagesPreview images={formatToImagesArray(images, title)} />
+					<ImagesPreview
+						images={images && formatToImagesArray(images, title)}
+					/>
 				</div>
 				<Sticky
 					className={classes.sticky}
@@ -49,31 +51,20 @@ const ProductLayout: FC = () => {
 					bottomBoundary="#product-layout"
 				>
 					<div className={classes.aside}>
-						<p className={classes.description}>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-							sodales sodales tristique. Integer et ultricies ipsum, id viverra
-							ligula. Vivamus condimentum quam efficitur nibh luctus, nec
-							hendrerit risus porta. Sed consequat urna imperdiet, malesuada
-							felis id, dapibus eros. Suspendisse sed nunc nec tellus mollis
-							mattis. Aliquam rhoncus risus ante, a lobortis turpis condimentum
-							id. Quisque porta purus vel libero luctus venenatis. Morbi vitae
-							consequat lacus, quis porttitor tortor. Nulla luctus justo et nibh
-							molestie, quis viverra arcu tempor. Mauris condimentum pharetra
-							magna, eu sollicitudin est accumsan vel. Curabitur vel hendrerit
-							augue, at hendrerit tellus.
-						</p>
+						<p className={classes.description}>text</p>
 						<Price price={price} />
 						<Button
 							disabled={isInCart}
 							size="large"
 							onClick={() => {
 								add({
+									count: extrasCount,
+									extras: [],
 									image: getImageUrl(images),
-									title,
+									options,
 									price,
 									slug,
-									extras: [],
-									count: extrasCount,
+									title,
 								});
 								hasExtras && popup.open();
 							}}
@@ -102,8 +93,10 @@ const ProductLayout: FC = () => {
 			</div>
 			{hasExtras && (
 				<ExtrasPopup
+					label="A może coś gratis?"
 					choosen={selected}
 					items={options}
+					id={slug}
 					count={extrasCount}
 					onChange={onSelectChange as CheckboxProps['onChange']}
 					onCancel={onSelectCancel}

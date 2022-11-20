@@ -13,10 +13,10 @@ const useHandleProductExtras = () => {
 
 	const { product, ready, error } = useGetProduct();
 
-	const [selected, setSelected] = useState<Array<string>>([]);
-	const [options, setOptions] = useState([]);
-	const [hasExtras, setHasExtras] = useState<boolean>();
 	const [extrasCount, setExtrasCount] = useState<number | undefined>();
+	const [hasExtras, setHasExtras] = useState<boolean>();
+	const [options, setOptions] = useState([]);
+	const [selected, setSelected] = useState<Array<string>>([]);
 
 	useEffect(() => {
 		if (!isInCart?.extras && !ready) return;

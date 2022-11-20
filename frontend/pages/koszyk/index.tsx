@@ -1,25 +1,8 @@
-import { useStateContext } from 'contexts/CartContext';
+/**
+ * Internal dependencies
+ */
+import { CartLayout } from 'layouts';
 
-const Cart = () => {
-	const { cart } = useStateContext();
-
-	return (
-		<div>
-			{cart.map(({ title, slug, extras, count, price }: any) => (
-				<div key={slug}>
-					<p>Tytuł: {title}</p>
-					<ul>
-						Dodtaki:{' '}
-						{extras.map((el: any) => (
-							<li key={el}>{el}</li>
-						))}
-					</ul>
-					<p>Dostępne dodatki: {count}</p>
-					<p>Cena: {price}</p>
-				</div>
-			))}
-		</div>
-	);
-};
+const Cart = () => <CartLayout />;
 
 export default Cart;

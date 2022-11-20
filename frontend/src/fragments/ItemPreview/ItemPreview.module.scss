@@ -14,6 +14,7 @@
 .itemPreviewInner {
 	display: flex;
 	gap: u.rem-calc(20);
+	width: 100%;
 
 	@include bp.down(sm) {
 		flex-direction: column;

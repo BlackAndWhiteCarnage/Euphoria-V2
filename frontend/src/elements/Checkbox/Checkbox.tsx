@@ -30,7 +30,9 @@ const Checkbox: FC<CheckboxProps> = ({
 			id={id}
 			className={classes.input}
 			checked={checked}
-			onChange={() => onChange(id)}
+			onChange={(e) => {
+				onChange(e.target.dataset.item as string);
+			}}
 		/>
 		<span className={classes.checkboxMark} />
 	</label>

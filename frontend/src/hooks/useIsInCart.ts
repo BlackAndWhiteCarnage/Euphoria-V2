@@ -8,13 +8,15 @@ import { useRouter } from 'next/router';
  */
 import { useStateContext, CartItemType } from 'contexts/CartContext';
 
-const useIsInCart = () => {
+const useIsInCart = (specyficSlug?: string) => {
 	const { cart } = useStateContext();
 
 	const router = useRouter();
 	const { slug: querySlug } = router.query;
 
-	return cart.find((el: CartItemType) => querySlug === el.slug);
+	return cart.find((el: CartItemType) =>
+		!specyficSlug ? querySlug === el.slug : specyficSlug === el.slug
+	);
 };
 
 export default useIsInCart;

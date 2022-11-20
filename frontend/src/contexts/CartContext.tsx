@@ -11,9 +11,10 @@ export type CartItemType = {
 	count?: number | undefined;
 	extras?: Array<string | never>;
 	image: string;
-	price: string;
+	price: number;
 	slug: string;
 	title: string;
+	options?: Array<string>;
 };
 
 const CartContext = createContext<any>([]);
@@ -24,7 +25,15 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 	const contextValue = useMemo(() => {
 		return {
 			cart,
-			add: ({ count, extras, image, price, slug, title }: CartItemType) => {
+			add: ({
+				count,
+				extras,
+				image,
+				price,
+				slug,
+				title,
+				options,
+			}: CartItemType) => {
 				setCart([
 					...cart,
 					{
@@ -34,6 +43,7 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 						price,
 						slug,
 						title,
+						options,
 					},
 				]);
 			},

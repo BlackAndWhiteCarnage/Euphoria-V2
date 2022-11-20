@@ -14,26 +14,28 @@ export default {
 	component: Checkbox,
 } as ComponentMeta<typeof Checkbox>;
 
-const Template: ComponentStory<typeof Checkbox> = (args) => {
-	const [, updateArgs] = useArgs();
-	const id = 'checkbox-id';
-
-	return (
-		<label htmlFor={id}>
-			<Checkbox
-				{...args}
-				id={id}
-				onChange={() => updateArgs({ ...args, checked: !args.checked })}
-			/>
-			Checkbox Label
-		</label>
-	);
-};
+const Template: ComponentStory<typeof Checkbox> = (args) => (
+	<Checkbox {...args} />
+);
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+	options: [
+		{
+			id: '1',
+			label: '1',
+		},
+		{
+			id: '2',
+			label: '2',
+		},
+		{
+			id: '3',
+			label: '3',
+		},
+	],
+	values: ['1', '2'],
+};
 
 export const Disabled = Template.bind({});
-Disabled.args = {
-	disabled: true,
-};
+Disabled.args = {};
