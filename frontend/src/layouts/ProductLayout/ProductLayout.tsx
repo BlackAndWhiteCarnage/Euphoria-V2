@@ -1,44 +1,40 @@
 /**
  * External dependencies
  */
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import Sticky from 'react-stickynode';
 
 /**
  * Internal dependencies
  */
 import { Button, Loader, Price, Header } from 'elements';
+import { CheckboxProps } from 'elements/Checkbox/Checkbox';
 import { formatToImagesArray, getImageUrl } from 'utils';
 import { ImagesPreview, ExtrasPopup } from 'fragments';
-import { useGetProduct, usePopup, useIsInCart } from 'hooks';
+import { usePopup, useHandleProductExtras } from 'hooks';
 import { useStateContext } from 'contexts/CartContext';
-import { CheckboxProps } from 'elements/Checkbox/Checkbox';
 import classes from './ProductLayout.module.scss';
 
 const ProductLayout: FC = () => {
-	const isInCart = useIsInCart();
-	const [addedExtras, setAddedExtras] = useState<Array<string>>(
-		isInCart?.extras || []
-	);
-
 	const { add, updateExtras, remove } = useStateContext();
-
-	const { product, ready, error } = useGetProduct();
 	const popup = usePopup();
+	const product = useHandleProductExtras();
 
-	if (!ready) return <Loader />;
-	if (error) return <p>Error: {error.message}</p>;
+	if (!product) return <Loader />;
 
-	const { title, price, extras, images, slug } = product;
-
-	const hasExtras = !!extras.data;
-
-	const handleToggleSingle = (value: string) =>
-		setAddedExtras(
-			!addedExtras.includes(value)
-				? [...addedExtras, value]
-				: addedExtras.filter((el) => el !== value)
-		);
+	const {
+		extrasCount,
+		hasExtras,
+		images,
+		isInCart,
+		onSelectCancel,
+		onSelectChange,
+		options,
+		price,
+		selected,
+		slug,
+		title,
+	} = product;
 
 	return (
 		<>
@@ -76,8 +72,8 @@ const ProductLayout: FC = () => {
 									title,
 									price,
 									slug,
+									extras: [],
 								});
-
 								hasExtras && popup.open();
 							}}
 						>
@@ -86,7 +82,12 @@ const ProductLayout: FC = () => {
 						{isInCart && (
 							<div className={classes.buttons}>
 								{hasExtras && (
-									<Button size="large" onClick={() => popup.open()}>
+									<Button
+										size="large"
+										onClick={() => {
+											popup.open();
+										}}
+									>
 										Edytuj dodatki
 									</Button>
 								)}
@@ -100,12 +101,13 @@ const ProductLayout: FC = () => {
 			</div>
 			{hasExtras && (
 				<ExtrasPopup
-					choosenItems={addedExtras}
-					items={extras.data.attributes.extras.extras}
-					count={extras.data.attributes.extras.count}
-					onChange={handleToggleSingle as CheckboxProps['onChange']}
+					choosen={selected}
+					items={options}
+					count={extrasCount}
+					onChange={onSelectChange as CheckboxProps['onChange']}
+					onCancel={onSelectCancel}
 					onConfirm={() => {
-						updateExtras(slug, addedExtras);
+						updateExtras(slug, selected);
 					}}
 					{...popup}
 				/>

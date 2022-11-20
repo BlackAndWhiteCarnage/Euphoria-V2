@@ -18,11 +18,6 @@ type AddProps = {
 	slug: string;
 };
 
-type UpdateExtras = {
-	slug: string;
-	newExtras: Array<string> | Array<never>;
-};
-
 export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 	const [cart, setCart] = useState<Array<any>>([]);
 

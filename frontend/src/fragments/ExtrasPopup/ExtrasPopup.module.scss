@@ -25,3 +25,20 @@
 	color: t.color(extras-popup-info);
 	font-size: u.rem-calc(14);
 }
+
+.list {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(22);
+	
+	@include bp.down(sm) {
+		gap: u.rem-calc(15);
+	}
+}
+
+.listItem {
+	display: flex;
+	gap: u.rem-calc(10);
+	align-items: center;
+}

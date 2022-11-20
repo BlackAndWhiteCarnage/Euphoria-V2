@@ -11,7 +11,7 @@ import { CheckboxProps } from 'elements/Checkbox/Checkbox';
 import classes from './List.module.scss';
 
 type ListProps = {
-	choosenItems: Array<any>;
+	choosenItems?: Array<any>;
 	items: Array<string>;
 	onChange: CheckboxProps['onChange'];
 };
@@ -23,7 +23,7 @@ const List: FC<ListProps> = ({ items, onChange, choosenItems }) => (
 				<Checkbox
 					id={item}
 					onChange={onChange}
-					checked={choosenItems.includes(item)}
+					checked={choosenItems && choosenItems.includes(item)}
 				/>
 				<label htmlFor={item}>{item}</label>
 			</li>
