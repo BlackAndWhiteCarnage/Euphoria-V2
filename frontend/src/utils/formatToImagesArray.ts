@@ -1,12 +1,14 @@
 /**
  * Internal dependencies
  */
-import { Image } from 'types';
+import { Image, ApiImage } from 'types';
 
-const formatToImagesArray = ({ data }: any, alt: string) => {
+const formatToImagesArray = ({ data }: ApiImage, alt: string) => {
+	if (!data) return;
+
 	const images: Array<Image> = [];
 
-	data.forEach(({ attributes: { formats } }: any) => {
+	data.forEach(({ attributes: { formats } }) => {
 		images.push({
 			src: formats.large.url,
 			alt,

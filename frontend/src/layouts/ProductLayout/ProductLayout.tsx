@@ -73,6 +73,7 @@ const ProductLayout: FC = () => {
 									price,
 									slug,
 									extras: [],
+									count: extrasCount,
 								});
 								hasExtras && popup.open();
 							}}

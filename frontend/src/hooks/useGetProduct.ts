@@ -8,10 +8,11 @@ import { useRouter } from 'next/router';
 /**
  * Internal dependencies
  */
+import { ApiProduct } from 'types';
 import { GET_PRODUCT } from 'graphqlQueries';
 
 const useGetProduct = (): {
-	product: any;
+	product: ApiProduct;
 	ready: boolean;
 	error: CombinedError | undefined;
 } => {
