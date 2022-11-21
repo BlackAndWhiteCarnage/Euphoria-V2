@@ -1,0 +1,19 @@
+@use "styles/utils/unit" as u;
+
+.summary {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(40);
+}
+
+.details {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(15);
+	font-size: u.rem-calc(16);
+}
+
+.total {
+	font-size: u.rem-calc(20);
+	font-weight: 600;
+}
