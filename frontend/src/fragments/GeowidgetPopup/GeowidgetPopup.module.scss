@@ -1,0 +1,17 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+
+.popup {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(25);
+	min-width: u.rem-calc(900);
+	width: 100%;
+
+	iframe {
+		width: 100%;
+		min-height: u.rem-calc(600);
+	}
+}

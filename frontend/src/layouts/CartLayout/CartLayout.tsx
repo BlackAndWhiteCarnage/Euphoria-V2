@@ -13,7 +13,7 @@ import classes from './CartLayout.module.scss';
 
 const CartLayout: FC<PropsWithChildren> = () => {
 	const [step, setStep] = useState(1);
-	const [paczkomat, setPaczkomat] = useState(null);
+	const [location, setLocation] = useState('');
 
 	const { cart } = useStateContext();
 
@@ -65,7 +65,13 @@ const CartLayout: FC<PropsWithChildren> = () => {
 									{step === 2 && (
 										<Summary onChange={handleStepChange} cart={cart} />
 									)}
-									{step === 3 && <ShippingMethod onChange={handleStepChange} />}
+									{step === 3 && (
+										<ShippingMethod
+											location={location}
+											onChange={handleStepChange}
+											onLocationSelect={(value: string) => setLocation(value)}
+										/>
+									)}
 								</div>
 							</div>
 						</Box>
