@@ -10,7 +10,7 @@ import { FC } from 'react';
 import classes from './ShippingMethod.module.scss';
 
 type ShippingMethodProps = {
-	onChange: () => {};
+	onChange: () => void;
 };
 
 const ShippingMethod: FC<ShippingMethodProps> = ({ onChange }) => (

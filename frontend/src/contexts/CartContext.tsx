@@ -56,7 +56,7 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 				if (searchedElement) {
 					searchedElement.extras = newExtras;
 
-					setCart(cartCopy);
+					setCart([...cartCopy]);
 				}
 			},
 		};

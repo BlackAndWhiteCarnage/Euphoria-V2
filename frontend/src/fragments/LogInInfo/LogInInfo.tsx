@@ -10,7 +10,7 @@ import { Button, Separator } from 'elements';
 import classes from './LogInInfo.module.scss';
 
 type LogInInfoProps = {
-	onChange: () => {};
+	onChange: () => void;
 };
 
 const LogInInfo: FC<LogInInfoProps> = ({ onChange }) => {

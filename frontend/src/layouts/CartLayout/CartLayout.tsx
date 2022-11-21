@@ -1,18 +1,23 @@
 /**
  * External dependencies
  */
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 
 /**
  * Internal dependencies
  */
 import { Header, Box } from 'elements';
 import { useStateContext, CartItemType } from 'contexts/CartContext';
-import { ItemPreview } from 'fragments';
+import { ItemPreview, ShippingMethod, Summary, LogInInfo } from 'fragments';
 import classes from './CartLayout.module.scss';
 
 const CartLayout: FC<PropsWithChildren> = () => {
+	const [step, setStep] = useState(1);
+	const [paczkomat, setPaczkomat] = useState(null);
+
 	const { cart } = useStateContext();
+
+	const handleStepChange = () => setStep(step + 1);
 
 	const isEmpty = cart.length > 0;
 
@@ -53,7 +58,17 @@ const CartLayout: FC<PropsWithChildren> = () => {
 				</div>
 				{isEmpty && (
 					<div className={classes.checkout}>
-						<Box>sup?</Box>
+						<Box>
+							<div className={classes.innerCheckout}>
+								<div className={classes.checkoutSteps}>
+									{step === 1 && <LogInInfo onChange={handleStepChange} />}
+									{step === 2 && (
+										<Summary onChange={handleStepChange} cart={cart} />
+									)}
+									{step === 3 && <ShippingMethod onChange={handleStepChange} />}
+								</div>
+							</div>
+						</Box>
 					</div>
 				)}
 			</div>

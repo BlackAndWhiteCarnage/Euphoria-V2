@@ -7,7 +7,6 @@
 	border-radius: u.rem-calc(2);
 	padding: u.rem-calc(30) u.rem-calc(34);
 	width: 100%;
-	height: 100%;
 	
 	@include bp.down(sm) {
 		padding: u.rem-calc(20) u.rem-calc(16);
