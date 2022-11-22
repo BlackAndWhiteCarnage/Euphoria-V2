@@ -25,9 +25,11 @@ const CartContext = createContext<any>([]);
 
 export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 	const [cart, setCart] = useState<Array<CartItemType>>([]);
+	const [freeShippingTreshold, setFreeShippingTreshold] = useState(100);
 
 	const contextValue = useMemo(() => {
 		return {
+			freeShippingTreshold,
 			cart,
 			add: (props: CartItemType) => {
 				setCart([...cart, { ...props }]);

@@ -10,12 +10,14 @@ import { hasOnlyPhotoshoots, handleCheckout } from 'utils';
 import { Header, Box } from 'elements';
 import { ItemPreview, ShippingMethod, Summary, LogInInfo } from 'fragments';
 import { useStateContext, CartItemType } from 'contexts/CartContext';
+import { useIsFreeShipping } from 'hooks';
 import classes from './CartLayout.module.scss';
 
 const CartLayout: FC<PropsWithChildren> = () => {
 	const [step, setStep] = useState(1);
 	const [location, setLocation] = useState('');
 
+	const isFreeShipping = useIsFreeShipping();
 	const { cart } = useStateContext();
 
 	useEffect(() => {
@@ -25,11 +27,21 @@ const CartLayout: FC<PropsWithChildren> = () => {
 	const handleStepChange = () =>
 		step !== 3
 			? hasOnlyPhotoshoots(cart) && step === 2
-				? handleCheckout(cart)
+				? handleCheckout(cart, isFreeShipping)
 				: setStep(step + 1)
-			: handleCheckout(cart);
+			: handleCheckout(cart, isFreeShipping);
 
 	const isEmpty = cart.length > 0;
+
+	const steps = [
+		<LogInInfo onChange={handleStepChange} />,
+		<Summary cart={cart} onChange={handleStepChange} />,
+		<ShippingMethod
+			location={location}
+			onChange={handleStepChange}
+			onLocationSelect={(value: string) => setLocation(value)}
+		/>,
+	];
 
 	return (
 		<div className={classes.layout}>
@@ -48,19 +60,7 @@ const CartLayout: FC<PropsWithChildren> = () => {
 					<div className={classes.checkout}>
 						<Box>
 							<div className={classes.innerCheckout}>
-								<div className={classes.checkoutSteps}>
-									{step === 1 && <LogInInfo onChange={handleStepChange} />}
-									{step === 2 && (
-										<Summary onChange={handleStepChange} cart={cart} />
-									)}
-									{step === 3 && (
-										<ShippingMethod
-											location={location}
-											onChange={handleStepChange}
-											onLocationSelect={(value: string) => setLocation(value)}
-										/>
-									)}
-								</div>
+								<div className={classes.checkoutSteps}>{steps[step - 1]}</div>
 							</div>
 						</Box>
 					</div>

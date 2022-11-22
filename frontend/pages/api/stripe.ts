@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import { CartItemType } from 'contexts/CartContext';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
 
@@ -26,12 +27,13 @@ export default async function handler(
 						shipping_rate_data: req.body.shipping,
 					},
 				],
-				line_items: req.body.cart.map((item: any) => {
+				line_items: req.body.cart.map((item: CartItemType) => {
 					return {
 						price_data: {
 							currency: 'pln',
 							product_data: {
 								name: item.title,
+								images: [item.image],
 							},
 							unit_amount: item.price * 100,
 						},

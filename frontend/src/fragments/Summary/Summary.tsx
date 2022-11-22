@@ -6,34 +6,40 @@ import { FC } from 'react';
 /**
  * Internal dependencies
  */
-import { calcPrice, calcExtrasPrice, hasOnlyPhotoshoots } from 'utils';
 import { Button, Header, Price } from 'elements';
+import { calcPrice, calcExtrasPrice, hasOnlyPhotoshoots } from 'utils';
+import { useIsFreeShipping } from 'hooks';
+import { CartItemType } from 'contexts/CartContext';
 import classes from './Summary.module.scss';
 
 type SummaryProps = {
-	cart: Array<any>;
+	cart: Array<CartItemType>;
 	onChange: () => void;
 };
 
-const Summary: FC<SummaryProps> = ({ onChange, cart }) => {
-	const freeShippingTreshold = 150;
+const Summary: FC<SummaryProps> = ({ cart, onChange }) => {
+	const isFreeShipping = useIsFreeShipping();
+
+	const price = calcPrice(cart);
+	const extras = calcExtrasPrice(cart);
+	const hasOnlyPhotos = hasOnlyPhotoshoots(cart);
+	const hasExtraExtrases = extras !== 0;
 
 	return (
 		<div className={classes.summary}>
 			<Header text="Podsumowanie" />
 			<div className={classes.details}>
 				<div>
-					Wartość produktów: <Price price={calcPrice(cart)} />
+					Wartość produktów: <Price price={price} />
 				</div>
-				{calcExtrasPrice(cart) !== 0 && (
+				{hasExtraExtrases && (
 					<div>
-						Extra dodatki: <Price price={calcExtrasPrice(cart)} />
+						Extra dodatki: <Price price={extras} />
 					</div>
 				)}
 				<div>
 					Dostawa:{' '}
-					{calcPrice(cart) + calcExtrasPrice(cart) >= freeShippingTreshold ||
-					hasOnlyPhotoshoots(cart) ? (
+					{isFreeShipping ? (
 						<Price isFree price={13.99} />
 					) : (
 						<Price price={13.99} />
@@ -41,23 +47,10 @@ const Summary: FC<SummaryProps> = ({ onChange, cart }) => {
 				</div>
 			</div>
 			<div className={classes.total}>
-				Razem:{' '}
-				<Price
-					price={
-						calcPrice(cart) +
-						calcExtrasPrice(cart) +
-						(calcPrice(cart) + calcExtrasPrice(cart) >= freeShippingTreshold
-							? 0
-							: hasOnlyPhotoshoots(cart)
-							? 0
-							: 13.99)
-					}
-				/>
+				Razem: <Price price={price + extras + (isFreeShipping ? 0 : 13.99)} />
 			</div>
 			<Button size="large" onClick={onChange}>
-				{!hasOnlyPhotoshoots(cart)
-					? 'Przejdź do dostawy'
-					: 'Przejdź do płatności'}
+				{hasOnlyPhotos ? 'Przejdź do płatności' : 'Przejdź do dostawy'}
 			</Button>
 		</div>
 	);
