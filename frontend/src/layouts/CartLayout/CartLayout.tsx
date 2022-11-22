@@ -1,14 +1,15 @@
 /**
  * External dependencies
  */
-import { FC, PropsWithChildren, useState } from 'react';
+import { FC, PropsWithChildren, useEffect, useState } from 'react';
 
 /**
  * Internal dependencies
  */
+import { hasOnlyPhotoshoots, handleCheckout } from 'utils';
 import { Header, Box } from 'elements';
-import { useStateContext, CartItemType } from 'contexts/CartContext';
 import { ItemPreview, ShippingMethod, Summary, LogInInfo } from 'fragments';
+import { useStateContext, CartItemType } from 'contexts/CartContext';
 import classes from './CartLayout.module.scss';
 
 const CartLayout: FC<PropsWithChildren> = () => {
@@ -17,7 +18,16 @@ const CartLayout: FC<PropsWithChildren> = () => {
 
 	const { cart } = useStateContext();
 
-	const handleStepChange = () => setStep(step + 1);
+	useEffect(() => {
+		step === 3 && hasOnlyPhotoshoots(cart) && setStep(2);
+	}, [cart, step]);
+
+	const handleStepChange = () =>
+		step !== 3
+			? hasOnlyPhotoshoots(cart) && step === 2
+				? handleCheckout(cart)
+				: setStep(step + 1)
+			: handleCheckout(cart);
 
 	const isEmpty = cart.length > 0;
 
@@ -29,31 +39,9 @@ const CartLayout: FC<PropsWithChildren> = () => {
 			<div className={classes.wrapper}>
 				<div className={classes.cart}>
 					<ul className={classes.cartItems}>
-						{cart.map(
-							({
-								count,
-								extras,
-								image,
-								options,
-								price,
-								slug,
-								title,
-							}: CartItemType) => (
-								<ItemPreview
-									key={slug}
-									title={title}
-									image={{
-										src: image,
-										alt: title,
-									}}
-									count={count}
-									extras={extras}
-									options={options || []}
-									price={price}
-									slug={slug}
-								/>
-							)
-						)}
+						{cart.map((props: CartItemType) => (
+							<ItemPreview {...props} key={props.slug} />
+						))}
 					</ul>
 				</div>
 				{isEmpty && (

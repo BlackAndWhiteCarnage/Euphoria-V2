@@ -8,7 +8,7 @@ const calcExtrasPrice = (cart: Array<any>) => {
 	});
 
 	if (moreExtras.length < 1) return 0;
-	return moreExtras.reduce((a, b) => a + b) * 20;
+	return moreExtras.reduce((a, b) => a + b) * 10;
 };
 
 export default calcExtrasPrice;

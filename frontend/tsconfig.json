@@ -20,6 +20,6 @@
     "noFallthroughCasesInSwitch": true,
     "jsx": "preserve",
   },
-  "include": ["src", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["src", "next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/stripe.ts", "pages/api/stripe.ts", "lib"],
   "exclude": ["node_modules"]
 }

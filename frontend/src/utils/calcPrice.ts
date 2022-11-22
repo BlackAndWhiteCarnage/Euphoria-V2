@@ -1,8 +1,8 @@
 const calcPrice = (cart: Array<any>) => {
 	const prices: Array<number> = [];
 
-	cart.forEach(({ price }) => {
-		prices.push(price);
+	cart.forEach(({ basePrice }) => {
+		prices.push(basePrice);
 	});
 
 	return prices.reduce((a, b) => a + b);

@@ -1,3 +1,6 @@
+/**
+ * External dependencies
+ */
 import {
 	createContext,
 	FC,
@@ -8,13 +11,14 @@ import {
 } from 'react';
 
 export type CartItemType = {
-	count?: number | undefined;
+	count?: number;
 	extras?: Array<string | never>;
 	image: string;
 	price: number;
 	slug: string;
 	title: string;
-	options?: Array<string>;
+	options?: Array<string | never>;
+	basePrice: number;
 };
 
 const CartContext = createContext<any>([]);
@@ -25,27 +29,8 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 	const contextValue = useMemo(() => {
 		return {
 			cart,
-			add: ({
-				count,
-				extras,
-				image,
-				price,
-				slug,
-				title,
-				options,
-			}: CartItemType) => {
-				setCart([
-					...cart,
-					{
-						count,
-						extras,
-						image,
-						price,
-						slug,
-						title,
-						options,
-					},
-				]);
+			add: (props: CartItemType) => {
+				setCart([...cart, { ...props }]);
 			},
 			remove: (slug: string) =>
 				setCart([...cart.filter((el) => slug !== el.slug)]),
@@ -55,6 +40,14 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 
 				if (searchedElement) {
 					searchedElement.extras = newExtras;
+
+					if (searchedElement.count && searchedElement.extras) {
+						searchedElement.price =
+							searchedElement.count < searchedElement.extras.length
+								? searchedElement.basePrice +
+								  (searchedElement.extras.length - searchedElement.count) * 10
+								: searchedElement.basePrice;
+					}
 
 					setCart([...cartCopy]);
 				}

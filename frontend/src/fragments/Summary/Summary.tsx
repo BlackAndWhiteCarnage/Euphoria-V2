@@ -1,14 +1,13 @@
 /**
  * External dependencies
  */
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
 /**
  * Internal dependencies
  */
-import { calcPrice, calcExtrasPrice } from 'utils';
+import { calcPrice, calcExtrasPrice, hasOnlyPhotoshoots } from 'utils';
 import { Button, Header, Price } from 'elements';
-import { useStateContext } from 'contexts/CartContext';
 import classes from './Summary.module.scss';
 
 type SummaryProps = {
@@ -33,7 +32,8 @@ const Summary: FC<SummaryProps> = ({ onChange, cart }) => {
 				)}
 				<div>
 					Dostawa:{' '}
-					{calcPrice(cart) >= freeShippingTreshold ? (
+					{calcPrice(cart) + calcExtrasPrice(cart) >= freeShippingTreshold ||
+					hasOnlyPhotoshoots(cart) ? (
 						<Price isFree price={13.99} />
 					) : (
 						<Price price={13.99} />
@@ -46,12 +46,18 @@ const Summary: FC<SummaryProps> = ({ onChange, cart }) => {
 					price={
 						calcPrice(cart) +
 						calcExtrasPrice(cart) +
-						(calcPrice(cart) >= freeShippingTreshold ? 0 : 13.99)
+						(calcPrice(cart) + calcExtrasPrice(cart) >= freeShippingTreshold
+							? 0
+							: hasOnlyPhotoshoots(cart)
+							? 0
+							: 13.99)
 					}
 				/>
 			</div>
 			<Button size="large" onClick={onChange}>
-				Przejdź do dostawy
+				{!hasOnlyPhotoshoots(cart)
+					? 'Przejdź do dostawy'
+					: 'Przejdź do płatności'}
 			</Button>
 		</div>
 	);

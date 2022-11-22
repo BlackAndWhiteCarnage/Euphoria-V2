@@ -43,6 +43,7 @@ module.exports = {
 		'jsx-a11y/label-has-associated-control': 'off',
 		'react/no-array-index-key': 'off',
 		'no-return-assign': 'off',
+		camelcase: 'off',
 		'import/no-extraneous-dependencies': 'off',
 		'@next/next/no-img-element': 'off',
 		'react/function-component-definition': [

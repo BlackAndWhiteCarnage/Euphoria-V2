@@ -9,21 +9,13 @@ import { FC, useState } from 'react';
 import { Box, Button, Price } from 'elements';
 import { CheckboxProps } from 'elements/Checkbox/Checkbox';
 import { ExtrasPopup } from 'fragments';
-import { Image as ImageType } from 'types';
 import { PriceProps } from 'types/price';
 import { useIsInCart, usePopup } from 'hooks';
-import { useStateContext } from 'contexts/CartContext';
+import { CartItemType, useStateContext } from 'contexts/CartContext';
 import Image from 'next/image';
 import classes from './ItemPreview.module.scss';
 
-type ItemPreviewProps = {
-	count: number | undefined;
-	extras?: Array<string>;
-	image: ImageType;
-	options: Array<string> | Array<never>;
-	slug: string;
-	title: string;
-} & PriceProps;
+type ItemPreviewProps = CartItemType & PriceProps;
 
 const ItemPreview: FC<ItemPreviewProps> = ({
 	count,
@@ -60,7 +52,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
 		<Box>
 			<div className={classes.itemPreview}>
 				<div className={classes.image}>
-					<Image src={image.src} alt={image.alt} fill />
+					<Image src={image} alt={title} fill />
 				</div>
 				<div className={classes.itemPreviewInner}>
 					<div className={classes.itemInfo}>
@@ -83,7 +75,6 @@ const ItemPreview: FC<ItemPreviewProps> = ({
 						)}
 					</div>
 					<div className={classes.otherInfo}>
-						{/* TODO */}
 						<Price {...props} />
 						{selected && (
 							<Button onClick={() => popup.open()}>
@@ -99,7 +90,7 @@ const ItemPreview: FC<ItemPreviewProps> = ({
 			<ExtrasPopup
 				label="Wybierz dodatki"
 				choosen={selected}
-				items={options}
+				items={options || []}
 				count={count}
 				id={slug}
 				onChange={onSelectChange as CheckboxProps['onChange']}
