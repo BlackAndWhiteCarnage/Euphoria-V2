@@ -32,6 +32,7 @@ const useGetSliderProducts = (specyficCategory?: string, count: number = 9) => {
 				price,
 				href: `/${specyficCategory || category}/${slug}`,
 				image: getImageUrl(images),
+				slug,
 			});
 		}
 	);

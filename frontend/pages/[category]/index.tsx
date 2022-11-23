@@ -16,6 +16,7 @@ const Category = () => {
 		<Grid>
 			{products.map(({ attributes: { slug, title, price, images } }) => (
 				<Card
+					slug={slug}
 					key={slug}
 					name={title}
 					price={price}

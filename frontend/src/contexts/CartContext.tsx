@@ -25,23 +25,40 @@ export type CartItemType = {
 const CartContext = createContext<any>([]);
 
 export const StateContext: FC<PropsWithChildren> = ({ children }) => {
-	const initial = useMemo(() => [], []);
+	const cartInitial = useMemo(() => [], []);
+	const favoritesInitial = useMemo(() => [], []);
 
-	const [cart, setCart] = useState<Array<CartItemType | never>>(initial);
+	const [cart, setCart] = useState<Array<CartItemType | never>>(cartInitial);
+	const [favorites, setFavorites] = useState<Array<string>>(favoritesInitial);
 	const [freeShippingTreshold, setFreeShippingTreshold] = useState(100);
 
 	useEffect(() => {
-		const cartData = JSON.parse(localStorage.getItem('cart') || '');
-		cartData && setCart(cartData);
+		// TODO
+		try {
+			const cartData = JSON.parse(localStorage.getItem('EUPHORIA_cart') || '');
+			cartData && setCart(cartData);
+
+			const favoritesData = JSON.parse(
+				localStorage.getItem('EUPHORIA_favorites') || ''
+			);
+			favoritesData && setFavorites(favoritesData);
+		} catch {}
 	}, []);
 
 	useEffect(() => {
-		cart !== initial && localStorage.setItem('cart', JSON.stringify(cart));
-	}, [cart, initial]);
+		cart !== cartInitial &&
+			localStorage.setItem('EUPHORIA_cart', JSON.stringify(cart));
+	}, [cart, cartInitial]);
+
+	useEffect(() => {
+		favorites !== favoritesInitial &&
+			localStorage.setItem('EUPHORIA_favorites', JSON.stringify(favorites));
+	}, [favorites, favoritesInitial]);
 
 	const contextValue = useMemo(() => {
 		return {
 			freeShippingTreshold,
+			favorites,
 			cart,
 			add: (props: CartItemType) => {
 				setCart([...cart, { ...props }]);
@@ -66,8 +83,11 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 					setCart([...cartCopy]);
 				}
 			},
+			addToFavorites: (slug: string) => setFavorites([...favorites, slug]),
+			removeFromFavorites: (slug: string) =>
+				setFavorites([...favorites.filter((el) => slug !== el)]),
 		};
-	}, [cart, freeShippingTreshold]);
+	}, [cart, freeShippingTreshold, favorites]);
 
 	return (
 		<CartContext.Provider value={contextValue}>{children}</CartContext.Provider>

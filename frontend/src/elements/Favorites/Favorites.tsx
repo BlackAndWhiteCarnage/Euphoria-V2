@@ -18,7 +18,10 @@ type FavoritesProps = {
 
 const Favorites: FC<FavoritesProps> = ({ isFavorite, onClick }) => (
 	<button
-		onClick={onClick}
+		onClick={() => {
+			onClick();
+			console.log(isFavorite);
+		}}
 		className={classnames(classes.favorites, {
 			[classes['is-favorite']]: isFavorite,
 		})}
