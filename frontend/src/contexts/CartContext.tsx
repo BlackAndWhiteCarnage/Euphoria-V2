@@ -6,6 +6,7 @@ import {
 	FC,
 	PropsWithChildren,
 	useContext,
+	useEffect,
 	useMemo,
 	useState,
 } from 'react';
@@ -24,8 +25,19 @@ export type CartItemType = {
 const CartContext = createContext<any>([]);
 
 export const StateContext: FC<PropsWithChildren> = ({ children }) => {
-	const [cart, setCart] = useState<Array<CartItemType>>([]);
+	const initial = useMemo(() => [], []);
+
+	const [cart, setCart] = useState<Array<CartItemType | never>>(initial);
 	const [freeShippingTreshold, setFreeShippingTreshold] = useState(100);
+
+	useEffect(() => {
+		const cartData = JSON.parse(localStorage.getItem('cart') || '');
+		cartData && setCart(cartData);
+	}, []);
+
+	useEffect(() => {
+		cart !== initial && localStorage.setItem('cart', JSON.stringify(cart));
+	}, [cart, initial]);
 
 	const contextValue = useMemo(() => {
 		return {
@@ -55,7 +67,7 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 				}
 			},
 		};
-	}, [cart]);
+	}, [cart, freeShippingTreshold]);
 
 	return (
 		<CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
