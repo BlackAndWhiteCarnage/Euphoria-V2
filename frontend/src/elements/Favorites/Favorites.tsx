@@ -20,7 +20,6 @@ const Favorites: FC<FavoritesProps> = ({ isFavorite, onClick }) => (
 	<button
 		onClick={() => {
 			onClick();
-			console.log(isFavorite);
 		}}
 		className={classnames(classes.favorites, {
 			[classes['is-favorite']]: isFavorite,

@@ -25,8 +25,6 @@ const Card: FC<CardProps> = ({ href, image, name, ...props }) => {
 	const { addToFavorites, removeFromFavorites } = useStateContext();
 	const isFavorite = useIsFavorite(props.slug);
 
-	console.log('kjlh', isFavorite);
-
 	return (
 		<div className={classes.card}>
 			<div className={classes.favorite}>

@@ -16,10 +16,6 @@ import classes from './IconsProvider.module.scss';
 const IconsProvider: FC = () => {
 	const { cart } = useStateContext();
 
-	useEffect(() => {
-		console.log(cart);
-	}, [cart]);
-
 	return (
 		<div className={classes.icons}>
 			<LinkedIcon href="/moje-konto/ulubione" icon={<Heart />} />
