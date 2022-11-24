@@ -12,7 +12,7 @@ import { MainLayout, WithNavigationLayout, WithFooterLayout } from 'layouts';
 import { StateContext } from 'contexts/CartContext';
 import 'styles/index.scss';
 
-const client = createClient({ url: process.env.NEXT_PUBLIC_GRAPHQL });
+const client = createClient({ url: process.env.NEXT_PUBLIC_GRAPHQL as string });
 
 const App: FC<AppProps> = ({ Component, pageProps }) => (
 	<MainLayout>

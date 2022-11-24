@@ -20,21 +20,7 @@ const Template: ComponentStory<typeof Checkbox> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-	options: [
-		{
-			id: '1',
-			label: '1',
-		},
-		{
-			id: '2',
-			label: '2',
-		},
-		{
-			id: '3',
-			label: '3',
-		},
-	],
-	values: ['1', '2'],
+	checked: true,
 };
 
 export const Disabled = Template.bind({});

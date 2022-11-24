@@ -12,7 +12,7 @@ import { usePopup } from 'hooks';
 import classes from './ShippingMethod.module.scss';
 
 type ShippingMethodProps = {
-	location: string;
+	location: any;
 	onLocationSelect: (value: string) => void;
 	onChange: () => void;
 };
@@ -24,19 +24,24 @@ const ShippingMethod: FC<ShippingMethodProps> = ({
 }) => {
 	const popup = usePopup();
 
+	const isLocationSet = location.name !== '';
+
 	return (
 		<>
 			<div className={classes.shippingMethod}>
 				<Header text="Dostawa" />
 				<Button size="large" onClick={() => popup.open()}>
-					Wybierz paczkomat
+					<>{!isLocationSet ? `Wybierz` : 'Zmień'} paczkomat</>
 				</Button>
-				{location && (
+				{isLocationSet && (
 					<p>
-						Wybrany paczkomat: <b>{location}</b>
+						Wybierz paczkomat: <b>{location.name}</b>
+						<br />
+						Adres: <b>{location.address.line1}</b>
+						<b>{location.address.line2}</b>
 					</p>
 				)}
-				<Button size="large" disabled={!location} onClick={onChange}>
+				<Button size="large" disabled={!isLocationSet} onClick={onChange}>
 					Przejdź do płatności
 				</Button>
 			</div>

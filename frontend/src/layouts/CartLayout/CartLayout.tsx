@@ -10,26 +10,39 @@ import { hasOnlyPhotoshoots, handleCheckout } from 'utils';
 import { Header, Box } from 'elements';
 import { ItemPreview, ShippingMethod, Summary, LogInInfo } from 'fragments';
 import { useStateContext, CartItemType } from 'contexts/CartContext';
-import { useIsFreeShipping } from 'hooks';
+import { useIsFreeShipping, useGetProductsToDelete } from 'hooks';
 import classes from './CartLayout.module.scss';
+
+const initialLocation = {
+	name: '',
+	address: {
+		line1: '',
+		line2: '',
+	},
+};
 
 const CartLayout: FC<PropsWithChildren> = () => {
 	const [step, setStep] = useState(1);
-	const [location, setLocation] = useState('');
+	const [location, setLocation] = useState(initialLocation);
 
 	const isFreeShipping = useIsFreeShipping();
+	const productsToDelete = useGetProductsToDelete();
 	const { cart } = useStateContext();
 
 	useEffect(() => {
 		step === 3 && hasOnlyPhotoshoots(cart) && setStep(2);
+		hasOnlyPhotoshoots(cart) && setLocation(initialLocation);
 	}, [cart, step]);
+
+	const pay = () =>
+		handleCheckout(cart, isFreeShipping, location, productsToDelete);
 
 	const handleStepChange = () =>
 		step !== 3
 			? hasOnlyPhotoshoots(cart) && step === 2
-				? handleCheckout(cart, isFreeShipping)
+				? pay()
 				: setStep(step + 1)
-			: handleCheckout(cart, isFreeShipping);
+			: pay();
 
 	const isEmpty = cart.length > 0;
 
@@ -39,7 +52,7 @@ const CartLayout: FC<PropsWithChildren> = () => {
 		<ShippingMethod
 			location={location}
 			onChange={handleStepChange}
-			onLocationSelect={(value: string) => setLocation(value)}
+			onLocationSelect={(value: any) => setLocation(value)}
 		/>,
 	];
 

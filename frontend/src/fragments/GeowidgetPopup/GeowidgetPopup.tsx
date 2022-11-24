@@ -11,7 +11,7 @@ import { PopupProps } from 'elements/Popup/Popup';
 import classes from './GeowidgetPopup.module.scss';
 
 type GeowidgetPopupProps = {
-	onLocationSelect: (value: string) => void;
+	onLocationSelect: (value: any) => void;
 	onChange: (location: string) => void;
 } & PopupProps;
 
@@ -21,7 +21,11 @@ const GeowidgetPopup: FC<GeowidgetPopupProps> = ({
 	...props
 }) => {
 	document.addEventListener('onpointselect', ({ detail }: any) => {
-		onLocationSelect(detail.name);
+		onLocationSelect({
+			name: detail.name,
+			address: detail.address,
+		});
+
 		props.close();
 	});
 

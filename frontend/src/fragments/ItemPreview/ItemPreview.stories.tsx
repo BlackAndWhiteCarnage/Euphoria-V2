@@ -22,10 +22,7 @@ const Template: ComponentStory<typeof ItemPreview> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-	image: {
-		src: welcome.src,
-		alt: 'alt',
-	},
+	image: '',
 	title: 'Seksowna sesja zdjęciowa Króliczka Playboya',
 	price: 120,
 	extras: [
@@ -39,10 +36,7 @@ Default.args = {
 
 export const WithToManyText = Template.bind({});
 WithToManyText.args = {
-	image: {
-		src: welcome.src,
-		alt: 'alt',
-	},
+	image: '',
 	title:
 		'Seksowna sesja zdjęciowa Króliczka Playboya która jest super i w ogóle',
 	price: 120,
@@ -58,10 +52,7 @@ WithToManyText.args = {
 
 export const WithoutExtras = Template.bind({});
 WithoutExtras.args = {
-	image: {
-		src: welcome.src,
-		alt: 'alt',
-	},
+	image: '',
 	title:
 		'Seksowna sesja zdjęciowa Króliczka Playboya która jest super i w ogóle',
 	price: 120,

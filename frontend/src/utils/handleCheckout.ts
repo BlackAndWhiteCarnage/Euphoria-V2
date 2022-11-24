@@ -7,7 +7,9 @@ import getStripe from 'config/getStripe';
 
 const handleCheckout = async (
 	cart: Array<CartItemType>,
-	isFreeShipping: boolean
+	isFreeShipping: boolean,
+	location?: any,
+	productsToDelete?: string
 ) => {
 	const stripe = await getStripe();
 
@@ -17,6 +19,7 @@ const handleCheckout = async (
 
 	const unit = onlyPhotoshoots ? 'hour' : 'business_day';
 	const value = onlyPhotoshoots ? 2 : 14;
+	const phoneRequirement = !onlyPhotoshoots;
 	const display_name = onlyPhotoshoots
 		? 'Przesyłka elektroniczna (usostępniane na Dysku Google)'
 		: 'Paczkomat Inpost';
@@ -26,6 +29,9 @@ const handleCheckout = async (
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({
 			cart,
+			location,
+			productsToDelete,
+			phoneRequirement,
 			shipping: {
 				type: 'fixed_amount',
 				fixed_amount: {

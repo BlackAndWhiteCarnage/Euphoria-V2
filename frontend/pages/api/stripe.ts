@@ -20,7 +20,21 @@ export default async function handler(
 				mode: 'payment',
 				payment_method_types: ['p24', 'blik'],
 				phone_number_collection: {
-					enabled: true,
+					enabled: req.body.phoneRequirement,
+				},
+				payment_intent_data: {
+					metadata: {
+						Paczkomat: req.body.location.name,
+						Ulica: req.body.location.address.line1,
+						Adres: req.body.location.address.line2,
+						ProductsToDelete: req.body.productsToDelete,
+					},
+				},
+				metadata: {
+					Paczkomat: req.body.location.name,
+					Ulica: req.body.location.address.line1,
+					Adres: req.body.location.address.line2,
+					ProductsToDelete: req.body.productsToDelete,
 				},
 				shipping_options: [
 					{
@@ -34,13 +48,16 @@ export default async function handler(
 							product_data: {
 								name: item.title,
 								images: [item.image],
+								description: !item.extras
+									? ' '
+									: `Wybrane dodatki: ${item.extras?.join(', ')}`,
 							},
 							unit_amount: item.price * 100,
 						},
 						quantity: 1,
 					};
 				}),
-				success_url: `${req.headers.origin}/success`,
+				success_url: `${req.headers.origin}/success?&session_id={CHECKOUT_SESSION_ID}`,
 				cancel_url: `${req.headers.origin}/canceled`,
 			});
 			res.status(200).json(session);
