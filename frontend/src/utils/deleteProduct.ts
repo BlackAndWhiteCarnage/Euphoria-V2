@@ -4,7 +4,9 @@ const deleteProduct = async (slug: string) => {
 	);
 	const data = await findProduct.json();
 
-	await fetch(`http://localhost:2000/api/products/${data.data[0].id}`, {
+	if (!data) return;
+
+	await fetch(`http://localhost:2000/api/products/${data.data[0]?.id}`, {
 		method: 'DELETE',
 		headers: {
 			Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,

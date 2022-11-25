@@ -2,6 +2,7 @@
  * External dependencies
  */
 import { CartItemType } from 'contexts/CartContext';
+import { getSession } from '@auth0/nextjs-auth0';
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
 
@@ -13,12 +14,17 @@ export default async function handler(
 	req: NextApiRequest,
 	res: NextApiResponse
 ) {
+	const authSession = getSession(req, res);
+	const user = authSession?.user;
+	const stripeId = user && user['http://localhost:3000/stripe_customer_id'];
+
 	if (req.method === 'POST') {
 		try {
 			const session = await stripe.checkout.sessions.create({
 				submit_type: 'pay',
 				mode: 'payment',
 				payment_method_types: ['p24', 'blik'],
+				customer: stripeId,
 				phone_number_collection: {
 					enabled: req.body.phoneRequirement,
 				},

@@ -16,7 +16,6 @@ const WithNavigationLayout: FC<PropsWithChildren> = ({ children }) => (
 	<>
 		<div className={classes.topBar}>
 			<Logo />
-			{/* TODO */}
 			<IconsProvider />
 		</div>
 		{/* TODO */}

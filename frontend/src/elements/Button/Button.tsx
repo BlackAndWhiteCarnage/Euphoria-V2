@@ -31,7 +31,7 @@ export type ButtonProps = BaseButtonProps &
 	(RealButtonProps | AnchorButtonProps);
 
 const AnchorButton: FC<AnchorButtonProps> = ({ href, children, ...props }) => (
-	<Link href={href}>
+	<Link href={href} legacyBehavior>
 		<a href={href} {...props}>
 			{children}
 		</a>
@@ -70,4 +70,5 @@ const Button: FC<ButtonProps> = ({
 		</RealButton>
 	) : null;
 };
+
 export default Button;

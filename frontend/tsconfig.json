@@ -20,6 +20,6 @@
     "noFallthroughCasesInSwitch": true,
     "jsx": "preserve",
   },
-  "include": ["src", "next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/stripe.ts", "pages/api/stripe.ts", "lib", "pages/api/webhook.js"],
+  "include": ["src", "next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/stripe.ts", "pages/api/stripe.ts", "lib", "pages/api/webhook.js", "pages/api/auth/[...auth0].ts"],
   "exclude": ["node_modules"]
 }
