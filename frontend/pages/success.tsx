@@ -34,7 +34,7 @@ const Success = ({ order }: any) => {
 						))}
 					</h2>
 					<h2>Wybrany paczkomat</h2>
-					<h2>{order.metadata.paczkomat}</h2>
+					<h2>{order.metadata.Paczkomat}</h2>
 				</div>
 			</div>
 		</div>

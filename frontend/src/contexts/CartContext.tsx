@@ -86,6 +86,13 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 			addToFavorites: (slug: string) => setFavorites([...favorites, slug]),
 			removeFromFavorites: (slug: string) =>
 				setFavorites([...favorites.filter((el) => slug !== el)]),
+			filter: (missingProducts: Array<string>) => {
+				const filteredCart = cart.filter(
+					(item) => missingProducts.indexOf(item.slug) !== -1
+				);
+
+				setCart(filteredCart);
+			},
 		};
 	}, [cart, freeShippingTreshold, favorites]);
 

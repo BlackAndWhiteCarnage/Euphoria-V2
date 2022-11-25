@@ -55,6 +55,7 @@ const handleCheckout = async (
 
 	const data = await response.json();
 
+	localStorage.setItem('EUPHORIA_cart', JSON.stringify([]));
 	await stripe?.redirectToCheckout({ sessionId: data.id });
 };
 
