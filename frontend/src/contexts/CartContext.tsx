@@ -16,6 +16,7 @@ import { useUser } from '@auth0/nextjs-auth0';
  * Internal dependencies
  */
 import { useUserData } from 'hooks';
+import { checkIfProductsStillExist } from 'utils';
 
 export type CartItemType = {
 	count?: number;
@@ -74,6 +75,23 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 		!isUserDataLoading && userData && setFavorites(userData.favorites);
 	}, [isUserDataLoading, userData]);
 
+	const handleMissingFavorites = async () => {
+		const check = await checkIfProductsStillExist(favorites);
+
+		if (check.includes('')) {
+			const filteredFavorites = favorites.filter(
+				(item) => check.indexOf(item) !== -1
+			);
+
+			setFavorites(filteredFavorites);
+		}
+	};
+
+	useEffect(() => {
+		if (favorites.length > 0) handleMissingFavorites();
+		// eslint-disable-next-line
+	}, [favorites]);
+
 	const contextValue = useMemo(() => {
 		return {
 			freeShippingTreshold,
@@ -104,7 +122,7 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 			addToFavorites: (slug: string) => setFavorites([...favorites, slug]),
 			removeFromFavorites: (slug: string) =>
 				setFavorites([...favorites.filter((el) => slug !== el)]),
-			filter: (missingProducts: Array<string>) => {
+			filterCart: (missingProducts: Array<string>) => {
 				const filteredCart = cart.filter(
 					(item) => missingProducts.indexOf(item.slug) !== -1
 				);

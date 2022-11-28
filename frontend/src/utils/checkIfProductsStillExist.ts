@@ -12,10 +12,12 @@ export const findProduct = async (slug: string) => {
 	return data.data.length > 0 ? data.data[0].attributes.slug : '';
 };
 
-export const checkIfProductsStillExist = async (cart: Array<CartItemType>) => {
+export const checkIfProductsStillExist = async (
+	products: Array<CartItemType | string>
+) => {
 	const arr = await Promise.all(
-		cart.map(({ slug }) => {
-			return findProduct(slug);
+		products.map((product) => {
+			return findProduct(typeof product === 'string' ? product : product.slug);
 		})
 	);
 

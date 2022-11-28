@@ -40,7 +40,7 @@ const CartLayout: FC<PropsWithChildren> = () => {
 	const popup = usePopup();
 	const isFreeShipping = useIsFreeShipping();
 	const productsToDelete = useGetProductsToDelete();
-	const { cart, filter } = useStateContext();
+	const { cart, filterCart } = useStateContext();
 
 	useEffect(() => {
 		step === 3 && hasOnlyPhotoshoots(cart) && setStep(2);
@@ -59,13 +59,13 @@ const CartLayout: FC<PropsWithChildren> = () => {
 
 		step !== 3
 			? hasOnlyPhotoshoots(cart) && step === 2
-				? pay()
+				? !check.includes('') && pay()
 				: setStep(step + 1)
-			: pay();
+			: !check.includes('') && pay();
 
 		if (check.includes('')) {
 			popup.open();
-			filter(check);
+			filterCart(check);
 		}
 	};
 
@@ -114,7 +114,7 @@ const CartLayout: FC<PropsWithChildren> = () => {
 					</div>
 				</div>
 			)}
-			{isEmpty && (
+			{!isLoading && (
 				<InfoPopup
 					label="Niektóre produkty w Twoim koszyku były już niedostępne więc zostały usunięte."
 					{...popup}
