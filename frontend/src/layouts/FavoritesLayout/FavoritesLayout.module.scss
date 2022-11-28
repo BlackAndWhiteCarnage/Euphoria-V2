@@ -1,0 +1,7 @@
+@use "styles/utils/unit" as u;
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(20);
+}

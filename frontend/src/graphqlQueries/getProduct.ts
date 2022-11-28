@@ -1,5 +1,5 @@
 const GET_PRODUCT = `
-query getAllCategoryProducts($slug: String!){
+query geProduct($slug: String!){
   products(filters: {slug: { eq: $slug }}) {
    data {
      attributes {

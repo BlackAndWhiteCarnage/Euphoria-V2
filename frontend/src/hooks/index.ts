@@ -1,5 +1,6 @@
 export { default as useGetAllCategoryProducts } from './useGetAllCategoryProducts';
 export { default as useGetProduct } from './useGetProduct';
+export { default as useGetProductsBySlugs } from './useGetProductsBySlugs';
 export { default as useGetProductsToDelete } from './useGetProductsToDelete';
 export { default as useGetSliderProducts } from './useGetSliderProducts';
 export { default as useHandleProductExtras } from './useHandleProductExtras';

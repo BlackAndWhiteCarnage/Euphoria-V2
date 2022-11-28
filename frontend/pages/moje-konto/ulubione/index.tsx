@@ -1,3 +1,15 @@
-const Favorites = () => <h1>Moje Konto - ulubione</h1>;
+/**
+ * External dependencies
+ */
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
-export default Favorites;
+/**
+ * Internal dependencies
+ */
+import { FavoritesLayout } from 'layouts';
+
+const UserAccountFavorites = () => (
+	<FavoritesLayout headerText="Twoje Ulubione" />
+);
+
+export default withPageAuthRequired(UserAccountFavorites);
