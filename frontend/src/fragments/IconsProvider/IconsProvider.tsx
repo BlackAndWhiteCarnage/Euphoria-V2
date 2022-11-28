@@ -17,12 +17,16 @@ import classes from './IconsProvider.module.scss';
 
 const IconsProvider: FC = () => {
 	const route = useRouter();
-	const { cart } = useStateContext();
+	const { cart, favorites } = useStateContext();
 	const { user } = useUser();
 
 	return (
 		<div className={classes.icons}>
-			<LinkedIcon href="/moje-konto/ulubione" icon={<Heart />} />
+			<LinkedIcon
+				href="/moje-konto/ulubione"
+				icon={<Heart />}
+				count={favorites.length}
+			/>
 			{!user ? (
 				<button onClick={() => route.push('/api/auth/login')}>Login</button>
 			) : (

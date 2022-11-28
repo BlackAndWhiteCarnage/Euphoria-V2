@@ -71,6 +71,7 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 
 	useEffect(() => {
 		!isUserDataLoading && userData && setCart(userData.cart);
+		!isUserDataLoading && userData && setFavorites(userData.favorites);
 	}, [isUserDataLoading, userData]);
 
 	const contextValue = useMemo(() => {
