@@ -1,4 +1,5 @@
 import { SliderProvider } from 'fragments';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 const Home = () => (
 	<>

@@ -1,5 +1,6 @@
 import { Price } from 'elements';
-import { useRouter } from 'next/router';
+import { useStateContext } from 'contexts/CartContext';
+import { useEffect } from 'react';
 
 const stripe = require('stripe')(`${process.env.NEXT_PUBLIC_STRIPE_SECRET}`);
 
@@ -15,7 +16,11 @@ export async function getServerSideProps(params: any) {
 }
 
 const Success = ({ order }: any) => {
-	const route = useRouter();
+	const { clearCart, cart } = useStateContext();
+
+	useEffect(() => {
+		cart.length > 0 && clearCart();
+	}, [cart, clearCart]);
 
 	return (
 		<div>

@@ -28,7 +28,6 @@ const IconsProvider: FC = () => {
 			) : (
 				<LinkedIcon href="/moje-konto" icon={<Person />} />
 			)}
-
 			<LinkedIcon href="/koszyk" icon={<Shopper />} count={cart.length} />
 		</div>
 	);

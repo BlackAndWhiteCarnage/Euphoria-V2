@@ -10,6 +10,12 @@ import {
 	useMemo,
 	useState,
 } from 'react';
+import { useUser } from '@auth0/nextjs-auth0';
+
+/**
+ * Internal dependencies
+ */
+import { useUserData } from 'hooks';
 
 export type CartItemType = {
 	count?: number;
@@ -25,44 +31,55 @@ export type CartItemType = {
 const CartContext = createContext<any>([]);
 
 export const StateContext: FC<PropsWithChildren> = ({ children }) => {
-	const cartInitial = useMemo(() => [], []);
-	const favoritesInitial = useMemo(() => [], []);
+	const { user, isLoading: isUserLoading } = useUser();
+	const [cart, setCart] = useState<Array<CartItemType | never>>([]);
+	const [favorites, setFavorites] = useState<Array<string>>([]);
+	const { userData, isLoading: isUserDataLoading } = useUserData(
+		cart,
+		favorites
+	);
 
-	const [cart, setCart] = useState<Array<CartItemType | never>>(cartInitial);
-	const [favorites, setFavorites] = useState<Array<string>>(favoritesInitial);
 	const [freeShippingTreshold, setFreeShippingTreshold] = useState(100);
 
 	useEffect(() => {
-		// TODO
-		try {
-			const cartData = JSON.parse(localStorage.getItem('EUPHORIA_cart') || '');
-			cartData && setCart(cartData);
+		if (!user && !isUserLoading) {
+			try {
+				const cartData = JSON.parse(
+					localStorage.getItem('EUPHORIA_cart') || ''
+				);
+				cartData && setCart(cartData);
 
-			const favoritesData = JSON.parse(
-				localStorage.getItem('EUPHORIA_favorites') || ''
-			);
-			favoritesData && setFavorites(favoritesData);
-		} catch {}
-	}, []);
+				const favoritesData = JSON.parse(
+					localStorage.getItem('EUPHORIA_favorites') || ''
+				);
+				favoritesData && setFavorites(favoritesData);
+			} catch {}
+		}
+	}, [isUserLoading, user]);
 
 	useEffect(() => {
-		cart !== cartInitial &&
+		!user &&
+			!isUserLoading &&
 			localStorage.setItem('EUPHORIA_cart', JSON.stringify(cart));
-	}, [cart, cartInitial]);
+	}, [cart, isUserLoading, user]);
 
 	useEffect(() => {
-		favorites !== favoritesInitial &&
+		!user &&
+			!isUserLoading &&
 			localStorage.setItem('EUPHORIA_favorites', JSON.stringify(favorites));
-	}, [favorites, favoritesInitial]);
+	}, [favorites, isUserLoading, user]);
+
+	useEffect(() => {
+		!isUserDataLoading && userData && setCart(userData.cart);
+	}, [isUserDataLoading, userData]);
 
 	const contextValue = useMemo(() => {
 		return {
 			freeShippingTreshold,
 			favorites,
 			cart,
-			add: (props: CartItemType) => {
-				setCart([...cart, { ...props }]);
-			},
+			clearCart: () => setCart([]),
+			add: (props: CartItemType) => setCart([...cart, { ...props }]),
 			remove: (slug: string) =>
 				setCart([...cart.filter((el) => slug !== el.slug)]),
 			updateExtras: (slug: string, newExtras: Array<never> | Array<string>) => {

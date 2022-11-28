@@ -9,16 +9,19 @@ import { UserProvider } from '@auth0/nextjs-auth0';
 /**
  * Internal dependencies
  */
+import 'styles/index.scss';
 import { MainLayout, WithNavigationLayout, WithFooterLayout } from 'layouts';
 import { StateContext } from 'contexts/CartContext';
-import 'styles/index.scss';
+import firebase from 'utils/initFirebase';
+
+firebase();
 
 const client = createClient({ url: process.env.NEXT_PUBLIC_GRAPHQL as string });
 
 const App: FC<AppProps> = ({ Component, pageProps }) => (
 	<UserProvider>
-		<MainLayout>
-			<StateContext>
+		<StateContext>
+			<MainLayout>
 				<WithNavigationLayout>
 					<WithFooterLayout>
 						<Provider value={client}>
@@ -26,8 +29,8 @@ const App: FC<AppProps> = ({ Component, pageProps }) => (
 						</Provider>
 					</WithFooterLayout>
 				</WithNavigationLayout>
-			</StateContext>
-		</MainLayout>
+			</MainLayout>
+		</StateContext>
 	</UserProvider>
 );
 

@@ -14,6 +14,8 @@ const useIsInCart = (specyficSlug?: string) => {
 	const router = useRouter();
 	const { slug: querySlug } = router.query;
 
+	if (!Array.isArray(cart)) return;
+
 	return cart.find((el: CartItemType) =>
 		!specyficSlug ? querySlug === el.slug : specyficSlug === el.slug
 	);

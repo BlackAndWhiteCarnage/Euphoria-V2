@@ -12,11 +12,14 @@ const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET || ''}`, {
 export const getServerSideProps = withPageAuthRequired({
 	async getServerSideProps(ctx) {
 		const session = getSession(ctx.req, ctx.res);
+
 		const stripeId =
 			session?.user[`${process.env.AUTH0_BASE_URL}/stripe_customer_id`];
+
 		const paymentIntents = await stripe.paymentIntents.list({
 			customer: stripeId,
 		});
+
 		return { props: { orders: paymentIntents.data } };
 	},
 });

@@ -2,6 +2,7 @@
  * External dependencies
  */
 import { FC, PropsWithChildren, useEffect, useState } from 'react';
+import { useUser } from '@auth0/nextjs-auth0';
 
 /**
  * Internal dependencies
@@ -11,7 +12,6 @@ import {
 	handleCheckout,
 	checkIfProductsStillExist,
 } from 'utils';
-import { Header, Box } from 'elements';
 import {
 	ItemPreview,
 	ShippingMethod,
@@ -19,8 +19,9 @@ import {
 	LogInInfo,
 	InfoPopup,
 } from 'fragments';
-import { useStateContext, CartItemType } from 'contexts/CartContext';
+import { Header, Box, Loader } from 'elements';
 import { useIsFreeShipping, useGetProductsToDelete, usePopup } from 'hooks';
+import { useStateContext, CartItemType } from 'contexts/CartContext';
 import classes from './CartLayout.module.scss';
 
 const initialLocation = {
@@ -32,7 +33,8 @@ const initialLocation = {
 };
 
 const CartLayout: FC<PropsWithChildren> = () => {
-	const [step, setStep] = useState(1);
+	const { user, isLoading } = useUser();
+	const [step, setStep] = useState(user ? 2 : 1);
 	const [location, setLocation] = useState(initialLocation);
 
 	const popup = usePopup();
@@ -44,6 +46,10 @@ const CartLayout: FC<PropsWithChildren> = () => {
 		step === 3 && hasOnlyPhotoshoots(cart) && setStep(2);
 		hasOnlyPhotoshoots(cart) && setLocation(initialLocation);
 	}, [cart, step]);
+
+	useEffect(() => {
+		user && setStep(2);
+	}, [user]);
 
 	const pay = () =>
 		handleCheckout(cart, isFreeShipping, location, productsToDelete);
@@ -77,32 +83,40 @@ const CartLayout: FC<PropsWithChildren> = () => {
 
 	return (
 		<>
-			<div className={classes.layout}>
-				<Header
-					text={isEmpty ? `Koszyk (${cart.length})` : 'Twój koszyk jest pusty'}
-				/>
-				<div className={classes.wrapper}>
-					<div className={classes.cart}>
-						<ul className={classes.cartItems}>
-							{cart.map((props: CartItemType) => (
-								<ItemPreview {...props} key={props.slug} />
-							))}
-						</ul>
-					</div>
-					{isEmpty && (
-						<div className={classes.checkout}>
-							<Box>
-								<div className={classes.innerCheckout}>
-									<div className={classes.checkoutSteps}>{steps[step - 1]}</div>
-								</div>
-							</Box>
+			{isLoading ? (
+				<Loader />
+			) : (
+				<div className={classes.layout}>
+					<Header
+						text={
+							isEmpty ? `Koszyk (${cart.length})` : 'Twój koszyk jest pusty'
+						}
+					/>
+					<div className={classes.wrapper}>
+						<div className={classes.cart}>
+							<ul className={classes.cartItems}>
+								{cart.map((props: CartItemType) => (
+									<ItemPreview {...props} key={props.slug} />
+								))}
+							</ul>
 						</div>
-					)}
+						{isEmpty && (
+							<div className={classes.checkout}>
+								<Box>
+									<div className={classes.innerCheckout}>
+										<div className={classes.checkoutSteps}>
+											{steps[step - 1]}
+										</div>
+									</div>
+								</Box>
+							</div>
+						)}
+					</div>
 				</div>
-			</div>
+			)}
 			{isEmpty && (
 				<InfoPopup
-					label="Chyba ktoś Cię uprzedził! Niektóre produkty w Twoim koszyku były już niedostępne więc zostały usunięte."
+					label="Niektóre produkty w Twoim koszyku były już niedostępne więc zostały usunięte."
 					{...popup}
 				/>
 			)}

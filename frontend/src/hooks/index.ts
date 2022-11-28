@@ -7,3 +7,4 @@ export { default as useIsFavorite } from './useIsFavorite';
 export { default as useIsFreeShipping } from './useIsFreeShipping';
 export { default as useIsInCart } from './useIsInCart';
 export { default as usePopup } from './usePopup';
+export { default as useUserData } from './useUserData';
