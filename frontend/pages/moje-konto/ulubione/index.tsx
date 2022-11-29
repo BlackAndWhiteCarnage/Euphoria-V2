@@ -6,10 +6,10 @@ import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 /**
  * Internal dependencies
  */
-import { FavoritesLayout } from 'layouts';
+import { FavoritesLayout, UserProfileLayout } from 'layouts';
 
-const UserAccountFavorites = () => (
-	<FavoritesLayout headerText="Twoje Ulubione" />
-);
+const UserAccountFavorites = () => <FavoritesLayout />;
 
-export default withPageAuthRequired(UserAccountFavorites);
+UserAccountFavorites.PageLayout = withPageAuthRequired(UserProfileLayout);
+
+export default UserAccountFavorites;

@@ -24,3 +24,14 @@ export const routes = [
 		label: 'Inne',
 	},
 ];
+
+export const userAccountRoutes = [
+	{
+		path: '/moje-konto/ulubione',
+		label: 'Ulubione',
+	},
+	{
+		path: '/moje-konto/historia',
+		label: 'Historia Zamówień',
+	},
+];

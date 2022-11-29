@@ -25,7 +25,7 @@ const IconsProvider: FC = () => {
 				icon={<Heart />}
 				count={favorites.length}
 			/>
-			<LinkedIcon href="/moje-konto" icon={<Person />} />
+			<LinkedIcon href="/moje-konto/historia" icon={<Person />} />
 			<LinkedIcon href="/koszyk" icon={<Shopper />} count={cart.length} />
 		</div>
 	);

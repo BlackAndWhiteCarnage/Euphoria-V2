@@ -9,45 +9,40 @@ import { FC } from 'react';
 import { Button, Header } from 'elements';
 import { GeowidgetPopup } from 'fragments';
 import { usePopup } from 'hooks';
+import { useStateContext } from 'contexts/CartContext';
 import classes from './ShippingMethod.module.scss';
 
 type ShippingMethodProps = {
-	location: any;
-	onLocationSelect: (value: string) => void;
 	onChange: () => void;
 };
 
-const ShippingMethod: FC<ShippingMethodProps> = ({
-	location,
-	onLocationSelect,
-	onChange,
-}) => {
+const ShippingMethod: FC<ShippingMethodProps> = ({ onChange }) => {
 	const popup = usePopup();
 
-	const isLocationSet = location.name !== '';
+	const { updateShippingLocation, shippingLocation } = useStateContext();
 
 	return (
 		<>
 			<div className={classes.shippingMethod}>
 				<Header text="Dostawa" />
 				<Button size="large" onClick={() => popup.open()}>
-					<>{!isLocationSet ? `Wybierz` : 'Zmień'} paczkomat</>
+					<>{!shippingLocation ? `Wybierz` : 'Zmień'} paczkomat</>
 				</Button>
-				{isLocationSet && (
+				{shippingLocation && (
 					<p>
-						Wybierz paczkomat: <b>{location.name}</b>
+						Wybierz paczkomat: <b>{shippingLocation.name}</b>
 						<br />
-						Adres: <b>{location.address.line1}</b>
-						<b>{location.address.line2}</b>
+						Adres: <b>{shippingLocation.address.line1}</b>
+						<b>{shippingLocation.address.line2}</b>
 					</p>
 				)}
-				<Button size="large" disabled={!isLocationSet} onClick={onChange}>
+				<Button size="large" disabled={!shippingLocation} onClick={onChange}>
 					Przejdź do płatności
 				</Button>
 			</div>
 			<GeowidgetPopup
 				onChange={onChange}
-				onLocationSelect={onLocationSelect}
+				onLocationSelect={updateShippingLocation}
 				{...popup}
 			/>
 		</>

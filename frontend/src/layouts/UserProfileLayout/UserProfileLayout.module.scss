@@ -1,0 +1,17 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(20);
+}
+
+.userNavigation {
+	display: flex;
+	gap: u.rem-calc(35);
+}
+
+.logout {
+	margin-left: auto;
+}

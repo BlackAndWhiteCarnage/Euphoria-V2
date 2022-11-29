@@ -24,27 +24,18 @@ import { useIsFreeShipping, useGetProductsToDelete, usePopup } from 'hooks';
 import { useStateContext, CartItemType } from 'contexts/CartContext';
 import classes from './CartLayout.module.scss';
 
-const initialLocation = {
-	name: '',
-	address: {
-		line1: '',
-		line2: '',
-	},
-};
-
 const CartLayout: FC<PropsWithChildren> = () => {
 	const { user, isLoading } = useUser();
 	const [step, setStep] = useState(user ? 2 : 1);
-	const [location, setLocation] = useState(initialLocation);
 
 	const popup = usePopup();
 	const isFreeShipping = useIsFreeShipping();
 	const productsToDelete = useGetProductsToDelete();
-	const { cart, filterCart } = useStateContext();
+	const { cart, filterCart, shippingLocation } = useStateContext();
 
 	useEffect(() => {
 		step === 3 && hasOnlyPhotoshoots(cart) && setStep(2);
-		hasOnlyPhotoshoots(cart) && setLocation(initialLocation);
+		// hasOnlyPhotoshoots(cart) && setLocation(initialLocation);
 	}, [cart, step]);
 
 	useEffect(() => {
@@ -52,7 +43,7 @@ const CartLayout: FC<PropsWithChildren> = () => {
 	}, [user]);
 
 	const pay = () =>
-		handleCheckout(cart, isFreeShipping, location, productsToDelete);
+		handleCheckout(cart, isFreeShipping, shippingLocation, productsToDelete);
 
 	const handleStepChange = async () => {
 		const check = await checkIfProductsStillExist(cart);
@@ -74,11 +65,7 @@ const CartLayout: FC<PropsWithChildren> = () => {
 	const steps = [
 		<LogInInfo onChange={handleStepChange} />,
 		<Summary cart={cart} onChange={handleStepChange} />,
-		<ShippingMethod
-			location={location}
-			onChange={handleStepChange}
-			onLocationSelect={(value: any) => setLocation(value)}
-		/>,
+		<ShippingMethod onChange={handleStepChange} />,
 	];
 
 	return (

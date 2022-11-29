@@ -35,9 +35,17 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 	const { user, isLoading: isUserLoading } = useUser();
 	const [cart, setCart] = useState<Array<CartItemType | never>>([]);
 	const [favorites, setFavorites] = useState<Array<string>>([]);
+	const [shippingLocation, setShippingLocation] = useState<any>({
+		name: '',
+		address: {
+			line1: '',
+			line2: '',
+		},
+	});
 	const { userData, isLoading: isUserDataLoading } = useUserData(
 		cart,
-		favorites
+		favorites,
+		shippingLocation
 	);
 
 	const [freeShippingTreshold, setFreeShippingTreshold] = useState(100);
@@ -54,6 +62,11 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 					localStorage.getItem('EUPHORIA_favorites') || ''
 				);
 				favoritesData && setFavorites(favoritesData);
+
+				const shippingData = JSON.parse(
+					localStorage.getItem('EUPHORIA_shipping') || ''
+				);
+				shippingData && setShippingLocation(shippingData);
 			} catch {}
 		}
 	}, [isUserLoading, user]);
@@ -67,12 +80,24 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 	useEffect(() => {
 		!user &&
 			!isUserLoading &&
+			localStorage.setItem(
+				'EUPHORIA_shipping',
+				JSON.stringify(shippingLocation)
+			);
+	}, [shippingLocation, isUserLoading, user]);
+
+	useEffect(() => {
+		!user &&
+			!isUserLoading &&
 			localStorage.setItem('EUPHORIA_favorites', JSON.stringify(favorites));
 	}, [favorites, isUserLoading, user]);
 
 	useEffect(() => {
 		!isUserDataLoading && userData && setCart(userData.cart);
 		!isUserDataLoading && userData && setFavorites(userData.favorites);
+		!isUserDataLoading &&
+			userData &&
+			setShippingLocation(userData.shippingLocation);
 	}, [isUserDataLoading, userData]);
 
 	const handleMissingFavorites = async () => {
@@ -97,6 +122,8 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 			freeShippingTreshold,
 			favorites,
 			cart,
+			shippingLocation,
+			updateShippingLocation: (value: any) => setShippingLocation(value),
 			clearCart: () => setCart([]),
 			add: (props: CartItemType) => setCart([...cart, { ...props }]),
 			remove: (slug: string) =>
@@ -130,7 +157,7 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 				setCart(filteredCart);
 			},
 		};
-	}, [cart, freeShippingTreshold, favorites]);
+	}, [cart, freeShippingTreshold, favorites, shippingLocation]);
 
 	return (
 		<CartContext.Provider value={contextValue}>{children}</CartContext.Provider>

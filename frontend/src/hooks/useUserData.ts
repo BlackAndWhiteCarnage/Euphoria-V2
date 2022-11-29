@@ -19,7 +19,11 @@ import { useState, useEffect } from 'react';
  */
 import { CartItemType } from 'contexts/CartContext';
 
-const useUserData = (cart: Array<CartItemType>, favorites: Array<string>) => {
+const useUserData = (
+	cart: Array<CartItemType>,
+	favorites: Array<string>,
+	shippingLocation: any
+) => {
 	const initialUserData = null;
 	const [firestoreUserId, setFirestoreUserId] = useState();
 	const [userData, setUserData] = useState<any>(initialUserData);
@@ -32,6 +36,7 @@ const useUserData = (cart: Array<CartItemType>, favorites: Array<string>) => {
 			cart: [],
 			favorites: [],
 			email: user?.email,
+			shippingLocation: '',
 		};
 
 		addDoc(collectionRef, data);
@@ -69,6 +74,15 @@ const useUserData = (cart: Array<CartItemType>, favorites: Array<string>) => {
 		!isLoading && getUserData();
 		// eslint-disable-next-line
 	}, [isLoading]);
+
+	useEffect(() => {
+		!isLoading &&
+			firestoreUserId &&
+			shippingLocation &&
+			updateDoc(doc(database, 'usersData', firestoreUserId), {
+				shippingLocation: JSON.parse(JSON.stringify(shippingLocation)),
+			});
+	}, [isLoading, firestoreUserId, database, shippingLocation]);
 
 	useEffect(() => {
 		!isLoading &&

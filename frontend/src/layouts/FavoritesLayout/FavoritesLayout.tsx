@@ -8,15 +8,11 @@ import { FC } from 'react';
  */
 import { Card, Grid } from 'fragments';
 import { getImageUrl } from 'utils';
-import { Header, Loader } from 'elements';
+import { Header, Loader, Separator } from 'elements';
 import { useGetProductsBySlugs } from 'hooks';
 import classes from './FavoritesLayout.module.scss';
 
-type FavoritesLayoutProps = {
-	headerText: string;
-};
-
-const FavoritesLayout: FC<FavoritesLayoutProps> = ({ headerText }) => {
+const FavoritesLayout: FC = () => {
 	const { data, fetching } = useGetProductsBySlugs();
 
 	if (fetching) return <Loader />;
@@ -27,13 +23,6 @@ const FavoritesLayout: FC<FavoritesLayoutProps> = ({ headerText }) => {
 
 	return (
 		<div className={classes.wrapper}>
-			<Header
-				text={
-					!productsData.length
-						? 'Nie masz jeszcze ulubionych przedmiotów'
-						: headerText
-				}
-			/>
 			<Grid>
 				{productsData.map(
 					({ attributes: { title, images, price, slug, category } }: any) => (
