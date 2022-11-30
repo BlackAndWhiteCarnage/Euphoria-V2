@@ -12,7 +12,11 @@ import { Header, Loader, Separator } from 'elements';
 import { useGetProductsBySlugs } from 'hooks';
 import classes from './FavoritesLayout.module.scss';
 
-const FavoritesLayout: FC = () => {
+type FavoritesLayoutProps = {
+	label?: string;
+};
+
+const FavoritesLayout: FC<FavoritesLayoutProps> = ({ label }) => {
 	const { data, fetching } = useGetProductsBySlugs();
 
 	if (fetching) return <Loader />;
@@ -23,6 +27,13 @@ const FavoritesLayout: FC = () => {
 
 	return (
 		<div className={classes.wrapper}>
+			<Header
+				text={
+					productsData.length > 0
+						? label || ''
+						: 'Nie masz żadnych przedmiotów dodanych do ulubionych'
+				}
+			/>
 			<Grid>
 				{productsData.map(
 					({ attributes: { title, images, price, slug, category } }: any) => (

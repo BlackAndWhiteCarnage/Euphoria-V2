@@ -1,6 +1,7 @@
 export { default as CartLayout } from './CartLayout';
 export { default as FavoritesLayout } from './FavoritesLayout';
 export { default as MainLayout } from './MainLayout';
+export { default as OrdersHistoryLayout } from './OrdersHistoryLayout';
 export { default as ProductLayout } from './ProductLayout';
 export { default as UserProfileLayout } from './UserProfileLayout';
 export { default as WithFooterLayout } from './WithFooterLayout';

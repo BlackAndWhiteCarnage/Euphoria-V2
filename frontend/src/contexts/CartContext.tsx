@@ -29,19 +29,22 @@ export type CartItemType = {
 	basePrice: number;
 };
 
+const initialShipping = {
+	name: '',
+	address: {
+		line1: '',
+		line2: '',
+	},
+};
+
 const CartContext = createContext<any>([]);
 
 export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 	const { user, isLoading: isUserLoading } = useUser();
 	const [cart, setCart] = useState<Array<CartItemType | never>>([]);
 	const [favorites, setFavorites] = useState<Array<string>>([]);
-	const [shippingLocation, setShippingLocation] = useState<any>({
-		name: '',
-		address: {
-			line1: '',
-			line2: '',
-		},
-	});
+	const [shippingLocation, setShippingLocation] =
+		useState<any>(initialShipping);
 	const { userData, isLoading: isUserDataLoading } = useUserData(
 		cart,
 		favorites,
@@ -66,6 +69,7 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 				const shippingData = JSON.parse(
 					localStorage.getItem('EUPHORIA_shipping') || ''
 				);
+
 				shippingData && setShippingLocation(shippingData);
 			} catch {}
 		}
@@ -97,6 +101,7 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 		!isUserDataLoading && userData && setFavorites(userData.favorites);
 		!isUserDataLoading &&
 			userData &&
+			userData.shippingLocation !== '' &&
 			setShippingLocation(userData.shippingLocation);
 	}, [isUserDataLoading, userData]);
 

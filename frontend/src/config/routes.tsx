@@ -27,11 +27,11 @@ export const routes = [
 
 export const userAccountRoutes = [
 	{
-		path: '/moje-konto/ulubione',
-		label: 'Ulubione',
-	},
-	{
 		path: '/moje-konto/historia',
 		label: 'Historia Zamówień',
+	},
+	{
+		path: '/moje-konto/ulubione',
+		label: 'Ulubione',
 	},
 ];

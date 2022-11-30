@@ -21,14 +21,16 @@ const ShippingMethod: FC<ShippingMethodProps> = ({ onChange }) => {
 
 	const { updateShippingLocation, shippingLocation } = useStateContext();
 
+	const isValidShipping = shippingLocation.name !== '';
+
 	return (
 		<>
 			<div className={classes.shippingMethod}>
 				<Header text="Dostawa" />
 				<Button size="large" onClick={() => popup.open()}>
-					<>{!shippingLocation ? `Wybierz` : 'Zmień'} paczkomat</>
+					<>{!isValidShipping ? `Wybierz` : 'Zmień'} paczkomat</>
 				</Button>
-				{shippingLocation && (
+				{isValidShipping && (
 					<p>
 						Wybierz paczkomat: <b>{shippingLocation.name}</b>
 						<br />
@@ -36,7 +38,7 @@ const ShippingMethod: FC<ShippingMethodProps> = ({ onChange }) => {
 						<b>{shippingLocation.address.line2}</b>
 					</p>
 				)}
-				<Button size="large" disabled={!shippingLocation} onClick={onChange}>
+				<Button size="large" disabled={!isValidShipping} onClick={onChange}>
 					Przejdź do płatności
 				</Button>
 			</div>

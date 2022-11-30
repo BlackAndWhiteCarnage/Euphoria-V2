@@ -1,0 +1,118 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+@use "styles/utils/theme" as t;
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(25);
+}
+
+.order {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(15);
+}
+
+.previewInfo {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+	gap: u.rem-calc(10);
+
+	@include bp.down(md) {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+}
+
+.orderNumber {
+	font-size: u.rem-calc(18);
+
+	@include bp.down(md) {
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+.orderStatus {
+	margin-left: auto;
+
+	@include bp.down(md) {
+		margin: unset;
+	}
+}
+
+.orderPrice {
+	display: flex;
+	gap: u.rem-calc(10);
+	margin-left: auto;
+
+	@include bp.down(md) {
+		margin: unset;
+	}
+}
+
+.openButton {
+	background: none;
+	min-height: u.rem-calc(40);
+	min-width: u.rem-calc(40);
+	transform: rotate(90deg);
+	position: relative;
+	margin-left: u.rem-calc(20);
+	transition: 0.25s ease;
+	cursor: pointer;
+
+	@include bp.down(md) {
+		margin-left: auto;
+	}
+
+	svg {
+		width: 100%;
+		height: 100%;
+
+		path {
+			fill: t.color(order-expand-color);
+		}
+	}
+
+	&.is-open {
+		transform: rotate(-90deg);
+	}
+}
+
+.moreInfo {
+	height: 0;
+	overflow: hidden;
+	transition: 0.25s ease;
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(10);
+}
+
+.orderListTitle {
+	font-size: u.rem-calc(20);
+	margin: u.rem-calc(20) 0 0 0;
+	font-weight: 600;
+}
+
+.moreInfoList {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(15);
+}
+
+.orderItem {
+	display: flex;
+	gap: u.rem-calc(30);
+	justify-content: space-between;
+	width: 100%;
+}
+
+.orderItemInfo {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(20);
+}

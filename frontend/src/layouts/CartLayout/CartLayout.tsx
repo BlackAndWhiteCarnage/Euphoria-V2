@@ -35,7 +35,6 @@ const CartLayout: FC<PropsWithChildren> = () => {
 
 	useEffect(() => {
 		step === 3 && hasOnlyPhotoshoots(cart) && setStep(2);
-		// hasOnlyPhotoshoots(cart) && setLocation(initialLocation);
 	}, [cart, step]);
 
 	useEffect(() => {

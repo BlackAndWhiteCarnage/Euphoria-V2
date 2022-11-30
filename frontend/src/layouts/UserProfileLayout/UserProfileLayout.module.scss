@@ -9,9 +9,18 @@
 
 .userNavigation {
 	display: flex;
+	flex-wrap: wrap;
 	gap: u.rem-calc(35);
+
+	@include bp.down(sm) {
+		gap: u.rem-calc(15);
+	}
 }
 
 .logout {
 	margin-left: auto;
+
+	@include bp.down(sm) {
+		margin: unset;
+	}
 }

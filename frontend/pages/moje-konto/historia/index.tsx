@@ -1,11 +1,52 @@
 /**
  * External dependencies
  */
-import { withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { UserProfileLayout } from 'layouts';
+import { withPageAuthRequired, getSession } from '@auth0/nextjs-auth0';
+import Stripe from 'stripe';
 
-const UserAccountOrderHistory = () => <h1>historia</h1>;
+/**
+ * Internal dependencies
+ */
+import { OrdersHistoryLayout, UserProfileLayout } from 'layouts';
 
-UserAccountOrderHistory.PageLayout = withPageAuthRequired(UserProfileLayout);
+const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET || ''}`, {
+	apiVersion: '2022-11-15',
+});
 
-export default UserAccountOrderHistory;
+export const getServerSideProps = withPageAuthRequired({
+	async getServerSideProps(ctx) {
+		const session = getSession(ctx.req, ctx.res);
+
+		const stripeId =
+			session?.user[`${process.env.AUTH0_BASE_URL}/stripe_customer_id`];
+
+		const paymentIntents = await stripe.paymentIntents.list({
+			customer: stripeId,
+		});
+
+		const sessions = await stripe.checkout.sessions.list({
+			customer: stripeId,
+			limit: 50,
+		});
+
+		const sessionsIds: Array<string> = [];
+
+		sessions.data.forEach(({ id }) => sessionsIds.push(id));
+
+		const lineItems = await Promise.all(
+			sessionsIds.map((id) =>
+				stripe.checkout.sessions.listLineItems(id, { limit: 50 })
+			)
+		);
+
+		return {
+			props: { orders: { paymentIntents, lineItems } },
+		};
+	},
+});
+
+const OrdersHistory = (orders: any) => <OrdersHistoryLayout data={orders} />;
+
+OrdersHistory.PageLayout = withPageAuthRequired(UserProfileLayout);
+
+export default OrdersHistory;
