@@ -14,16 +14,22 @@ const Category = () => {
 
 	return (
 		<Grid>
-			{products.map(({ attributes: { slug, title, price, images } }) => (
-				<Card
-					slug={slug}
-					key={slug}
-					name={title}
-					price={price}
-					href={`/${category}/${slug}`}
-					image={getImageUrl(images)}
-				/>
-			))}
+			{products.map(
+				({
+					attributes: { slug, title, price, images, imagesCount, isPremium },
+				}) => (
+					<Card
+						href={`/${category}/${slug}`}
+						image={getImageUrl(images)}
+						imagesCount={imagesCount}
+						isPremium={isPremium}
+						key={slug}
+						name={title}
+						price={price}
+						slug={slug}
+					/>
+				)
+			)}
 		</Grid>
 	);
 };

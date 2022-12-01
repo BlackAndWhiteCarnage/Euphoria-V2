@@ -33,6 +33,8 @@ const ProductLayout: FC = () => {
 		price,
 		selected,
 		slug,
+		imagesCount,
+		isPremium,
 		title,
 		description,
 	} = product;
@@ -52,6 +54,14 @@ const ProductLayout: FC = () => {
 					bottomBoundary="#product-layout"
 				>
 					<div className={classes.aside}>
+						{isPremium && (
+							<div className={classes.premium}>Produkt Premium</div>
+						)}
+						{imagesCount && (
+							<div className={classes.imagesCount}>
+								{imagesCount} | Zdjęć w sesji
+							</div>
+						)}
 						<p className={classes.description}>
 							{description?.data && description.data.attributes.description}
 						</p>

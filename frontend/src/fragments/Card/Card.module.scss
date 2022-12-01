@@ -50,6 +50,7 @@
 	z-index: -1;
 	position: relative;
 	opacity: 0.8;
+	
 	transition: 0.5s ease;
 
 	@include bp.down(lg) {
@@ -68,4 +69,12 @@
 		object-fit: cover;
 		transition: 1s ease;
 	}
+}
+
+.isPremium {
+  color: #ffaa00;
+  background-image: radial-gradient(#FEDB37 0%, #FDB931 8%, #9f7928 60%, #8A6E2F 50%, transparent 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

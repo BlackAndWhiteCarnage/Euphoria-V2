@@ -3,6 +3,7 @@
  */
 import { FC } from 'react';
 import Image from 'next/image';
+import classnames from 'classnames';
 
 /**
  * External dependencies
@@ -18,10 +19,19 @@ export type CardProps = {
 	href: string;
 	image: string;
 	name: string;
+	isPremium: boolean;
+	imagesCount?: number;
 	slug: string;
 } & PriceProps;
 
-const Card: FC<CardProps> = ({ href, image, name, ...props }) => {
+const Card: FC<CardProps> = ({
+	href,
+	image,
+	imagesCount,
+	isPremium,
+	name,
+	...props
+}) => {
 	const { addToFavorites, removeFromFavorites } = useStateContext();
 	const isFavorite = useIsFavorite(props.slug);
 
@@ -39,10 +49,18 @@ const Card: FC<CardProps> = ({ href, image, name, ...props }) => {
 			</div>
 			<Link href={href}>
 				<div>
-					<div className={classes.image}>
+					<div
+						className={classnames(classes.image, {
+							[classes['is-premium']]: isPremium,
+						})}
+					>
 						<Image src={image} alt={name} fill />
 					</div>
-					<p className={classes.name}>{name}</p>
+					<p className={classes.name}>
+						{imagesCount && <b>{imagesCount} Zdjęć | </b>}
+						{isPremium && <b className={classes.isPremium}>Premium | </b>}
+						{name}
+					</p>
 					<Price {...props} />
 				</div>
 			</Link>

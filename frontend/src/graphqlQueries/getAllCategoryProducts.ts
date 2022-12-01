@@ -9,6 +9,7 @@ query getAllCategoryProducts($name: String!){
             attributes {
               title
               slug
+              imagesCount
               images {
                 data {
                   attributes {

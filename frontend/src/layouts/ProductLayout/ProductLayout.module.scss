@@ -51,6 +51,7 @@
 
 .sticky {
 	width: 100%;
+	margin-top: u.rem-calc(15);
 
 	@include bp.down(lg) {
 		max-width: unset;
@@ -68,4 +69,23 @@
 .buttons {
 	display: flex;
 	gap: u.rem-calc(20);
+}
+
+.imagesCount, .premium {
+	text-transform: uppercase;
+}
+
+.imagesCount {
+	font-size: u.rem-calc(20);
+	font-weight: 600;
+}
+
+.premium {
+	color: #ffaa00;
+	background-image: radial-gradient(#FEDB37 0%, #FDB931 80%, #9f7928 60%, #8A6E2F 60%, transparent 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: u.rem-calc(20);
+	font-weight: 600;
 }
