@@ -1,0 +1,77 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+@use "styles/utils/theme" as t;
+@use "styles/utils/font" as f;
+
+.formWrap {
+	display: flex;
+	align-items: center;
+	gap: u.rem-calc(25);
+	margin: u.rem-calc(40) 0;
+
+	@include bp.down(xl) {
+		flex-direction: column;
+	}
+}
+
+.header {
+	font-size: u.rem-calc(64);
+	max-width: u.rem-calc(650);
+	line-height: u.rem-calc(85);
+	height: fit-content;
+	color: #787878;
+	display: flex;
+	flex-direction: column;
+	
+	@include bp.down(xl) {
+		max-width: unset;
+	}
+	
+	@include bp.down(sm) {
+		line-height: u.rem-calc(45);
+		font-size: u.rem-calc(36);
+	}
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+	gap: u.rem-calc(25);
+	min-width: u.rem-calc(580);
+
+	@include bp.down(xl) {
+		min-width: unset;
+	}
+}
+
+.label {
+	margin-bottom: u.rem-calc(-10);
+	font-weight: 600;
+	font-size: u.rem-calc(18);
+}
+
+.has-error {
+	border: u.rem-calc(2) solid t.color(form-error) !important;
+}
+
+.input, .textarea {
+	outline: none;
+	padding: u.rem-calc(10);
+	font-family: f.get(primary);
+	font-size: u.rem-calc(16);
+}
+
+.input {
+	background: none;
+	border: u.rem-calc(2) solid t.color(form-border-color);
+}
+
+.textarea {
+	min-height: u.rem-calc(98);
+	border-radius: u.rem-calc(3);
+	background: none;
+	border: 2px solid t.color(form-border-color);
+	resize: none;
+}

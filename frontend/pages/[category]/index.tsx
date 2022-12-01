@@ -4,6 +4,7 @@
 import { getImageUrl } from 'utils';
 import { Grid, Card } from 'fragments';
 import { Loader } from 'elements';
+import { WithFormLayout } from 'layouts';
 import { useGetAllCategoryProducts } from 'hooks';
 
 const Category = () => {
@@ -33,5 +34,7 @@ const Category = () => {
 		</Grid>
 	);
 };
+
+Category.PageLayout = WithFormLayout;
 
 export default Category;

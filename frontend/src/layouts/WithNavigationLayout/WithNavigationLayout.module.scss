@@ -38,6 +38,7 @@
 	position: relative;
 	padding: u.rem-calc(4);
 	letter-spacing: u.rem-calc(1.2);
+	transition: 0.25s;
 
 	&::before {
 		transition: 0.25s;

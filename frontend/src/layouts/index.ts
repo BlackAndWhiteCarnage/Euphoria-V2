@@ -5,5 +5,6 @@ export { default as OrdersHistoryLayout } from './OrdersHistoryLayout';
 export { default as ProductLayout } from './ProductLayout';
 export { default as UserProfileLayout } from './UserProfileLayout';
 export { default as WithFooterLayout } from './WithFooterLayout';
+export { default as WithFormLayout } from './WithFormLayout';
 export { default as WithNavigationLayout } from './WithNavigationLayout';
 export { default as WithSliderLayout } from './WithSliderLayout';

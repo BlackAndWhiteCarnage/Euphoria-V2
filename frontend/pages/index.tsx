@@ -1,5 +1,5 @@
 import { SliderProvider } from 'fragments';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { WithFormLayout } from 'layouts';
 
 const Home = () => (
 	<>
@@ -10,5 +10,7 @@ const Home = () => (
 		<SliderProvider specyficCategory="inne" />
 	</>
 );
+
+Home.PageLayout = WithFormLayout;
 
 export default Home;
