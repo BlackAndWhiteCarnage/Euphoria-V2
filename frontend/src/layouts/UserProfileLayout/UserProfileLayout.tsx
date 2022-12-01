@@ -2,7 +2,6 @@
  * Internal dependencies
  */
 import { useRouter } from 'next/router';
-import { useUser, withPageAuthRequired } from '@auth0/nextjs-auth0';
 import { Button, Header, Loader, Separator } from 'elements';
 import { FC, PropsWithChildren } from 'react';
 import { userAccountRoutes } from 'config/routes';
@@ -29,7 +28,11 @@ const UserProfileLayout: FC<PropsWithChildren> = ({ children }) => {
 					type="alert"
 					size="large"
 					className={classes.logout}
-					onClick={() => route.push('/api/auth/logout')}
+					onClick={() => {
+						route.push('/api/auth/logout');
+						localStorage.setItem('EUPHORIA_cart', JSON.stringify([]));
+						localStorage.setItem('EUPHORIA_favorites', JSON.stringify([]));
+					}}
 				>
 					Wyloguj
 				</Button>

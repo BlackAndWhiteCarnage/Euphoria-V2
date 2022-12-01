@@ -11,6 +11,7 @@ import {
 	useState,
 } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
+import { unionBy } from 'lodash';
 
 /**
  * Internal dependencies
@@ -97,12 +98,30 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 	}, [favorites, isUserLoading, user]);
 
 	useEffect(() => {
-		!isUserDataLoading && userData && setCart(userData.cart);
-		!isUserDataLoading && userData && setFavorites(userData.favorites);
 		!isUserDataLoading &&
 			userData &&
 			userData.shippingLocation !== '' &&
 			setShippingLocation(userData.shippingLocation);
+
+		if (!isUserDataLoading && userData) {
+			const cartData = JSON.parse(localStorage.getItem('EUPHORIA_cart') || '');
+
+			const merged: any = unionBy(cartData, userData.cart, 'slug');
+
+			setCart(merged);
+			localStorage.setItem('EUPHORIA_cart', JSON.stringify([]));
+		}
+
+		if (!isUserDataLoading && userData) {
+			const favoritesData = JSON.parse(
+				localStorage.getItem('EUPHORIA_favorites') || ''
+			);
+
+			const merged: any = unionBy(favoritesData, userData.favorites);
+
+			setFavorites(merged);
+			localStorage.setItem('EUPHORIA_favorites', JSON.stringify([]));
+		}
 	}, [isUserDataLoading, userData]);
 
 	const handleMissingFavorites = async () => {

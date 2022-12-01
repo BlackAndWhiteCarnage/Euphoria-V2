@@ -7,7 +7,7 @@ import classnames from 'classnames';
 /**
  * Internal dependencies
  */
-import { Box, Price, Separator } from 'elements';
+import { Box, Header, Price, Separator } from 'elements';
 import { ReactComponent as Arrow } from 'images/icons/arrow.svg';
 import classes from './OrdersHistoryLayout.module.scss';
 
@@ -75,9 +75,13 @@ const OrderHistoryLayout: FC<OrdersHistoryLayoutProps> = ({ data }) => {
 
 	return (
 		<ul className={classes.wrapper}>
-			{paymentIntents.data.map((order: any, index: number) => (
-				<Order order={order} lineItems={lineItems[index]} key={index} />
-			))}
+			{paymentIntents.data.length > 0 ? (
+				paymentIntents.data.map((order: any, index: number) => (
+					<Order order={order} lineItems={lineItems[index]} key={index} />
+				))
+			) : (
+				<Header text="Jeszcze nie masz żadnych zamówień" />
+			)}
 		</ul>
 	);
 };
