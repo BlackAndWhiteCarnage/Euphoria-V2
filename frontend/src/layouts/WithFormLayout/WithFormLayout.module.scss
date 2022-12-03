@@ -68,6 +68,12 @@
 	border: u.rem-calc(2) solid t.color(form-border-color);
 }
 
+.is-disabled {
+	border: u.rem-calc(2) solid t.color(input-disabled);
+	color: t.color(input-disabled);
+	pointer-events: none;
+}
+
 .textarea {
 	min-height: u.rem-calc(98);
 	border-radius: u.rem-calc(3);
