@@ -1,6 +1,7 @@
 export { default as Box } from './Box';
 export { default as Button } from './Button';
 export { default as Checkbox } from './Checkbox';
+export { default as Cover } from './Cover';
 export { default as Favorites } from './Favorites';
 export { default as Header } from './Header';
 export { default as LinkedIcon } from './LinkedIcon';

@@ -1,4 +1,5 @@
 export { default as Card } from './Card';
+export { default as Covers } from './Covers';
 export { default as ExtrasPopup } from './ExtrasPopup';
 export { default as GeowidgetPopup } from './GeowidgetPopup';
 export { default as Grid } from './Grid';

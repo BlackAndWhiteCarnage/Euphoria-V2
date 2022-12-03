@@ -1,0 +1,124 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.wrapper {
+	position: relative;
+	height: u.rem-calc(350);
+	display: flex;
+	align-items: center;
+	padding: u.rem-calc(20) u.rem-calc(40);
+	justify-content: center;
+	gap: u.rem-calc(20);
+	border-radius: u.rem-calc(8);
+	overflow: hidden;
+		
+	@include bp.down(md) {
+		flex-direction: column;
+	}
+
+	.text {
+		font-size: u.rem-calc(68);
+		line-height: u.rem-calc(80);
+		
+		@include bp.down(md) {
+			font-size: u.rem-calc(36);
+			line-height: u.rem-calc(42);
+		}
+	}
+
+	&.has-discount {
+		.text {
+			font-size: u.rem-calc(48);
+			line-height: u.rem-calc(55);
+			text-align: left;
+			
+			@include bp.down(md) {
+				font-size: u.rem-calc(36);
+				line-height: u.rem-calc(42);
+			}
+			
+			@include bp.down(md) {
+				font-size: u.rem-calc(24);
+				line-height: u.rem-calc(34);
+			}
+		}
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		background: #00000070;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+.text {
+	text-align: center;
+	font-weight: 600;
+	width: u.rem-calc(700);
+
+	@include bp.down(md) {
+		width: 100%;
+		text-align: center !important;
+	}
+}
+
+.discountCode {
+	font-size: u.rem-calc(24);
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	column-gap: u.rem-calc(20);
+	background: #00000095;
+	padding: u.rem-calc(20);
+	border-radius: u.rem-calc(3);
+	gap: u.rem-calc(20);
+
+	@include bp.down(md) {
+		font-size: u.rem-calc(18);
+		padding: u.rem-calc(10);
+		gap: u.rem-calc(10);
+	}
+}
+
+.copy {
+	background: none;
+	border: none;
+	min-width: u.rem-calc(40);
+	height: u.rem-calc(40);
+	cursor: pointer;
+	transition: 0.2s cubic-bezier(1, 2, 0.1, 1);
+
+	@include bp.down(md) {
+		min-width: u.rem-calc(25);
+		height: u.rem-calc(25);
+	}
+
+	svg {
+		width: 100%;
+		height: 100%;
+
+		path {
+			fill: white;
+		}
+	}
+
+	&.is-copied {
+		transform: scale(1.4);
+	}
+}
+
+.image {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	z-index: -2;
+}

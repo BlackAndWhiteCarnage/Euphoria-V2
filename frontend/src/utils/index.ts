@@ -7,5 +7,6 @@ export { default as getImageUrl } from './getImageUrl';
 export { default as handleCheckout } from './handleCheckout';
 export { default as hasOnlyPhotoshoots } from './hasOnlyPhotoshoots';
 export { default as initFirebase } from './initFirebase';
+export { default as mergeCovers } from './mergeCovers';
 export { default as substractPriceByPercentage } from './substractPriceByPercentage';
 export * from './checkIfProductsStillExist';
