@@ -16,12 +16,7 @@ const UserProfileLayout: FC<PropsWithChildren> = ({ children }) => {
 
 	return (
 		<div className={classes.wrapper}>
-			<Header
-				text={`Twoje Konto - ${
-					userAccountRoutes.filter(({ path }) => path === route.pathname)[0]
-						.label
-				}`}
-			/>
+			<Header text="Twoje Konto" />
 			<nav className={classes.userNavigation}>
 				{userAccountRoutes.map(({ path, label }) => (
 					<Button size="large" href={path} disabled={route.pathname === path}>

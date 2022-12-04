@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app';
 import { FC, ComponentType } from 'react';
 import { Provider, createClient } from 'urql';
 import { UserProvider } from '@auth0/nextjs-auth0';
+import toast, { Toaster } from 'react-hot-toast';
 
 /**
  * Internal dependencies
@@ -24,26 +25,35 @@ type ComponentWithLayout = AppProps & {
 	};
 };
 
-const App: FC<ComponentWithLayout> = ({ Component, pageProps }) => {
-	return (
-		<UserProvider>
-			<StateContext>
-				<MainLayout>
-					<WithNavigationLayout>
-						<Provider value={client}>
-							{Component.PageLayout ? (
-								<Component.PageLayout>
-									<Component {...pageProps} />
-								</Component.PageLayout>
-							) : (
+const App: FC<ComponentWithLayout> = ({ Component, pageProps }) => (
+	<UserProvider>
+		<StateContext>
+			<MainLayout>
+				<WithNavigationLayout>
+					<Provider value={client}>
+						<Toaster
+							toastOptions={{
+								duration: 1000,
+								style: {
+									background: '#E6E6E6',
+									color: '#1E1E1E',
+									fontWeight: 'bold',
+									textAlign: 'center',
+								},
+							}}
+						/>
+						{Component.PageLayout ? (
+							<Component.PageLayout>
 								<Component {...pageProps} />
-							)}
-						</Provider>
-					</WithNavigationLayout>
-				</MainLayout>
-			</StateContext>
-		</UserProvider>
-	);
-};
+							</Component.PageLayout>
+						) : (
+							<Component {...pageProps} />
+						)}
+					</Provider>
+				</WithNavigationLayout>
+			</MainLayout>
+		</StateContext>
+	</UserProvider>
+);
 
 export default App;

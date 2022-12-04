@@ -3,6 +3,8 @@
  */
 import { FC } from 'react';
 import Sticky from 'react-stickynode';
+import Head from 'next/head';
+import toast from 'react-hot-toast';
 
 /**
  * Internal dependencies
@@ -13,7 +15,6 @@ import { formatToImagesArray, getImageUrl } from 'utils';
 import { ImagesPreview, ExtrasPopup } from 'fragments';
 import { usePopup, useHandleProductExtras } from 'hooks';
 import { useStateContext } from 'contexts/CartContext';
-import Head from 'next/head';
 import classes from './ProductLayout.module.scss';
 
 const ProductLayout: FC = () => {

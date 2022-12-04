@@ -12,6 +12,7 @@ import {
 } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
 import { unionBy } from 'lodash';
+import { toast } from 'react-hot-toast';
 
 /**
  * Internal dependencies
@@ -149,9 +150,17 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 			shippingLocation,
 			updateShippingLocation: (value: any) => setShippingLocation(value),
 			clearCart: () => setCart([]),
-			add: (props: CartItemType) => setCart([...cart, { ...props }]),
-			remove: (slug: string) =>
-				setCart([...cart.filter((el) => slug !== el.slug)]),
+			add: (props: CartItemType) => {
+				setCart([...cart, { ...props }]);
+				toast.success(`Dodano do koszyka: ${props.title}`, {
+					duration: 3000,
+				});
+			},
+			remove: (slug: string) => {
+				setCart([...cart.filter((el) => slug !== el.slug)]);
+
+				toast.error(`Usunięto z koszyka`);
+			},
 			updateExtras: (slug: string, newExtras: Array<never> | Array<string>) => {
 				const cartCopy = cart;
 				const searchedElement = cartCopy.find((el) => slug === el.slug);
@@ -168,11 +177,22 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 					}
 
 					setCart([...cartCopy]);
+					toast.success(
+						`Dodatki dla ${searchedElement.title} zostały zaktualizowane`,
+						{
+							duration: 3000,
+						}
+					);
 				}
 			},
-			addToFavorites: (slug: string) => setFavorites([...favorites, slug]),
-			removeFromFavorites: (slug: string) =>
-				setFavorites([...favorites.filter((el) => slug !== el)]),
+			addToFavorites: (slug: string) => {
+				setFavorites([...favorites, slug]);
+				toast.success('Dodano do ulubionych');
+			},
+			removeFromFavorites: (slug: string) => {
+				setFavorites([...favorites.filter((el) => slug !== el)]);
+				toast.error('Usunięto z ulubionych');
+			},
 			filterCart: (missingProducts: Array<string>) => {
 				const filteredCart = cart.filter(
 					(item) => missingProducts.indexOf(item.slug) !== -1

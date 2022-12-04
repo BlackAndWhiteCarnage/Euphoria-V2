@@ -3,6 +3,7 @@
  */
 import { FC, useState } from 'react';
 import classnames from 'classnames';
+import { toast } from 'react-hot-toast';
 
 /**
  * Internal dependencies
@@ -37,6 +38,9 @@ const Cover: FC<CoverProps> = ({ discountCode, image: { src, alt }, text }) => {
 						onClick={() => {
 							navigator.clipboard.writeText(discountCode);
 							setCopy(true);
+							toast.success('Kod skopiowany!', {
+								duration: 2000,
+							});
 							setTimeout(() => {
 								setCopy(false);
 							}, 200);
