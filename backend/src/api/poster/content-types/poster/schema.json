@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posters",
+  "info": {
+    "singularName": "poster",
+    "pluralName": "posters",
+    "displayName": "Poster"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "image": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true,
+      "maxLength": 60
+    }
+  }
+}
