@@ -10,10 +10,11 @@
 	gap: u.rem-calc(35);
 	margin: auto;
 	max-width: u.rem-calc(500);
+}
 
-	h1, h2 {
-		text-align: center;
-	}
+.title {
+	text-align: center;
+	margin-bottom: u.rem-calc(20);
 }
 
 .order {

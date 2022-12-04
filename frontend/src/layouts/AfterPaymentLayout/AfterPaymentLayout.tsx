@@ -29,9 +29,13 @@ const AfterPaymentLayout: FC<AfterPaymentLayoutProps> = ({
 			</Head>
 			<Box>
 				<div className={classes.content}>
+					<h1 className={classes.title}>
+						{isCanceled
+							? 'Płatność Anulowana 😣'
+							: 'Dziękuję za zamówienie! 🥰'}
+					</h1>
 					{isCanceled ? (
 						<>
-							<h1>Płatność Anulowana 😣</h1>
 							<Button href="/koszyk" size="large">
 								Wróć do koszyka
 							</Button>
@@ -42,7 +46,6 @@ const AfterPaymentLayout: FC<AfterPaymentLayoutProps> = ({
 						</>
 					) : (
 						<div className={classes.order}>
-							<h1>Dziękuję za zamówienie! 🥰</h1>
 							<p>
 								Email potwierdzający został wysłany na adres{' '}
 								<b>{order.customer_details.email}</b>
