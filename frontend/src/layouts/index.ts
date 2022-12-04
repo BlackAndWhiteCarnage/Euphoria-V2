@@ -1,3 +1,4 @@
+export { default as AfterPaymentLayout } from './AfterPaymentLayout';
 export { default as CartLayout } from './CartLayout';
 export { default as FavoritesLayout } from './FavoritesLayout';
 export { default as GridLayout } from './GridLayout';

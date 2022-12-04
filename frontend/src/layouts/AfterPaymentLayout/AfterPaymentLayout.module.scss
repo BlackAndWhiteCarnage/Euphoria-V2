@@ -1,0 +1,34 @@
+@use "styles/utils/unit" as u;
+
+.content {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: u.rem-calc(35);
+	margin: auto;
+	max-width: u.rem-calc(500);
+
+	h1, h2 {
+		text-align: center;
+	}
+}
+
+.order {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(20);
+}
+
+.orderItem {
+	display: flex;
+	width: 100%;
+	gap: u.rem-calc(20);
+}
+
+.shipping {
+	display: flex;
+	flex-direction: column;
+}

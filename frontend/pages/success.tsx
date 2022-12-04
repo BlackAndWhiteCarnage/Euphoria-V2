@@ -1,6 +1,13 @@
-import { Price } from 'elements';
-import { useStateContext } from 'contexts/CartContext';
+/**
+ * External dependencies
+ */
 import { useEffect } from 'react';
+
+/**
+ * Internal dependencies
+ */
+import { useStateContext } from 'contexts/CartContext';
+import { AfterPaymentLayout } from 'layouts';
 
 const stripe = require('stripe')(`${process.env.NEXT_PUBLIC_STRIPE_SECRET}`);
 
@@ -22,28 +29,7 @@ const Success = ({ order }: any) => {
 		cart.length > 0 && clearCart();
 	}, [cart, clearCart]);
 
-	return (
-		<div>
-			<div>
-				<h1>Dziękuję za zamówienie!</h1>
-				<h2>Email potwierdzający został wysłany na adres</h2>
-				<h2>{order.customer_details.email}</h2>
-				<div>
-					<h3>Zamówienia</h3>
-					<h2>
-						{order.line_items.data.map((item: any) => (
-							<div key={item.id}>
-								<p>{item.description}</p>
-								<Price price={item.price.unit_amount / 100} />
-							</div>
-						))}
-					</h2>
-					<h2>Wybrany paczkomat</h2>
-					<h2>{order.metadata.Paczkomat}</h2>
-				</div>
-			</div>
-		</div>
-	);
+	return <AfterPaymentLayout order={order} />;
 };
 
 export default Success;
