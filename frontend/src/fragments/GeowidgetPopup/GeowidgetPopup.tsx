@@ -6,7 +6,7 @@ import { FC, useEffect } from 'react';
 /**
  * Internal dependencies
  */
-import { Header, Separator, Button, Popup } from 'elements';
+import { Header, Popup } from 'elements';
 import { PopupProps } from 'elements/Popup/Popup';
 import classes from './GeowidgetPopup.module.scss';
 
