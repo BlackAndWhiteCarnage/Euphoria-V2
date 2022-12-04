@@ -26,6 +26,8 @@ const Popup: FC<PopupProps> = ({ children, close, isOpen = false }) => {
 				? (rootElements.style.filter = 'blur(10px)')
 				: (rootElements.style.filter = 'none');
 		}
+
+		return () => rootElements && (rootElements.style.filter = 'none');
 	}, [isOpen]);
 
 	/* eslint-disable jsx-a11y/click-events-have-key-events */
