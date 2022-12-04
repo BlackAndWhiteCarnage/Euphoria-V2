@@ -29,7 +29,13 @@ const handleCheckout = async (
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({
 			cart,
-			location,
+			location: location || {
+				name: '',
+				address: {
+					line1: '',
+					line2: '',
+				},
+			},
 			productsToDelete,
 			phoneRequirement,
 			shipping: {

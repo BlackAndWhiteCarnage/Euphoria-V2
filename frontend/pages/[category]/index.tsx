@@ -6,32 +6,49 @@ import { Grid, Card } from 'fragments';
 import { Loader } from 'elements';
 import { WithFormLayout } from 'layouts';
 import { useGetAllCategoryProducts } from 'hooks';
+import Head from 'next/head';
 
 const Category = () => {
-	const { products, ready, error, category } = useGetAllCategoryProducts();
-
-	if (!ready) return <Loader />;
-	if (error) return <p>Error: {error.message}</p>;
+	const { products, ready, category } = useGetAllCategoryProducts();
 
 	return (
-		<Grid>
-			{products.map(
-				({
-					attributes: { slug, title, price, images, imagesCount, isPremium },
-				}) => (
-					<Card
-						href={`/${category}/${slug}`}
-						image={getImageUrl(images)}
-						imagesCount={imagesCount}
-						isPremium={isPremium}
-						key={slug}
-						name={title}
-						price={price}
-						slug={slug}
-					/>
-				)
+		<>
+			<Head>
+				<title>
+					EUPHORIA |{' '}
+					{category && category[0].toUpperCase() + category.substring(1)}
+				</title>
+			</Head>
+			{!ready ? (
+				<Loader />
+			) : (
+				<Grid>
+					{products.map(
+						({
+							attributes: {
+								slug,
+								title,
+								price,
+								images,
+								imagesCount,
+								isPremium,
+							},
+						}) => (
+							<Card
+								href={`/${category}/${slug}`}
+								image={getImageUrl(images)}
+								imagesCount={imagesCount}
+								isPremium={isPremium}
+								key={slug}
+								name={title}
+								price={price}
+								slug={slug}
+							/>
+						)
+					)}
+				</Grid>
 			)}
-		</Grid>
+		</>
 	);
 };
 

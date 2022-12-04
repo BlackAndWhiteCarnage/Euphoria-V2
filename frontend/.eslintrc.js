@@ -45,6 +45,7 @@ module.exports = {
 		'no-return-assign': 'off',
 		'valid-typeof': 'off',
 		'no-empty': 'off',
+		'react-hooks/exhaustive-deps': 'off',
 		camelcase: 'off',
 		'import/no-extraneous-dependencies': 'off',
 		'@next/next/no-img-element': 'off',

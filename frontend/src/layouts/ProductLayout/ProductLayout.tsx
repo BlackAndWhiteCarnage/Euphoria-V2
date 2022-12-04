@@ -13,6 +13,7 @@ import { formatToImagesArray, getImageUrl } from 'utils';
 import { ImagesPreview, ExtrasPopup } from 'fragments';
 import { usePopup, useHandleProductExtras } from 'hooks';
 import { useStateContext } from 'contexts/CartContext';
+import Head from 'next/head';
 import classes from './ProductLayout.module.scss';
 
 const ProductLayout: FC = () => {
@@ -41,6 +42,9 @@ const ProductLayout: FC = () => {
 
 	return (
 		<>
+			<Head>
+				<title>EUPHORIA | {product?.title && title}</title>
+			</Head>
 			<div className={classes.layout} id="product-layout">
 				<div className={classes.images}>
 					<Header text={title} />

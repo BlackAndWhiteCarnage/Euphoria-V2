@@ -20,7 +20,6 @@ const Covers: FC<CoversProps> = ({ covers }) => (
 		autoplay={{
 			delay: 4000,
 			disableOnInteraction: true,
-			pauseOnMouseEnter: true,
 		}}
 		spaceBetween={40}
 		loop

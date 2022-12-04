@@ -12,6 +12,7 @@ import { GET_ALL_POSTERS } from 'graphqlQueries';
 import { Loader } from 'elements';
 import { mergeCovers } from 'utils';
 import { WithFormLayout } from 'layouts';
+import Head from 'next/head';
 
 const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET || ''}`, {
 	apiVersion: '2022-11-15',
@@ -40,6 +41,9 @@ const Home = ({ coupons }: any) => {
 
 	return (
 		<>
+			<Head>
+				<title>EUPHORIA | Strona Główa</title>
+			</Head>
 			<Covers covers={mergeCovers(data, posters)} />
 			<SliderProvider specyficCategory="majtki" />
 			<SliderProvider specyficCategory="skarpetki" />

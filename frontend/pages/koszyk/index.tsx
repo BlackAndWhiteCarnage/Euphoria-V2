@@ -1,20 +1,29 @@
 /**
+ * External dependencies
+ */
+import { useUser } from '@auth0/nextjs-auth0';
+import Head from 'next/head';
+
+/**
  * Internal dependencies
  */
 import { CartLayout } from 'layouts';
-import Head from 'next/head';
+import { Loader } from 'elements';
+import { LogInInfo, Summary } from 'fragments';
 
-const Cart = () => (
-	<>
-		<Head>
-			<link
-				rel="stylesheet"
-				href="https://geowidget.inpost.pl/inpost-geowidget.css"
-			/>
-			<script src="https://geowidget.inpost.pl/inpost-geowidget.js" defer />
-		</Head>
-		<CartLayout />
-	</>
-);
+const Cart = () => {
+	const { user, isLoading } = useUser();
+
+	return (
+		<>
+			<Head>
+				<title>EUPHORIA | Koszyk</title>
+			</Head>
+			<CartLayout>
+				{isLoading ? <Loader /> : user ? <Summary /> : <LogInInfo />}
+			</CartLayout>
+		</>
+	);
+};
 
 export default Cart;

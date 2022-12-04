@@ -6,53 +6,65 @@ import { FC } from 'react';
 /**
  * Internal dependencies
  */
-import { Button, Header, Price } from 'elements';
-import { calcPrice, calcExtrasPrice, hasOnlyPhotoshoots } from 'utils';
+import { Button, FilterCart, Header, Price } from 'elements';
+import {
+	calcPrice,
+	calcExtrasPrice,
+	hasOnlyPhotoshoots,
+	handleCheckout,
+} from 'utils';
 import { useIsFreeShipping } from 'hooks';
-import { CartItemType } from 'contexts/CartContext';
+import { useStateContext } from 'contexts/CartContext';
 import classes from './Summary.module.scss';
 
-type SummaryProps = {
-	cart: Array<CartItemType>;
-	onChange: () => void;
-};
-
-const Summary: FC<SummaryProps> = ({ cart, onChange }) => {
+const Summary: FC = () => {
+	const { cart } = useStateContext();
 	const isFreeShipping = useIsFreeShipping();
-
 	const price = calcPrice(cart);
 	const extras = calcExtrasPrice(cart);
 	const hasOnlyPhotos = hasOnlyPhotoshoots(cart);
 	const hasExtraExtrases = extras !== 0;
 
 	return (
-		<div className={classes.summary}>
-			<Header text="Podsumowanie" />
-			<div className={classes.details}>
-				<div>
-					Wartość produktów: <Price price={price} />
-				</div>
-				{hasExtraExtrases && (
+		<>
+			<div className={classes.summary}>
+				<Header text="Podsumowanie" />
+				<div className={classes.details}>
 					<div>
-						Extra dodatki: <Price price={extras} />
+						Wartość produktów: <Price price={price} />
 					</div>
-				)}
-				<div>
-					Dostawa:{' '}
-					{isFreeShipping ? (
-						<Price isFree price={13.99} />
-					) : (
-						<Price price={13.99} />
+					{hasExtraExtrases && (
+						<div>
+							Extra dodatki: <Price price={extras} />
+						</div>
 					)}
+					<div>
+						Dostawa:{' '}
+						{isFreeShipping ? (
+							<Price isFree price={13.99} />
+						) : (
+							<Price price={13.99} />
+						)}
+					</div>
 				</div>
+				<div className={classes.total}>
+					Razem: <Price price={price + extras + (isFreeShipping ? 0 : 13.99)} />
+				</div>
+				{hasOnlyPhotos ? (
+					<Button
+						size="large"
+						onClick={() => handleCheckout(cart, isFreeShipping)}
+					>
+						Przejdź do płatności
+					</Button>
+				) : (
+					<Button size="large" href="/koszyk/dostawa">
+						Przejdź do dostawy
+					</Button>
+				)}
 			</div>
-			<div className={classes.total}>
-				Razem: <Price price={price + extras + (isFreeShipping ? 0 : 13.99)} />
-			</div>
-			<Button size="large" onClick={onChange}>
-				{hasOnlyPhotos ? 'Przejdź do płatności' : 'Przejdź do dostawy'}
-			</Button>
-		</div>
+			<FilterCart />
+		</>
 	);
 };
 

@@ -1,9 +1,13 @@
 /**
+ * External dependencies
+ */
+import { FC, PropsWithChildren } from 'react';
+import { useRouter } from 'next/router';
+
+/**
  * Internal dependencies
  */
-import { useRouter } from 'next/router';
-import { Button, Header, Loader, Separator } from 'elements';
-import { FC, PropsWithChildren } from 'react';
+import { Button, Header, Separator } from 'elements';
 import { userAccountRoutes } from 'config/routes';
 import classes from './UserProfileLayout.module.scss';
 

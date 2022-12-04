@@ -2,7 +2,15 @@
  * Internal dependencies
  */
 import { FavoritesLayout } from 'layouts';
+import Head from 'next/head';
 
-const Favorites = () => <FavoritesLayout label="Ulubione" />;
+const Favorites = () => (
+	<>
+		<Head>
+			<title>EUPHORIA | Ulubione</title>
+		</Head>
+		<FavoritesLayout label="Ulubione" />
+	</>
+);
 
 export default Favorites;

@@ -3,6 +3,7 @@ export { default as Button } from './Button';
 export { default as Checkbox } from './Checkbox';
 export { default as Cover } from './Cover';
 export { default as Favorites } from './Favorites';
+export { default as FilterCart } from './FilterCart';
 export { default as Header } from './Header';
 export { default as LinkedIcon } from './LinkedIcon';
 export { default as Loader } from './Loader';

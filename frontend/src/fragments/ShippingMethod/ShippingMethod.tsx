@@ -1,25 +1,29 @@
 /**
  * External dependencies
  */
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 /**
  * Internal dependencies
  */
-import { Button, Header } from 'elements';
+import { Button, FilterCart, Header } from 'elements';
 import { GeowidgetPopup } from 'fragments';
-import { usePopup } from 'hooks';
+import { handleCheckout, hasOnlyPhotoshoots } from 'utils';
+import { usePopup, useIsFreeShipping } from 'hooks';
 import { useStateContext } from 'contexts/CartContext';
 import classes from './ShippingMethod.module.scss';
 
-type ShippingMethodProps = {
-	onChange: () => void;
-};
-
-const ShippingMethod: FC<ShippingMethodProps> = ({ onChange }) => {
+const ShippingMethod: FC = () => {
 	const popup = usePopup();
+	const isFreeShipping = useIsFreeShipping();
+	const route = useRouter();
 
-	const { updateShippingLocation, shippingLocation } = useStateContext();
+	const { cart, updateShippingLocation, shippingLocation } = useStateContext();
+
+	useEffect(() => {
+		hasOnlyPhotoshoots(cart) && route.push('/koszyk/podsumowanie');
+	}, [cart, route]);
 
 	const isValidShipping = shippingLocation.name !== '';
 
@@ -38,15 +42,16 @@ const ShippingMethod: FC<ShippingMethodProps> = ({ onChange }) => {
 						<b>{shippingLocation.address.line2}</b>
 					</p>
 				)}
-				<Button size="large" disabled={!isValidShipping} onClick={onChange}>
+				<Button
+					size="large"
+					disabled={!isValidShipping}
+					onClick={() => handleCheckout(cart, isFreeShipping, shippingLocation)}
+				>
 					Przejdź do płatności
 				</Button>
 			</div>
-			<GeowidgetPopup
-				onChange={onChange}
-				onLocationSelect={updateShippingLocation}
-				{...popup}
-			/>
+			<GeowidgetPopup onLocationSelect={updateShippingLocation} {...popup} />
+			<FilterCart />
 		</>
 	);
 };

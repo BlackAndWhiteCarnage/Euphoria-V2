@@ -8,6 +8,7 @@ import Stripe from 'stripe';
  * Internal dependencies
  */
 import { OrdersHistoryLayout, UserProfileLayout } from 'layouts';
+import Head from 'next/head';
 
 const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET || ''}`, {
 	apiVersion: '2022-11-15',
@@ -45,7 +46,14 @@ export const getServerSideProps = withPageAuthRequired({
 	},
 });
 
-const OrdersHistory = (orders: any) => <OrdersHistoryLayout data={orders} />;
+const OrdersHistory = (orders: any) => (
+	<>
+		<Head>
+			<title>EUPHORIA | Historia Zamówień</title>
+		</Head>
+		<OrdersHistoryLayout data={orders} />
+	</>
+);
 
 OrdersHistory.PageLayout = withPageAuthRequired(UserProfileLayout);
 
