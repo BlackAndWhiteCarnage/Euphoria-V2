@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 /**
  * Internal dependencies
  */
-import { Button, FilterCart, Header } from 'elements';
+import { Button, FilterCart } from 'elements';
 import { GeowidgetPopup } from 'fragments';
 import { handleCheckout, hasOnlyPhotoshoots } from 'utils';
 import { usePopup, useIsFreeShipping } from 'hooks';
@@ -30,7 +30,6 @@ const ShippingMethod: FC = () => {
 	return (
 		<>
 			<div className={classes.shippingMethod}>
-				<Header text="Dostawa" />
 				<Button size="large" onClick={() => popup.open()}>
 					<>{!isValidShipping ? `Wybierz` : 'Zmień'} paczkomat</>
 				</Button>

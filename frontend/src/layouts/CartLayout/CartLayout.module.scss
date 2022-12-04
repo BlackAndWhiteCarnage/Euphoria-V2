@@ -53,9 +53,18 @@ $containers-height: calc(100vh - u.rem-calc(300));
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	overflow-x: auto;
 }
 
 .checkoutSteps {
 	width: 100%;
 	max-width: u.rem-calc(284);
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(30);
+	min-height: u.rem-calc(500);
+
+	&.with-login {
+		min-height: unset;
+	}
 }

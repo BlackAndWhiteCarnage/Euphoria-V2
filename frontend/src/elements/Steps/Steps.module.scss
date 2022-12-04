@@ -1,0 +1,48 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/theme" as t;
+@use "styles/utils/unit" as u;
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: u.rem-calc(40);
+}
+
+.steps {
+	display: flex;
+	list-style: none;
+	gap: u.rem-calc(8);
+			
+	svg {
+		min-height: u.rem-calc(38);
+		min-width: u.rem-calc(38);
+
+		path {
+			fill: t.color(step-primary);
+		}
+	}
+}
+
+.step {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	svg {
+		padding: u.rem-calc(4);
+		border: u.rem-calc(2) solid t.color(step-primary);
+	}
+
+	&.is-active {
+		background: t.color(step-primary);
+
+		svg path {
+			fill: t.color(step-secondary);
+		}
+	}
+}
+
+.name {
+	font-size: u.rem-calc(36);
+	font-weight: 600;
+}

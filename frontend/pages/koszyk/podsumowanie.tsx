@@ -14,7 +14,7 @@ const Cart = () => (
 		<Head>
 			<title>EUPHORIA | Koszyk | Podsumowanie</title>
 		</Head>
-		<CartLayout>
+		<CartLayout step="Podsumowanie">
 			<Summary />
 		</CartLayout>
 	</>

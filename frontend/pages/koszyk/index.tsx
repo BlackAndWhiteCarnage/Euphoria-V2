@@ -19,9 +19,10 @@ const Cart = () => {
 			<Head>
 				<title>EUPHORIA | Koszyk</title>
 			</Head>
-			<CartLayout>
-				{isLoading ? <Loader /> : user ? <Summary /> : <LogInInfo />}
-			</CartLayout>
+			<CartLayout
+				step={user && 'Podsumowanie'}
+				logIn={isLoading ? <Loader /> : user ? <Summary /> : <LogInInfo />}
+			/>
 		</>
 	);
 };

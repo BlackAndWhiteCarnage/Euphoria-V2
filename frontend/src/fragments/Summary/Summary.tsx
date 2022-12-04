@@ -6,7 +6,7 @@ import { FC } from 'react';
 /**
  * Internal dependencies
  */
-import { Button, FilterCart, Header, Price } from 'elements';
+import { Button, FilterCart, Price } from 'elements';
 import {
 	calcPrice,
 	calcExtrasPrice,
@@ -28,7 +28,6 @@ const Summary: FC = () => {
 	return (
 		<>
 			<div className={classes.summary}>
-				<Header text="Podsumowanie" />
 				<div className={classes.details}>
 					<div>
 						Wartość produktów: <Price price={price} />

@@ -1,18 +1,27 @@
 /**
  * External dependencies
  */
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, ReactElement } from 'react';
 import { useUser } from '@auth0/nextjs-auth0';
+import classnames from 'classnames';
 
 /**
  * Internal dependencies
  */
+import { Header, Box, Loader, Steps } from 'elements';
 import { ItemPreview } from 'fragments';
-import { Header, Box, Loader } from 'elements';
+import { ReactComponent as CardIcon } from 'images/icons/card.svg';
+import { ReactComponent as CartIcon } from 'images/icons/cart.svg';
+import { ReactComponent as TruckIcon } from 'images/icons/truck.svg';
 import { useStateContext, CartItemType } from 'contexts/CartContext';
 import classes from './CartLayout.module.scss';
 
-const CartLayout: FC<PropsWithChildren> = ({ children }) => {
+type CartLayoutProps = PropsWithChildren<{
+	step?: string;
+	logIn?: ReactElement;
+}>;
+
+const CartLayout: FC<CartLayoutProps> = ({ step, children, logIn }) => {
 	const { isLoading } = useUser();
 
 	const { cart } = useStateContext();
@@ -38,7 +47,33 @@ const CartLayout: FC<PropsWithChildren> = ({ children }) => {
 					<div className={classes.checkout}>
 						<Box>
 							<div className={classes.innerCheckout}>
-								<div className={classes.checkoutSteps}>{children}</div>
+								<div
+									className={classnames(classes.checkoutSteps, {
+										[classes['with-login']]: logIn,
+									})}
+								>
+									{step && (
+										<Steps
+											activeStep={step}
+											steps={[
+												{
+													icon: <CartIcon />,
+													name: 'Podsumowanie',
+												},
+												{
+													icon: <TruckIcon />,
+													name: 'Dostawa',
+												},
+												{
+													icon: <CardIcon />,
+													name: 'Płatność',
+												},
+											]}
+										/>
+									)}
+									{logIn}
+									{children}
+								</div>
 							</div>
 						</Box>
 					</div>

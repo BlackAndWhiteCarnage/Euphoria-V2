@@ -19,7 +19,7 @@ const Cart = () => (
 			<title>EUPHORIA | Koszyk | Dostawa</title>
 			<script src="https://geowidget.inpost.pl/inpost-geowidget.js" defer />
 		</Head>
-		<CartLayout>
+		<CartLayout step="Dostawa">
 			<ShippingMethod />
 		</CartLayout>
 	</>
