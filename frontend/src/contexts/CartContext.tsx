@@ -105,23 +105,29 @@ export const StateContext: FC<PropsWithChildren> = ({ children }) => {
 			setShippingLocation(userData.shippingLocation);
 
 		if (!isUserDataLoading && userData) {
-			const cartData = JSON.parse(localStorage.getItem('EUPHORIA_cart') || '');
+			try {
+				const cartData = JSON.parse(
+					localStorage.getItem('EUPHORIA_cart') || ''
+				);
 
-			const merged: any = unionBy(cartData, userData.cart, 'slug');
+				const merged: any = unionBy(cartData, userData.cart, 'slug');
 
-			setCart(merged);
-			localStorage.setItem('EUPHORIA_cart', JSON.stringify([]));
+				setCart(merged);
+				localStorage.setItem('EUPHORIA_cart', JSON.stringify([]));
+			} catch {}
 		}
 
 		if (!isUserDataLoading && userData) {
-			const favoritesData = JSON.parse(
-				localStorage.getItem('EUPHORIA_favorites') || ''
-			);
+			try {
+				const favoritesData = JSON.parse(
+					localStorage.getItem('EUPHORIA_favorites') || ''
+				);
 
-			const merged: any = unionBy(favoritesData, userData.favorites);
+				const merged: any = unionBy(favoritesData, userData.favorites);
 
-			setFavorites(merged);
-			localStorage.setItem('EUPHORIA_favorites', JSON.stringify([]));
+				setFavorites(merged);
+				localStorage.setItem('EUPHORIA_favorites', JSON.stringify([]));
+			} catch {}
 		}
 	}, [isUserDataLoading, userData]);
 
