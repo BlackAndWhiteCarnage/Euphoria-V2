@@ -6,6 +6,7 @@ query geProduct($slug: String!){
        title
        slug
        price
+       customDescription
        description {
         data {
           attributes {

@@ -35,8 +35,16 @@ const useHandleProductExtras = () => {
 
 	if (!product) return;
 
-	const { title, price, images, slug, description, imagesCount, isPremium } =
-		product;
+	const {
+		title,
+		price,
+		images,
+		slug,
+		description,
+		customDescription,
+		imagesCount,
+		isPremium,
+	} = product;
 
 	const onSelectChange = (itemId: string) =>
 		setSelected(
@@ -65,6 +73,7 @@ const useHandleProductExtras = () => {
 		slug,
 		title,
 		description,
+		customDescription,
 		imagesCount,
 		isPremium,
 	};

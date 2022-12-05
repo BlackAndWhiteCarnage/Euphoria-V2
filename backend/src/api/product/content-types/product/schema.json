@@ -56,6 +56,9 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::description.description"
+    },
+    "customDescription": {
+      "type": "text"
     }
   }
 }

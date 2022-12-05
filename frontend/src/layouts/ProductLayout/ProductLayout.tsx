@@ -39,6 +39,7 @@ const ProductLayout: FC = () => {
 		isPremium,
 		title,
 		description,
+		customDescription,
 	} = product;
 
 	return (
@@ -68,7 +69,10 @@ const ProductLayout: FC = () => {
 							</div>
 						)}
 						<p className={classes.description}>
-							{description?.data && description.data.attributes.description}
+							{console.log(customDescription)}
+							{description?.data && !customDescription
+								? description.data.attributes.description
+								: customDescription}
 						</p>
 						<Price price={price} />
 						<Button
