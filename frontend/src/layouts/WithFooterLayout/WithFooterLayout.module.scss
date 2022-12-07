@@ -1,0 +1,48 @@
+@use "styles/utils/breakpoint" as bp;
+@use "styles/utils/unit" as u;
+
+.footer {
+	min-height: u.rem-calc(60);
+	display: flex;
+	align-items: center;
+	padding: u.rem-calc(20) 0;
+	margin-top: auto;
+	gap: u.rem-calc(20);
+	justify-content: space-between;
+
+	@include bp.down(md) {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+}
+
+.content {
+	display: flex;
+	align-items: center;
+}
+
+.paymentMethods {
+	display: flex;
+	align-items: center;
+	gap: u.rem-calc(20);
+}
+
+.icon {
+	max-width: u.rem-calc(60);
+	height: fit-content;
+}
+
+.termsOfUse {
+	background: none;
+}
+
+.buttons {
+	display: flex;
+	gap: u.rem-calc(20);
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	white-space: nowrap;
+}

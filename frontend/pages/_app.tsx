@@ -11,7 +11,7 @@ import toast, { Toaster } from 'react-hot-toast';
  * Internal dependencies
  */
 import 'styles/index.scss';
-import { MainLayout, WithNavigationLayout } from 'layouts';
+import { MainLayout, WithFooterLayout, WithNavigationLayout } from 'layouts';
 import { StateContext } from 'contexts/CartContext';
 import firebase from 'utils/initFirebase';
 
@@ -29,28 +29,30 @@ const App: FC<ComponentWithLayout> = ({ Component, pageProps }) => (
 	<UserProvider>
 		<StateContext>
 			<MainLayout>
-				<WithNavigationLayout>
-					<Provider value={client}>
-						<Toaster
-							toastOptions={{
-								duration: 1000,
-								style: {
-									background: '#E6E6E6',
-									color: '#1E1E1E',
-									fontWeight: 'bold',
-									textAlign: 'center',
-								},
-							}}
-						/>
-						{Component.PageLayout ? (
-							<Component.PageLayout>
+				<WithFooterLayout>
+					<WithNavigationLayout>
+						<Provider value={client}>
+							<Toaster
+								toastOptions={{
+									duration: 1000,
+									style: {
+										background: '#E6E6E6',
+										color: '#1E1E1E',
+										fontWeight: 'bold',
+										textAlign: 'center',
+									},
+								}}
+							/>
+							{Component.PageLayout ? (
+								<Component.PageLayout>
+									<Component {...pageProps} />
+								</Component.PageLayout>
+							) : (
 								<Component {...pageProps} />
-							</Component.PageLayout>
-						) : (
-							<Component {...pageProps} />
-						)}
-					</Provider>
-				</WithNavigationLayout>
+							)}
+						</Provider>
+					</WithNavigationLayout>
+				</WithFooterLayout>
 			</MainLayout>
 		</StateContext>
 	</UserProvider>
