@@ -42,6 +42,7 @@ module.exports = {
 		'no-nested-ternary': 'off',
 		'jsx-a11y/label-has-associated-control': 'off',
 		'react/no-array-index-key': 'off',
+		'no-useless-escape': 'off',
 		'no-return-assign': 'off',
 		'valid-typeof': 'off',
 		'no-empty': 'off',

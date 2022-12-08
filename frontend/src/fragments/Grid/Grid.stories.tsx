@@ -27,6 +27,7 @@ export const Default = Template.bind({});
 Default.args = {
 	children: childrenArr.map((_, i) => (
 		<Card
+			isPremium={false}
 			slug="slug"
 			key={i}
 			href="/"

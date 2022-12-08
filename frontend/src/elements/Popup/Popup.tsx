@@ -16,6 +16,7 @@ export type PopupProps = PropsWithChildren<{
 }>;
 
 const Popup: FC<PopupProps> = ({ children, close, isOpen = false }) => {
+	// @ts-ignore
 	useEffect(() => {
 		const rootElements = document
 			.querySelector<HTMLElement>('#__next')

@@ -14,26 +14,23 @@ type CoversProps = {
 	covers: Array<CoverProps>;
 };
 
-const Covers: FC<CoversProps> = ({ covers }) => (
-	<>
-		{covers && (
-			<Swiper
-				modules={[Autoplay]}
-				autoplay={{
-					delay: 4000,
-					disableOnInteraction: true,
-				}}
-				spaceBetween={40}
-				loop
-			>
-				{covers.map((props, i) => (
-					<SwiperSlide key={i}>
-						<Cover {...props} />
-					</SwiperSlide>
-				))}
-			</Swiper>
-		)}
-	</>
-);
+const Covers: FC<CoversProps> = ({ covers }) =>
+	covers && (
+		<Swiper
+			modules={[Autoplay]}
+			autoplay={{
+				delay: 4000,
+				disableOnInteraction: true,
+			}}
+			spaceBetween={40}
+			loop
+		>
+			{covers.map((props, i) => (
+				<SwiperSlide key={i}>
+					<Cover {...props} />
+				</SwiperSlide>
+			))}
+		</Swiper>
+	);
 
 export default Covers;

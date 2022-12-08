@@ -36,8 +36,11 @@ const FavoritesLayout: FC<FavoritesLayoutProps> = ({ label }) => {
 			/>
 			<Grid>
 				{productsData.map(
-					({ attributes: { title, images, price, slug, category } }: any) => (
+					({
+						attributes: { title, images, price, slug, category, isPremium },
+					}: any) => (
 						<Card
+							isPremium={isPremium}
 							href={`/${category.data.attributes.name}/${slug}`}
 							image={getImageUrl(images)}
 							name={title}

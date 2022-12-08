@@ -25,7 +25,7 @@ const useGetSliderProducts = (specyficCategory?: string, count: number = 9) => {
 	);
 
 	arrayShuffle(excludePreviewedProduct).forEach(
-		({ attributes: { slug, title, price, images } }, i) => {
+		({ attributes: { slug, title, price, images, isPremium } }, i) => {
 			if (i > count - 1) return;
 			items.push({
 				name: title,
@@ -33,6 +33,7 @@ const useGetSliderProducts = (specyficCategory?: string, count: number = 9) => {
 				href: `/${specyficCategory || category}/${slug}`,
 				image: getImageUrl(images),
 				slug,
+				isPremium,
 			});
 		}
 	);
