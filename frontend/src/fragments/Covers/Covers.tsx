@@ -14,8 +14,10 @@ type CoversProps = {
 	covers: Array<CoverProps>;
 };
 
-const Covers: FC<CoversProps> = ({ covers }) =>
-	covers && (
+const Covers: FC<CoversProps> = ({ covers }) => {
+	if (covers.length === 0) return null;
+
+	return (
 		<Swiper
 			modules={[Autoplay]}
 			autoplay={{
@@ -32,5 +34,6 @@ const Covers: FC<CoversProps> = ({ covers }) =>
 			))}
 		</Swiper>
 	);
+};
 
 export default Covers;
