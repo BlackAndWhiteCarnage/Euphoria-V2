@@ -9,6 +9,8 @@ const mergeCovers = (
 ): Array<CoverProps> => {
 	const covers: Array<CoverProps> = [];
 
+	if (!strapiCovers.posters) return;
+
 	stripeCovers.forEach(({ name, metadata }) => {
 		covers.push({
 			text: metadata.tekst,
