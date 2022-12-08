@@ -1,10 +1,14 @@
 /**
  * Internal dependencies
  */
-import { GridLayout, WithFormLayout } from 'layouts';
+import { GridLayout, WithFooterLayout, WithFormLayout } from 'layouts';
 
-const Category = () => <GridLayout />;
+const Category = () => (
+	<WithFormLayout>
+		<GridLayout />
+	</WithFormLayout>
+);
 
-Category.PageLayout = WithFormLayout;
+Category.PageLayout = WithFooterLayout;
 
 export default Category;

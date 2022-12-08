@@ -1,0 +1,15 @@
+@use "styles/utils/unit" as u;
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	gap: u.rem-calc(10);
+}
+
+.link {
+	text-decoration: underline;
+
+	&:hover {
+		color: gray;
+	}
+}

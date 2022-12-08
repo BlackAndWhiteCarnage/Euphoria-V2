@@ -24,7 +24,7 @@ const WithFooterLayout: FC<PropsWithChildren> = ({ children }) => (
 				</div>
 			</div>
 			<div className={classes.buttons}>
-				<Button>Polityka prywatności</Button>
+				<Button href="/polityka-prywatnosci">Polityka prywatności</Button>
 				<Button href="/regulamin">Regulamin</Button>
 			</div>
 		</footer>

@@ -11,6 +11,7 @@ import classes from './Checkbox.module.scss';
 export type CheckboxProps = {
 	checked?: boolean;
 	id: string;
+	getValue?: boolean;
 	onChange: (value: string) => void;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>;
 
@@ -21,6 +22,7 @@ const Checkbox: FC<CheckboxProps> = ({
 	checked = false,
 	id,
 	onChange,
+	getValue = false,
 	...props
 }) => (
 	<label htmlFor={id}>
@@ -30,8 +32,8 @@ const Checkbox: FC<CheckboxProps> = ({
 			id={id}
 			className={classes.input}
 			checked={checked}
-			onChange={(e) => {
-				onChange(e.target.dataset.item as string);
+			onChange={(e: any) => {
+				onChange(!getValue ? (e.target.dataset.item as string) : e);
 			}}
 		/>
 		<span className={classes.checkboxMark} />

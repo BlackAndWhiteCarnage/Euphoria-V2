@@ -11,7 +11,7 @@ import { Covers, SliderProvider } from 'fragments';
 import { GET_ALL_POSTERS } from 'graphqlQueries';
 import { Loader } from 'elements';
 import { mergeCovers } from 'utils';
-import { WithFormLayout } from 'layouts';
+import { WithFooterLayout, WithFormLayout } from 'layouts';
 import Head from 'next/head';
 
 const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET || ''}`, {
@@ -40,7 +40,7 @@ const Home = ({ coupons }: any) => {
 	if (fetching) return <Loader />;
 
 	return (
-		<>
+		<WithFormLayout>
 			<Head>
 				<title>EUPHORIA | Strona Główa</title>
 			</Head>
@@ -50,10 +50,10 @@ const Home = ({ coupons }: any) => {
 			<SliderProvider specyficCategory="rajstopy" />
 			<SliderProvider specyficCategory="sesje" />
 			<SliderProvider specyficCategory="inne" />
-		</>
+		</WithFormLayout>
 	);
 };
 
-Home.PageLayout = WithFormLayout;
+Home.PageLayout = WithFooterLayout;
 
 export default Home;

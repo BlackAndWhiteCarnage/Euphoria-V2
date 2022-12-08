@@ -9,6 +9,7 @@
 	margin-right: u.rem-calc(8);
 	transition: 0.2s;
 	width: u.rem-calc(16);
+	cursor: pointer;
 
 	.input:checked + & {
 		background: t.color(checkbox);

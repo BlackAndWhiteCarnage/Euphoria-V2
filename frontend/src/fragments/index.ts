@@ -13,3 +13,4 @@ export { default as ShippingMethod } from './ShippingMethod';
 export { default as Slider } from './Slider';
 export { default as SliderProvider } from './SliderProvider';
 export { default as Summary } from './Summary';
+export { default as TermsOfUse } from './TermsOfUse';

@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { FC } from 'react';
+import { FC, useState } from 'react';
 
 /**
  * Internal dependencies
@@ -15,6 +15,7 @@ import {
 } from 'utils';
 import { useIsFreeShipping } from 'hooks';
 import { useStateContext } from 'contexts/CartContext';
+import { TermsOfUse } from 'fragments';
 import classes from './Summary.module.scss';
 
 const Summary: FC = () => {
@@ -24,6 +25,8 @@ const Summary: FC = () => {
 	const extras = calcExtrasPrice(cart);
 	const hasOnlyPhotos = hasOnlyPhotoshoots(cart);
 	const hasExtraExtrases = extras !== 0;
+
+	const [isAccepted, setIsAccepted] = useState(false);
 
 	return (
 		<>
@@ -50,12 +53,19 @@ const Summary: FC = () => {
 					Razem: <Price price={price + extras + (isFreeShipping ? 0 : 13.99)} />
 				</div>
 				{hasOnlyPhotos ? (
-					<Button
-						size="large"
-						onClick={() => handleCheckout(cart, isFreeShipping)}
-					>
-						Przejdź do płatności
-					</Button>
+					<>
+						<TermsOfUse
+							onChange={({ target }: any) => setIsAccepted(target.checked)}
+							checked={isAccepted}
+						/>
+						<Button
+							disabled={!isAccepted}
+							size="large"
+							onClick={() => handleCheckout(cart, isFreeShipping)}
+						>
+							Przejdź do płatności
+						</Button>
+					</>
 				) : (
 					<Button size="large" href="/koszyk/dostawa">
 						Przejdź do dostawy

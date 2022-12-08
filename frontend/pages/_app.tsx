@@ -29,30 +29,28 @@ const App: FC<ComponentWithLayout> = ({ Component, pageProps }) => (
 	<UserProvider>
 		<StateContext>
 			<MainLayout>
-				<WithFooterLayout>
-					<WithNavigationLayout>
-						<Provider value={client}>
-							<Toaster
-								toastOptions={{
-									duration: 1000,
-									style: {
-										background: '#E6E6E6',
-										color: '#1E1E1E',
-										fontWeight: 'bold',
-										textAlign: 'center',
-									},
-								}}
-							/>
-							{Component.PageLayout ? (
-								<Component.PageLayout>
-									<Component {...pageProps} />
-								</Component.PageLayout>
-							) : (
+				<WithNavigationLayout>
+					<Provider value={client}>
+						<Toaster
+							toastOptions={{
+								duration: 1000,
+								style: {
+									background: '#E6E6E6',
+									color: '#1E1E1E',
+									fontWeight: 'bold',
+									textAlign: 'center',
+								},
+							}}
+						/>
+						{Component.PageLayout ? (
+							<Component.PageLayout>
 								<Component {...pageProps} />
-							)}
-						</Provider>
-					</WithNavigationLayout>
-				</WithFooterLayout>
+							</Component.PageLayout>
+						) : (
+							<Component {...pageProps} />
+						)}
+					</Provider>
+				</WithNavigationLayout>
 			</MainLayout>
 		</StateContext>
 	</UserProvider>

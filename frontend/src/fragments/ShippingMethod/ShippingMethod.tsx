@@ -1,20 +1,21 @@
 /**
  * External dependencies
  */
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
 /**
  * Internal dependencies
  */
 import { Button, FilterCart } from 'elements';
-import { GeowidgetPopup } from 'fragments';
+import { GeowidgetPopup, TermsOfUse } from 'fragments';
 import { handleCheckout, hasOnlyPhotoshoots } from 'utils';
 import { usePopup, useIsFreeShipping } from 'hooks';
 import { useStateContext } from 'contexts/CartContext';
 import classes from './ShippingMethod.module.scss';
 
 const ShippingMethod: FC = () => {
+	const [isAccepted, setIsAccepted] = useState(false);
 	const popup = usePopup();
 	const isFreeShipping = useIsFreeShipping();
 	const route = useRouter();
@@ -41,9 +42,13 @@ const ShippingMethod: FC = () => {
 						<b>{shippingLocation.address.line2}</b>
 					</p>
 				)}
+				<TermsOfUse
+					onChange={({ target }: any) => setIsAccepted(target.checked)}
+					checked={isAccepted}
+				/>
 				<Button
 					size="large"
-					disabled={!isValidShipping}
+					disabled={!isValidShipping || !isAccepted}
 					onClick={() => handleCheckout(cart, isFreeShipping, shippingLocation)}
 				>
 					Przejdź do płatności

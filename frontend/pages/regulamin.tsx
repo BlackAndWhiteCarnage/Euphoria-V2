@@ -1,9 +1,9 @@
 /**
- * External dependencies
+ * Internal dependencies
  */
-import { FC } from 'react';
+import { WithFooterLayout } from 'layouts';
 
-const TermsOfUse: FC = () => (
+const TermsOfUse = () => (
 	<div>
 		<h1>Regulamin sklepu internetowego</h1> <br />
 		<br />
@@ -290,5 +290,7 @@ const TermsOfUse: FC = () => (
 		<br /> <br />
 	</div>
 );
+
+TermsOfUse.PageLayout = WithFooterLayout;
 
 export default TermsOfUse;
