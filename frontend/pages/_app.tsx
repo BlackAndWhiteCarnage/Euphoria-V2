@@ -21,7 +21,7 @@ const client = createClient({ url: process.env.NEXT_PUBLIC_GRAPHQL as string });
 
 type ComponentWithLayout = AppProps & {
 	Component: AppProps['Component'] & {
-		PageLayout?: ComponentType;
+		PageLayout?: any;
 	};
 };
 
