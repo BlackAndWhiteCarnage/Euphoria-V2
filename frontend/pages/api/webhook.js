@@ -11,12 +11,14 @@ import { deleteProduct } from 'utils';
 
 export const config = {
 	api: {
-		bodyParser: true,
+		bodyParser: false,
 	},
 };
 
 export default async function webhookHandler(req, res) {
-	const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET);
+	const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET, {
+		apiVersion: '2022-11-15',
+	});
 
 	if (req.method === 'POST') {
 		const buf = await buffer(req);
