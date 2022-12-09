@@ -35,23 +35,30 @@ export default async function webhookHandler(req, res) {
 			return res.status(400).send(`Webhook error: ${error.message}`);
 		}
 
-		if (event.data.object.status === 'succeeded') {
-			event.data.object.metadata.ProductsToDelete.split(',').forEach(
-				(element) => {
-					const findProduct = fetch(
-						`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${element}`
-					);
-					const data = findProduct.json();
+		const deleteProduct = async (slug) => {
+			const findProduct = await fetch(
+				`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${slug}`
+			);
+			const data = await findProduct.json();
 
-					fetch(`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`, {
-						method: 'DELETE',
-						headers: {
-							Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
-						},
-					});
+			if (!data) return;
+
+			await fetch(
+				`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`,
+				{
+					method: 'DELETE',
+					headers: {
+						Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
+					},
 				}
 			);
-		}
+		};
+
+		await Promise.all(
+			event.data.object.metadata.ProductsToDelete.split(',').forEach(
+				(element) => deleteProduct(element)
+			)
+		);
 	}
 
 	res.status(200).send();
