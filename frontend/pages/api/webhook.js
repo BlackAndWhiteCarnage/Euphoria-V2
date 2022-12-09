@@ -11,7 +11,7 @@ import { deleteProduct } from 'utils';
 
 export const config = {
 	api: {
-		bodyParser: false,
+		bodyParser: true,
 	},
 };
 
