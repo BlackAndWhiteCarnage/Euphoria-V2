@@ -70,11 +70,12 @@ type OrdersHistoryLayoutProps = {
 
 const OrderHistoryLayout: FC<OrdersHistoryLayoutProps> = ({ data }) => {
 	const {
-		orders: { paymentIntents },
+		orders: { paymentIntents, lineItems },
 	} = data;
 
 	return (
 		<ul className={classes.wrapper}>
+			{console.log(lineItems)}
 			{paymentIntents.data.length > 0 ? (
 				paymentIntents.data.map((order: any, index: number) => (
 					<Order order={order} key={index} />
