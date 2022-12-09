@@ -7,7 +7,7 @@ import { buffer } from 'micro';
 /**
  * Internal dependencies
  */
-import { deleteProduct } from 'utils';
+// import { deleteProduct } from 'utils';
 
 export const config = {
 	api: {
