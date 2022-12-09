@@ -75,7 +75,7 @@ const OrderHistoryLayout: FC<OrdersHistoryLayoutProps> = ({ data }) => {
 
 	return (
 		<ul className={classes.wrapper}>
-			{sessionsIds && sessionsIds.map((el) => <p>{el}</p>)}
+			{sessionsIds && sessionsIds.map((el: any) => <p>{el}</p>)}
 			{paymentIntents.data.length > 0 ? (
 				paymentIntents.data.map((order: any, index: number) => (
 					<Order order={order} key={index} />
