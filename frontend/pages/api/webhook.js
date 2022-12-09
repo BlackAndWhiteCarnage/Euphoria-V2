@@ -40,11 +40,9 @@ export default async function webhookHandler(req, res) {
 				(element) => deleteProduct(element)
 			);
 
-			res.statusMessage = 'Products shoud be deleted';
-			res.status(200).send();
+			res.status(500).send();
 		}
 	}
 
-	res.statusMessage = 'End';
 	res.status(200).send();
 }
