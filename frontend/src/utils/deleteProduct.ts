@@ -4,7 +4,7 @@ const deleteProduct = async (slug: string) => {
 	);
 	const data = await findProduct.json();
 
-	if (data) return;
+	if (!data) return;
 
 	await fetch(`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`, {
 		method: 'DELETE',
