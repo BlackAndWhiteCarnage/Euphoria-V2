@@ -41,33 +41,30 @@ export default async function webhookHandler(req, res) {
 		// 	})
 		// );
 
-		return res
-			.status(400)
-			.send(`Webhook error: ${event.data.object.metadata.ProductsToDelete}`);
+		event.data.object.metadata.ProductsToDelete.split(',').forEach(
+			async (element) => {
+				console.log('element', element);
+				const findProduct = await fetch(
+					`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${element}`
+				);
+				const data = await findProduct.json();
 
-		// await event.data.object.metadata.ProductsToDelete.split(',').forEach(
-		// 	async (element) => {
-		// 		async () => {
-		// 			const findProduct = await fetch(
-		// 				`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${element}`
-		// 			);
-		// 			const data = await findProduct.json();
+				console.log('data', data);
 
-		// 			if (!data) return;
+				if (!data) return;
 
-		// 			await fetch(
-		// 				`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`,
-		// 				{
-		// 					method: 'DELETE',
-		// 					headers: {
-		// 						Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
-		// 					},
-		// 				}
-		// 			);
-		// 		};
-		// 	}
-		// );
+				await fetch(
+					`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`,
+					{
+						method: 'DELETE',
+						headers: {
+							Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
+						},
+					}
+				);
+			}
+		);
 	}
 
-	res.status(200).send();
+	// res.status(200).send();
 }
