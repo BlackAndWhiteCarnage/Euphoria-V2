@@ -9,9 +9,7 @@ const mergeCovers = (
 ): Array<CoverProps> => {
 	const covers: Array<CoverProps> = [];
 
-	if (!strapiCovers.posters) return covers;
-
-	stripeCovers.forEach(({ name, metadata }) => {
+	stripeCovers?.forEach(({ name, metadata }) => {
 		covers.push({
 			text: metadata.tekst,
 			image: {
@@ -22,15 +20,17 @@ const mergeCovers = (
 		});
 	});
 
-	strapiCovers.posters.data.forEach(({ attributes: { image, text } }: any) => {
-		covers.push({
-			text,
-			image: {
-				src: image,
-				alt: text,
-			},
-		});
-	});
+	strapiCovers?.posters?.data?.forEach(
+		({ attributes: { image, text } }: any) => {
+			covers.push({
+				text,
+				image: {
+					src: image,
+					alt: text,
+				},
+			});
+		}
+	);
 
 	return covers;
 };
