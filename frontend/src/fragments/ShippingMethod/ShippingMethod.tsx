@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 import { Button, FilterCart } from 'elements';
 import { GeowidgetPopup, TermsOfUse } from 'fragments';
 import { handleCheckout, hasOnlyPhotoshoots } from 'utils';
-import { usePopup, useIsFreeShipping } from 'hooks';
+import { usePopup, useIsFreeShipping, useGetProductsToDelete } from 'hooks';
 import { useStateContext } from 'contexts/CartContext';
 import classes from './ShippingMethod.module.scss';
 
@@ -21,6 +21,7 @@ const ShippingMethod: FC = () => {
 	const route = useRouter();
 
 	const { cart, updateShippingLocation, shippingLocation } = useStateContext();
+	const productsToDelete = useGetProductsToDelete();
 
 	useEffect(() => {
 		hasOnlyPhotoshoots(cart) && route.push('/koszyk/podsumowanie');
@@ -49,7 +50,14 @@ const ShippingMethod: FC = () => {
 				<Button
 					size="large"
 					disabled={!isValidShipping || !isAccepted}
-					onClick={() => handleCheckout(cart, isFreeShipping, shippingLocation)}
+					onClick={() =>
+						handleCheckout(
+							cart,
+							isFreeShipping,
+							shippingLocation,
+							productsToDelete
+						)
+					}
 				>
 					Przejdź do płatności
 				</Button>
