@@ -35,9 +35,15 @@ export default async function webhookHandler(req, res) {
 			return res.status(400).send(`Webhook error: ${error.message}`);
 		}
 
-		if (event.data.object.status === 'succeeded') {
-			event.data.object.metadata.ProductsToDelete.split(',').map((element) => {
-				return async () => {
+		// const arr = await Promise.all(
+		// 	products.map((product) => {
+		// 		return findProduct(typeof product === 'string' ? product : product.slug);
+		// 	})
+		// );
+
+		await event.data.object.metadata.ProductsToDelete.split(',').forEach(
+			async (element) => {
+				async () => {
 					const findProduct = await fetch(
 						`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${element}`
 					);
@@ -55,8 +61,8 @@ export default async function webhookHandler(req, res) {
 						}
 					);
 				};
-			});
-		}
+			}
+		);
 	}
 
 	res.status(200).send();
