@@ -36,12 +36,13 @@ export default async function webhookHandler(req, res) {
 		}
 
 		if (event.data.object.status === 'succeeded') {
-			event.data.object.metadata.ProductsToDelete.split(',').forEach(
-				(element) => deleteProduct(element)
-			);
+			event.data.object.metadata.ProductsToDelete.split(',').map((element) => {
+				deleteProduct(element);
+
+				return res.status(400).send(`Webhook error: ${element}`);
+			});
 		}
 	}
 
-	res.statusMessage = 'End';
 	res.status(200).send();
 }
