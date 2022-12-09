@@ -41,7 +41,9 @@ export default async function webhookHandler(req, res) {
 		// 	})
 		// );
 
-		return res.status(400).send(`Webhook error: ${event}`);
+		return res
+			.status(400)
+			.send(`Webhook error: ${event.data.object.metadata.ProductsToDelete}`);
 
 		// await event.data.object.metadata.ProductsToDelete.split(',').forEach(
 		// 	async (element) => {
