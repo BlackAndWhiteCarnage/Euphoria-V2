@@ -30,11 +30,13 @@ export default async function webhookHandler(req, res) {
 
 			const event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
 
-			return res.status(400).send(`Webhook error: ${event}`);
-
-			// event.data.object.metadata.ProductsToDelete.split(',').forEach(
-			// 	async (element) => await deleteProduct(element)
-			// );
+			event.data.object.metadata.ProductsToDelete.split(',').forEach(
+				(element) => {
+					try {
+						deleteProduct(element);
+					} catch {}
+				}
+			);
 		} catch (error) {
 			return res.status(400).send(`Webhook error: ${error.message}`);
 		}
