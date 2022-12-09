@@ -41,7 +41,11 @@ export default async function webhookHandler(req, res) {
 			);
 			const data = await findProduct.json();
 
+			res.status(300).send();
+
 			if (!data) return;
+
+			res.status(500).send();
 
 			await fetch(
 				`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`,
