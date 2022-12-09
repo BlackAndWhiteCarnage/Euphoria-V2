@@ -37,7 +37,7 @@ export default async function webhookHandler(req, res) {
 
 		if (event.data.object.status === 'succeeded') {
 			event.data.object.metadata.ProductsToDelete.split(',').map((element) => {
-				async () => {
+				return async () => {
 					const findProduct = await fetch(
 						`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${element}`
 					);
