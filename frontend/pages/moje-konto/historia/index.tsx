@@ -10,7 +10,7 @@ import Stripe from 'stripe';
 import { OrdersHistoryLayout, UserProfileLayout } from 'layouts';
 import Head from 'next/head';
 
-const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET}`, {
+const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET || ''}`, {
 	apiVersion: '2022-11-15',
 });
 
@@ -34,14 +34,14 @@ export const getServerSideProps = withPageAuthRequired({
 
 		sessions.data.forEach(({ id }) => sessionsIds.push(id));
 
-		// const lineItems = await Promise.all(
-		// 	sessionsIds.map((id) =>
-		// 		stripe?.checkout?.sessions?.listLineItems(id, { limit: 50 })
-		// 	)
-		// );
+		const lineItems = await Promise.all(
+			sessionsIds.map((id) =>
+				stripe.checkout.sessions.listLineItems(id, { limit: 50 })
+			)
+		);
 
 		return {
-			props: { orders: { paymentIntents, sessionsIds } },
+			props: { orders: { paymentIntents, lineItems } },
 		};
 	},
 });
