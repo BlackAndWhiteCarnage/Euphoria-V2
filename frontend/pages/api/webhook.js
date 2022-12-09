@@ -41,28 +41,30 @@ export default async function webhookHandler(req, res) {
 		// 	})
 		// );
 
-		await event.data.object.metadata.ProductsToDelete.split(',').forEach(
-			async (element) => {
-				async () => {
-					const findProduct = await fetch(
-						`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${element}`
-					);
-					const data = await findProduct.json();
+		return res.status(400).send(`Webhook error: ${event}`);
 
-					if (!data) return;
+		// await event.data.object.metadata.ProductsToDelete.split(',').forEach(
+		// 	async (element) => {
+		// 		async () => {
+		// 			const findProduct = await fetch(
+		// 				`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${element}`
+		// 			);
+		// 			const data = await findProduct.json();
 
-					await fetch(
-						`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`,
-						{
-							method: 'DELETE',
-							headers: {
-								Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
-							},
-						}
-					);
-				};
-			}
-		);
+		// 			if (!data) return;
+
+		// 			await fetch(
+		// 				`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`,
+		// 				{
+		// 					method: 'DELETE',
+		// 					headers: {
+		// 						Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
+		// 					},
+		// 				}
+		// 			);
+		// 		};
+		// 	}
+		// );
 	}
 
 	res.status(200).send();
