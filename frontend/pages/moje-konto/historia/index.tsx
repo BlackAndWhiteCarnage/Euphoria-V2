@@ -36,12 +36,12 @@ export const getServerSideProps = withPageAuthRequired({
 
 		const lineItems = await Promise.all(
 			sessionsIds.map((id) =>
-				stripe.checkout.sessions.listLineItems(id, { limit: 50 })
+				stripe?.checkout?.sessions?.listLineItems(id, { limit: 50 })
 			)
 		);
 
 		return {
-			props: { orders: { paymentIntents, sessionsIds } },
+			props: { orders: { paymentIntents, lineItems } },
 		};
 	},
 });

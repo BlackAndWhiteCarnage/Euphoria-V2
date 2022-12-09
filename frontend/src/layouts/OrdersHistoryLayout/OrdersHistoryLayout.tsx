@@ -48,16 +48,18 @@ const Order = ({ order, lineItems }: any) => {
 				</div>
 				<div className={classes.moreInfo} ref={moreInfoRef}>
 					<Separator />
-					{/* <ul className={classes.moreInfoList}>
-						{lineItems.data.map(
-							({ description, price }: any, index: number) => (
-								<li className={classes.orderItem} key={index}>
-									{description}
-									<Price price={price.unit_amount / 100} />
-								</li>
-							)
-						)}
-					</ul> */}
+					{lineItems && (
+						<ul className={classes.moreInfoList}>
+							{lineItems?.data.map(
+								({ description, price }: any, index: number) => (
+									<li className={classes.orderItem} key={index}>
+										{description}
+										<Price price={price.unit_amount / 100} />
+									</li>
+								)
+							)}
+						</ul>
+					)}
 				</div>
 			</Box>
 		</li>
@@ -70,15 +72,14 @@ type OrdersHistoryLayoutProps = {
 
 const OrderHistoryLayout: FC<OrdersHistoryLayoutProps> = ({ data }) => {
 	const {
-		orders: { paymentIntents, sessionsIds },
+		orders: { paymentIntents, lineItems },
 	} = data;
 
 	return (
 		<ul className={classes.wrapper}>
-			{sessionsIds && sessionsIds.map((el: any) => <p>{el}</p>)}
 			{paymentIntents.data.length > 0 ? (
 				paymentIntents.data.map((order: any, index: number) => (
-					<Order order={order} key={index} />
+					<Order order={order} lineItems={lineItems} key={index} />
 				))
 			) : (
 				<Header text="Jeszcze nie masz żadnych zamówień" />
