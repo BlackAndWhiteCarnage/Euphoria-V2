@@ -25,21 +25,17 @@ export default async function webhookHandler(req, res) {
 		const sig = req.headers['stripe-signature'];
 		const webhookSecret = process.env.NEXT_PUBLIC_STRAPI_WEBHOOK_KEY;
 
-		let event;
-
 		try {
 			if (!sig || !webhookSecret) return;
 
-			event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
+			const event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
+
+			event.data.object.metadata.ProductsToDelete.split(',').forEach(
+				(element) => deleteProduct(element)
+			);
 		} catch (error) {
 			return res.status(400).send(`Webhook error: ${error.message}`);
 		}
-
-		await Promise.all(
-			event.data.object.metadata.ProductsToDelete.split(',').forEach(
-				(element) => deleteProduct(element)
-			)
-		);
 	}
 
 	res.status(200).send();
