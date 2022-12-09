@@ -37,9 +37,23 @@ export default async function webhookHandler(req, res) {
 
 		if (event.data.object.status === 'succeeded') {
 			event.data.object.metadata.ProductsToDelete.split(',').map((element) => {
-				deleteProduct(element);
+				async () => {
+					const findProduct = await fetch(
+						`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${element}`
+					);
+					const data = await findProduct.json();
 
-				return res.status(400).send(`Webhook error: ${element}`);
+					return res.status(400).send(`test: ${data}`);
+				};
+
+				// if (!data) return;
+
+				// await fetch(`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`, {
+				// 	method: 'DELETE',
+				// 	headers: {
+				// 		Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
+				// 	},
+				// });
 			});
 		}
 	}
