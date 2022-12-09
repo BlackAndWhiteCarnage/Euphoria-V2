@@ -26,8 +26,7 @@ const useGetAllCategoryProducts = (
 
 	const [results] = useQuery({
 		query: GET_ALL_CATEGORY_PRODUCTS,
-		variables: { name: 'majtki' },
-		// variables: { name: specyficCategory || category || '' },
+		variables: { name: specyficCategory || category || '' },
 	});
 
 	const { data, fetching, error } = results;
