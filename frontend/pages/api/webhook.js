@@ -35,41 +35,12 @@ export default async function webhookHandler(req, res) {
 			return res.status(400).send(`Webhook error: ${error.message}`);
 		}
 
-		// const arr = await Promise.all(
-		// 	products.map((product) => {
-		// 		return findProduct(typeof product === 'string' ? product : product.slug);
-		// 	})
-		// );
-
-		try {
+		await Promise.all(
 			event.data.object.metadata.ProductsToDelete.split(',').forEach(
-				async (element) => {
-					const del = async () => {
-						const findProduct = await fetch(
-							`${process.env.NEXT_PUBLIC_URL}/products?filters[slug][$eq]=${element}`
-						);
-						const data = await findProduct.json();
-
-						if (!data) return;
-
-						await fetch(
-							`${process.env.NEXT_PUBLIC_URL}/products/${data.data[0]?.id}`,
-							{
-								method: 'DELETE',
-								headers: {
-									Authorization: `Bearer ${process.env.NEXT_PUBLIC_STRAPI_TOKEN}`,
-								},
-							}
-						);
-					};
-
-					del();
-				}
-			);
-		} catch (error) {
-			return res.status(400).send(`Webhook error: ${error.message}`);
-		}
+				(element) => deleteProduct(element)
+			)
+		);
 	}
 
-	// res.status(200).send();
+	res.status(200).send();
 }
