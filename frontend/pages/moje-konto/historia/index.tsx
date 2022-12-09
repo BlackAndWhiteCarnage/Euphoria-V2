@@ -10,7 +10,7 @@ import Stripe from 'stripe';
 import { OrdersHistoryLayout, UserProfileLayout } from 'layouts';
 import Head from 'next/head';
 
-const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET || ''}`, {
+const stripe = new Stripe(`${process.env.NEXT_PUBLIC_STRIPE_SECRET}`, {
 	apiVersion: '2022-11-15',
 });
 
@@ -51,6 +51,7 @@ const OrdersHistory = (orders: any) => (
 		<Head>
 			<title>EUPHORIA | Historia Zamówień</title>
 		</Head>
+		{console.log(orders)}
 		<OrdersHistoryLayout data={orders} />
 	</>
 );
