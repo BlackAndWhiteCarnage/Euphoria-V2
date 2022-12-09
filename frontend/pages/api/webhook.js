@@ -39,8 +39,6 @@ export default async function webhookHandler(req, res) {
 			event.data.object.metadata.ProductsToDelete.split(',').forEach(
 				(element) => deleteProduct(element)
 			);
-
-			res.status(500).send();
 		}
 	}
 
