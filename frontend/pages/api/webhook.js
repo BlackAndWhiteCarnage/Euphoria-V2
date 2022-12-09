@@ -7,7 +7,7 @@ import { buffer } from 'micro';
 /**
  * Internal dependencies
  */
-// import { deleteProduct } from 'utils';
+import { deleteProduct } from 'utils';
 
 export const config = {
 	api: {
@@ -54,11 +54,11 @@ export default async function webhookHandler(req, res) {
 			);
 		};
 
-		await Promise.all(
+		if (event.data.object.status === 'succeeded') {
 			event.data.object.metadata.ProductsToDelete.split(',').forEach(
 				(element) => deleteProduct(element)
-			)
-		);
+			);
+		}
 	}
 
 	res.status(200).send();
