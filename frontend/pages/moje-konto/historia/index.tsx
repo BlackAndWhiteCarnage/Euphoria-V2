@@ -34,14 +34,14 @@ export const getServerSideProps = withPageAuthRequired({
 
 		sessions.data.forEach(({ id }) => sessionsIds.push(id));
 
-		const lineItems = await Promise.all(
-			sessionsIds.map((id) =>
-				stripe?.checkout?.sessions?.listLineItems(id, { limit: 50 })
-			)
-		);
+		// const lineItems = await Promise.all(
+		// 	sessionsIds.map((id) =>
+		// 		stripe?.checkout?.sessions?.listLineItems(id, { limit: 50 })
+		// 	)
+		// );
 
 		return {
-			props: { orders: { paymentIntents, lineItems } },
+			props: { orders: { paymentIntents, sessionsIds } },
 		};
 	},
 });
