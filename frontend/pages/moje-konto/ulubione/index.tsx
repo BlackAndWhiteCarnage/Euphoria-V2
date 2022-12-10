@@ -14,7 +14,7 @@ const UserAccountFavorites = () => (
 		<Head>
 			<title>EUPHORIA | Ulubione</title>
 		</Head>
-		<FavoritesLayout />;
+		<FavoritesLayout />
 	</>
 );
 
