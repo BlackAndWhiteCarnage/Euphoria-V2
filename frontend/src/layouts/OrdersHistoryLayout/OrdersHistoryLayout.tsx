@@ -3,7 +3,7 @@
  */
 import { FC, useState, useRef, useEffect } from 'react';
 import classnames from 'classnames';
-import Stripe from 'stripe';
+import { useUser } from '@auth0/nextjs-auth0';
 
 /**
  * Internal dependencies
@@ -79,17 +79,23 @@ type OrdersHistoryLayoutProps = {
 };
 
 const OrderHistoryLayout: FC<OrdersHistoryLayoutProps> = ({ data }) => {
-	const {
-		orders: { paymentIntents, stripeId },
-	} = data;
+	const user = useUser();
+
+	const { orders } = data;
+
+	const { paymentIntents } = orders;
+
+	console.log(data.user.email);
+	console.log('paymentIntents', paymentIntents);
 
 	return (
 		<ul className={classes.wrapper}>
-			<div>stripeId {stripeId}</div>
 			{paymentIntents.data.length > 0 ? (
-				paymentIntents.data.map((order: any, index: number) => (
-					<Order order={order} key={index} />
-				))
+				paymentIntents.data.map((order: any, index: number) => {
+					if (order.receipt_email !== data.user.emai) return;
+
+					return <Order order={order} key={index} />;
+				})
 			) : (
 				<Header text="Jeszcze nie masz żadnych zamówień" />
 			)}

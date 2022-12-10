@@ -25,8 +25,6 @@ export const getServerSideProps = withPageAuthRequired({
 			customer: stripeId,
 		});
 
-		console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', stripeId);
-
 		return {
 			props: { orders: { paymentIntents, stripeId } },
 		};
