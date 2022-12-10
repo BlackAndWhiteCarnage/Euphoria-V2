@@ -6,7 +6,7 @@ import { FC } from 'react';
 /**
  * Internal dependencies
  */
-import { Loader, Header } from 'elements';
+import { Header, Separator } from 'elements';
 import { Slider } from 'fragments';
 import { useGetSliderProducts } from 'hooks';
 import classes from './SliderProvider.module.scss';
@@ -19,7 +19,7 @@ const SliderProvider: FC<SliderProviderProps> = ({ specyficCategory }) => {
 	const { items, ready, error, category } =
 		useGetSliderProducts(specyficCategory);
 
-	if (!ready) return <Loader />;
+	if (!ready) return null;
 	if (error) return <p>Error: {error.message}</p>;
 	if (items.length < 3) return null;
 
@@ -31,6 +31,7 @@ const SliderProvider: FC<SliderProviderProps> = ({ specyficCategory }) => {
 				}
 			/>
 			<Slider items={items} />
+			<Separator mobileBottom={10} mobileTop={10} />
 		</div>
 	);
 };

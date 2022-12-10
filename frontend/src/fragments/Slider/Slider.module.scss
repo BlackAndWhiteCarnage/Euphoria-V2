@@ -33,6 +33,7 @@ $offset-mobile: u.rem-calc(10);
 	opacity: 0;
 	transition: 0.25s cubic-bezier(1, 2, 0.55, 1);
 	cursor: pointer;
+	border: none;
 
 	&.next {
 		@extend %slider-button;

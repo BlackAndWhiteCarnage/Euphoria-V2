@@ -25,7 +25,7 @@ const Covers: FC<CoversProps> = ({ covers }) => {
 				disableOnInteraction: true,
 			}}
 			spaceBetween={40}
-			loop
+			loop={covers.length > 1}
 		>
 			{covers.map((props, i) => (
 				<SwiperSlide key={i}>
