@@ -26,7 +26,7 @@ export const getServerSideProps = withPageAuthRequired({
 		});
 
 		return {
-			props: { orders: { paymentIntents, stripeId } },
+			props: { orders: { paymentIntents } },
 		};
 	},
 });
