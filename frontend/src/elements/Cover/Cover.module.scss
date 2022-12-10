@@ -80,6 +80,7 @@
 	display: flex;
 	align-items: center;
 	cursor: pointer;
+	border: none;
 
 	@include bp.down(xl) {
 		font-size: u.rem-calc(18);

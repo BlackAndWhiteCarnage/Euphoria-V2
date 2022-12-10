@@ -11,18 +11,16 @@
 	justify-content: space-between;
 
 	@include bp.down(md) {
-		padding: 0;
 		flex-wrap: wrap;
 		justify-content: center;
 		height: fit-content;
-		min-height: unset;
+		max-height: u.rem-calc(80);
 	}
 }
 
 .content {
 	display: flex;
 	align-items: center;
-	height: fit-content;
 }
 
 .paymentMethods {
@@ -43,7 +41,6 @@
 .buttons {
 	display: flex;
 	gap: u.rem-calc(20);
-	height: fit-content;
 }
 
 .info {
