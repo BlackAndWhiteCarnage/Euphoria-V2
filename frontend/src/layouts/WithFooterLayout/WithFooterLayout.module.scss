@@ -9,12 +9,12 @@
 	margin-top: auto;
 	gap: u.rem-calc(20);
 	justify-content: space-between;
+	background: red;
 
 	@include bp.down(md) {
+		padding: 0;
 		flex-wrap: wrap;
 		justify-content: center;
-		height: fit-content;
-		max-height: u.rem-calc(80);
 	}
 }
 
