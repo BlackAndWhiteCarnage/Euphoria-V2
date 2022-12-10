@@ -28,6 +28,16 @@ const Summary: FC = () => {
 
 	const [isAccepted, setIsAccepted] = useState(false);
 
+	const createOrderedItemsData = (orderItems: any) => {
+		const dataArr: any = [];
+
+		orderItems.forEach(({ title, price: p }: any) =>
+			dataArr.push(title, p, '|')
+		);
+
+		return dataArr.toString();
+	};
+
 	return (
 		<>
 			<div className={classes.summary}>
@@ -61,7 +71,13 @@ const Summary: FC = () => {
 						<Button
 							disabled={!isAccepted}
 							size="large"
-							onClick={() => handleCheckout(cart, isFreeShipping)}
+							onClick={() =>
+								handleCheckout(
+									cart,
+									isFreeShipping,
+									createOrderedItemsData(cart)
+								)
+							}
 						>
 							Przejdź do płatności
 						</Button>

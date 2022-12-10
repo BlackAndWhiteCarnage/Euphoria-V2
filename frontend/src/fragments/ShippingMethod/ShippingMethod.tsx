@@ -30,8 +30,6 @@ const ShippingMethod: FC = () => {
 			dataArr.push(title, price, '|')
 		);
 
-		console.log(dataArr.toString());
-
 		return dataArr.toString();
 	};
 
