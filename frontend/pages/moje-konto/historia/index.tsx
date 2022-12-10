@@ -18,8 +18,9 @@ export const getServerSideProps = withPageAuthRequired({
 	async getServerSideProps(ctx) {
 		const session = getSession(ctx.req, ctx.res);
 
-		const stripeId =
-			session?.user[`${process.env.AUTH0_BASE_URL}/stripe_customer_id`];
+		const stripeId = await session?.user[
+			`${process.env.AUTH0_BASE_URL}/stripe_customer_id`
+		];
 
 		const paymentIntents = await stripe.paymentIntents.list({
 			customer: stripeId,
@@ -30,10 +31,6 @@ export const getServerSideProps = withPageAuthRequired({
 		};
 	},
 });
-
-// Krzys  cus_MxLjicfo1DSxRK
-
-// Wer cus_MxLkcYnmimmLah
 
 const OrdersHistory = (orders: any) => (
 	<>
