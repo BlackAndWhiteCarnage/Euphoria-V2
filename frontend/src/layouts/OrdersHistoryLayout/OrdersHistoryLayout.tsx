@@ -3,6 +3,7 @@
  */
 import { FC, useState, useRef, useEffect } from 'react';
 import classnames from 'classnames';
+import Stripe from 'stripe';
 
 /**
  * Internal dependencies
@@ -11,7 +12,7 @@ import { Box, Header, Price, Separator } from 'elements';
 import { ReactComponent as Arrow } from 'images/icons/arrow.svg';
 import classes from './OrdersHistoryLayout.module.scss';
 
-const Order = ({ order, lineItems }: any) => {
+const Order = ({ order }: any) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const moreInfoRef = useRef<HTMLDivElement>(null);
 
@@ -22,6 +23,15 @@ const Order = ({ order, lineItems }: any) => {
 			? `${moreInfoRef.current.scrollHeight}px`
 			: '0';
 	}, [isOpen]);
+
+	const convertedOrderData = order?.metadata?.OrderData?.split('|')
+		.map((element: any) => element.split(',').filter((el: any) => el !== ''))
+		.filter((el: any) => el.length);
+
+	const convertedOrderDataToObjects = convertedOrderData?.map((x: any) => ({
+		title: x[0],
+		price: Number(x[1]),
+	}));
 
 	return (
 		<li key={order.id} className={classes.order}>
@@ -49,11 +59,11 @@ const Order = ({ order, lineItems }: any) => {
 				<div className={classes.moreInfo} ref={moreInfoRef}>
 					<Separator />
 					<ul className={classes.moreInfoList}>
-						{lineItems.data.map(
-							({ description, price }: any, index: number) => (
+						{convertedOrderDataToObjects?.map(
+							({ title, price }: any, index: number) => (
 								<li className={classes.orderItem} key={index}>
-									{description}
-									<Price price={price.unit_amount / 100} />
+									{title}
+									<Price price={price} />
 								</li>
 							)
 						)}
@@ -70,17 +80,14 @@ type OrdersHistoryLayoutProps = {
 
 const OrderHistoryLayout: FC<OrdersHistoryLayoutProps> = ({ data }) => {
 	const {
-		orders: { lineItems, paymentIntents },
+		orders: { paymentIntents },
 	} = data;
-
-	console.log('lineItems', lineItems);
-	console.log('paymentIntents', paymentIntents);
 
 	return (
 		<ul className={classes.wrapper}>
 			{paymentIntents.data.length > 0 ? (
 				paymentIntents.data.map((order: any, index: number) => (
-					<Order order={order} lineItems={lineItems[index]} key={index} />
+					<Order order={order} key={index} />
 				))
 			) : (
 				<Header text="Jeszcze nie masz żadnych zamówień" />

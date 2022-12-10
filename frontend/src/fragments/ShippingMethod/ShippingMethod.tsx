@@ -23,6 +23,18 @@ const ShippingMethod: FC = () => {
 	const { cart, updateShippingLocation, shippingLocation } = useStateContext();
 	const productsToDelete = useGetProductsToDelete();
 
+	const createOrderedItemsData = (orderItems: any) => {
+		const dataArr: any = [];
+
+		orderItems.forEach(({ title, price }: any) =>
+			dataArr.push(title, price, '|')
+		);
+
+		console.log(dataArr.toString());
+
+		return dataArr.toString();
+	};
+
 	useEffect(() => {
 		hasOnlyPhotoshoots(cart) && route.push('/koszyk/podsumowanie');
 	}, [cart, route]);
@@ -54,6 +66,7 @@ const ShippingMethod: FC = () => {
 						handleCheckout(
 							cart,
 							isFreeShipping,
+							createOrderedItemsData(cart),
 							shippingLocation,
 							productsToDelete
 						)

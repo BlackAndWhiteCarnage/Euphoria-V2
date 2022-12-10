@@ -8,6 +8,7 @@ import getStripe from 'config/getStripe';
 const handleCheckout = async (
 	cart: Array<CartItemType>,
 	isFreeShipping: boolean,
+	orderData: any,
 	location?: any,
 	productsToDelete?: string
 ) => {
@@ -37,6 +38,7 @@ const handleCheckout = async (
 				},
 			},
 			productsToDelete,
+			orderData,
 			phoneRequirement,
 			shipping: {
 				type: 'fixed_amount',

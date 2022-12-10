@@ -25,25 +25,8 @@ export const getServerSideProps = withPageAuthRequired({
 			customer: stripeId,
 		});
 
-		const sessions = await stripe.checkout.sessions.list({
-			customer: stripeId,
-			limit: 50,
-		});
-
-		const sessionsIds: Array<string> = [];
-
-		sessions.data.forEach(({ id }) => sessionsIds.push(id));
-
-		const lineItems = await Promise.all(
-			sessionsIds.map((id) =>
-				stripe.checkout.sessions.listLineItems(id, { limit: 50 })
-			)
-		);
-
-		console.log('lineItems lineItems lineItems', lineItems);
-
 		return {
-			props: { orders: { paymentIntents, lineItems } },
+			props: { orders: { paymentIntents } },
 		};
 	},
 });

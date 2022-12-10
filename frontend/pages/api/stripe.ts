@@ -36,6 +36,7 @@ export default async function handler(
 						Ulica: req.body.location.address.line1,
 						Adres: req.body.location.address.line2,
 						ProductsToDelete: req.body.productsToDelete,
+						OrderData: req.body.orderData,
 					},
 				},
 				metadata: {
@@ -43,6 +44,7 @@ export default async function handler(
 					Ulica: req.body.location.address.line1,
 					Adres: req.body.location.address.line2,
 					ProductsToDelete: req.body.productsToDelete,
+					OrderData: req.body.orderData,
 				},
 				shipping_options: [
 					{
