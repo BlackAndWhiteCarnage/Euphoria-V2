@@ -9,18 +9,20 @@
 	margin-top: auto;
 	gap: u.rem-calc(20);
 	justify-content: space-between;
-	max-height: u.rem-calc(80);
 
 	@include bp.down(md) {
 		padding: 0;
 		flex-wrap: wrap;
 		justify-content: center;
+		height: fit-content;
+		min-height: unset;
 	}
 }
 
 .content {
 	display: flex;
 	align-items: center;
+	height: fit-content;
 }
 
 .paymentMethods {
@@ -41,6 +43,7 @@
 .buttons {
 	display: flex;
 	gap: u.rem-calc(20);
+	height: fit-content;
 }
 
 .info {

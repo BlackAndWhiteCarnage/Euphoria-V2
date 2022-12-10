@@ -63,7 +63,7 @@
 	width: u.rem-calc(700);
 
 	@include bp.down(md) {
-		width: 100%;
+		width: fit-content;
 		text-align: center !important;
 	}
 }
