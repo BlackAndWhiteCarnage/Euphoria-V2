@@ -80,11 +80,12 @@ type OrdersHistoryLayoutProps = {
 
 const OrderHistoryLayout: FC<OrdersHistoryLayoutProps> = ({ data }) => {
 	const {
-		orders: { paymentIntents },
+		orders: { paymentIntents, stripeId },
 	} = data;
 
 	return (
 		<ul className={classes.wrapper}>
+			<div>stripeId {stripeId}</div>
 			{paymentIntents.data.length > 0 ? (
 				paymentIntents.data.map((order: any, index: number) => (
 					<Order order={order} key={index} />

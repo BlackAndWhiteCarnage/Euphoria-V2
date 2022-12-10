@@ -25,11 +25,17 @@ export const getServerSideProps = withPageAuthRequired({
 			customer: stripeId,
 		});
 
+		console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', stripeId);
+
 		return {
-			props: { orders: { paymentIntents } },
+			props: { orders: { paymentIntents, stripeId } },
 		};
 	},
 });
+
+// Krzys  cus_MxLjicfo1DSxRK
+
+// Wer cus_MxLkcYnmimmLah
 
 const OrdersHistory = (orders: any) => (
 	<>
