@@ -57,12 +57,13 @@
 
 .openButton {
 	background: none;
-	min-height: u.rem-calc(40);
-	min-width: u.rem-calc(40);
+	height: u.rem-calc(40);
+	width: u.rem-calc(40);
 	transform: rotate(90deg);
 	position: relative;
 	margin-left: u.rem-calc(20);
 	transition: 0.25s ease;
+	border: none;
 	cursor: pointer;
 
 	@include bp.down(md) {

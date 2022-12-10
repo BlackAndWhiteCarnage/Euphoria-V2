@@ -40,6 +40,10 @@ $containers-height: calc(100vh - u.rem-calc(300));
 	flex-direction: column;
 	gap: u.rem-calc(25);
 	padding-right: u.rem-calc(10);
+
+	@include bp.down(xl) {
+		padding-right: 0;
+	}
 }
 
 .checkout {
@@ -53,7 +57,7 @@ $containers-height: calc(100vh - u.rem-calc(300));
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	overflow-x: auto;
+	padding: u.rem-calc(40) 0;
 }
 
 .checkoutSteps {

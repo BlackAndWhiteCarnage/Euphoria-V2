@@ -28,7 +28,6 @@ const WithFooterLayout: FC<PropsWithChildren> = ({ children }) => (
 				<Button href="/regulamin">Regulamin</Button>
 			</div>
 		</footer>
-		<Separator />
 	</>
 );
 

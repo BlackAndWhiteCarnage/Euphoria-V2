@@ -7,8 +7,13 @@
 	max-width: u.rem-calc(1400);
 	min-height: 100vh;
 	padding: 0 u.rem-calc(30);
+	
+	@include bp.down(xl) {
+		margin-bottom: u.rem-calc(60);
+	}
 
 	@include bp.down(md) {
 		padding: 0 u.rem-calc(15);
+		margin-bottom: u.rem-calc(20);
 	}
 }
