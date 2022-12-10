@@ -78,8 +78,9 @@
 	padding: u.rem-calc(20);
 	border-radius: u.rem-calc(3);
 	gap: u.rem-calc(20);
+	white-space: nowrap;
 
-	@include bp.down(md) {
+	@include bp.down(xl) {
 		font-size: u.rem-calc(18);
 		padding: u.rem-calc(10);
 		gap: u.rem-calc(10);
@@ -87,7 +88,6 @@
 }
 
 .copy {
-	display: inline-block;
 	background: none;
 	border: none;
 	min-width: u.rem-calc(40);

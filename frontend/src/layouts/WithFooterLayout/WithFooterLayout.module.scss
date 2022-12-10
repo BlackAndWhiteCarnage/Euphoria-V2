@@ -9,8 +9,10 @@
 	margin-top: auto;
 	gap: u.rem-calc(20);
 	justify-content: space-between;
+	max-height: u.rem-calc(80);
 
 	@include bp.down(md) {
+		padding: 0;
 		flex-wrap: wrap;
 		justify-content: center;
 	}
