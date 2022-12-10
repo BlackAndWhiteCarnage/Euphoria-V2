@@ -19,7 +19,7 @@ export const getServerSideProps = withPageAuthRequired({
 		const session = getSession(ctx.req, ctx.res);
 
 		const stripeId = await session?.user[
-			`${process.env.NEXT_PUBLIC_AUTH0_BASE_URL}/stripe_customer_id`
+			`${process.env.AUTH0_BASE_URL}/stripe_customer_id`
 		];
 
 		const paymentIntents = await stripe.paymentIntents.list({
