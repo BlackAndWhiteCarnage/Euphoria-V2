@@ -16,7 +16,8 @@ export default async function handler(
 ) {
 	const authSession = getSession(req, res);
 	const user = authSession?.user;
-	const stripeId = user && user['http://localhost:3000/stripe_customer_id'];
+	const stripeId =
+		user && user[`${process.env.AUTH0_BASE_URL}/stripe_customer_id`];
 
 	if (req.method === 'POST') {
 		try {

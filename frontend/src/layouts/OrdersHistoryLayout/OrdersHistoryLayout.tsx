@@ -73,6 +73,9 @@ const OrderHistoryLayout: FC<OrdersHistoryLayoutProps> = ({ data }) => {
 		orders: { lineItems, paymentIntents },
 	} = data;
 
+	console.log('lineItems', lineItems);
+	console.log('paymentIntents', paymentIntents);
+
 	return (
 		<ul className={classes.wrapper}>
 			{paymentIntents.data.length > 0 ? (

@@ -40,6 +40,8 @@ export const getServerSideProps = withPageAuthRequired({
 			)
 		);
 
+		console.log('lineItems lineItems lineItems', lineItems);
+
 		return {
 			props: { orders: { paymentIntents, lineItems } },
 		};

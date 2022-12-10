@@ -19,7 +19,12 @@ const UserProfileLayout: FC<PropsWithChildren> = ({ children }) => {
 			<Header text="Twoje Konto" />
 			<nav className={classes.userNavigation}>
 				{userAccountRoutes.map(({ path, label }) => (
-					<Button size="large" href={path} disabled={route.pathname === path}>
+					<Button
+						size="large"
+						href={path}
+						disabled={route.pathname === path}
+						key={path}
+					>
 						{label}
 					</Button>
 				))}
