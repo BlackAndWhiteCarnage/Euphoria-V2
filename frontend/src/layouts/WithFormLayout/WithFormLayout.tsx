@@ -4,6 +4,7 @@
 import { FC, PropsWithChildren } from 'react';
 import { useForm } from 'react-hook-form';
 import classnames from 'classnames';
+import emailjs from 'emailjs-com';
 
 /**
  * Internal dependencies
@@ -11,6 +12,7 @@ import classnames from 'classnames';
 import { Box, Button } from 'elements';
 import { useUser } from '@auth0/nextjs-auth0';
 import { email } from 'config/patterns';
+import toast from 'react-hot-toast';
 import classes from './WithFormLayout.module.scss';
 
 const WithFormLayout: FC<PropsWithChildren> = ({ children }) => {
@@ -19,9 +21,38 @@ const WithFormLayout: FC<PropsWithChildren> = ({ children }) => {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm();
-	const onSubmit = (data: any) => console.log(data);
+	const onSubmit = (_: any, e: any) => {
+		const config = {
+			duration: 4000,
+		};
+
+		emailjs
+			.sendForm(
+				process.env.NEXT_PUBLIC_EMAILJS_SERVICE!,
+				process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE!,
+				e.target,
+				process.env.NEXT_PUBLIC_EMAILJS_USER!
+			)
+			.then(
+				() => {
+					toast.success(
+						'Email został wysłany, odpowiem jak tylko go zobaczę 🥰',
+						config
+					);
+
+					reset();
+				},
+				() => {
+					toast.error(
+						'Coś poszło nie tak, spróbuj wysłać maila później bądź skontaktuj się ze mną bezpośrenio na weronikarepsch@gmail.com',
+						config
+					);
+				}
+			);
+	};
 
 	return (
 		<>
