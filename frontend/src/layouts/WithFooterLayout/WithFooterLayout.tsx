@@ -14,21 +14,20 @@ import classes from './WithFooterLayout.module.scss';
 const WithFooterLayout: FC<PropsWithChildren> = ({ children }) => (
 	<>
 		{children}
-		<div className={classes.wrapper}>
-			<footer className={classes.footer}>
-				<div className={classes.content}>
-					<div className={classes.paymentMethods}>
-						<b>Metody płatności:</b>
-						<Przelewy24 className={classes.icon} />
-						<Blik className={classes.icon} />
-					</div>
+		<Separator />
+		<footer className={classes.footer}>
+			<div className={classes.content}>
+				<div className={classes.paymentMethods}>
+					<b>Metody płatności:</b>
+					<Przelewy24 className={classes.icon} />
+					<Blik className={classes.icon} />
 				</div>
-				<div className={classes.buttons}>
-					<Button href="/polityka-prywatnosci">Polityka prywatności</Button>
-					<Button href="/regulamin">Regulamin</Button>
-				</div>
-			</footer>
-		</div>
+			</div>
+			<div className={classes.buttons}>
+				<Button href="/polityka-prywatnosci">Polityka prywatności</Button>
+				<Button href="/regulamin">Regulamin</Button>
+			</div>
+		</footer>
 	</>
 );
 

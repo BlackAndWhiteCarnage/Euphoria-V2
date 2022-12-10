@@ -1,11 +1,6 @@
 @use "styles/utils/breakpoint" as bp;
 @use "styles/utils/unit" as u;
 
-.wrapper {
-	max-height: u.rem-calc(60);
-	margin-bottom: u.rem-calc(40);
-}
-
 .footer {
 	min-height: u.rem-calc(60);
 	display: flex;
