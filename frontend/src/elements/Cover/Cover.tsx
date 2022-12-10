@@ -29,26 +29,23 @@ const Cover: FC<CoverProps> = ({ discountCode, image: { src, alt }, text }) => {
 		>
 			<p className={classes.text}>{text}</p>
 			{discountCode && (
-				<p className={classes.discountCode}>
+				<button
+					className={classnames(classes.discountCode, {
+						[classes['is-copied']]: copy,
+					})}
+					onClick={() => {
+						navigator.clipboard.writeText(discountCode);
+						setCopy(true);
+						toast.success('Kod skopiowany!', {
+							duration: 2000,
+						});
+						setTimeout(() => {
+							setCopy(false);
+						}, 200);
+					}}
+				>
 					Z kodem: {discountCode}
-					<button
-						className={classnames(classes.copy, {
-							[classes['is-copied']]: copy,
-						})}
-						onClick={() => {
-							navigator.clipboard.writeText(discountCode);
-							setCopy(true);
-							toast.success('Kod skopiowany!', {
-								duration: 2000,
-							});
-							setTimeout(() => {
-								setCopy(false);
-							}, 200);
-						}}
-					>
-						<Copy />
-					</button>
-				</p>
+				</button>
 			)}
 			<img src={src} alt={alt} className={classes.image} />
 		</div>

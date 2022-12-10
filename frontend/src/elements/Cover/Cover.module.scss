@@ -71,14 +71,15 @@
 .discountCode {
 	font-size: u.rem-calc(24);
 	font-weight: 600;
-	display: flex;
-	align-items: center;
 	column-gap: u.rem-calc(20);
 	background: #00000095;
 	padding: u.rem-calc(20);
 	border-radius: u.rem-calc(3);
 	gap: u.rem-calc(20);
 	white-space: nowrap;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
 
 	@include bp.down(xl) {
 		font-size: u.rem-calc(18);
@@ -88,6 +89,7 @@
 }
 
 .copy {
+	display: inline;
 	background: none;
 	border: none;
 	min-width: u.rem-calc(40);

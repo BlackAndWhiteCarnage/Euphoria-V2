@@ -14,7 +14,6 @@ import classes from './WithFooterLayout.module.scss';
 const WithFooterLayout: FC<PropsWithChildren> = ({ children }) => (
 	<>
 		{children}
-		<Separator top={80} mobileBottom={10} />
 		<footer className={classes.footer}>
 			<div className={classes.content}>
 				<div className={classes.paymentMethods}>
