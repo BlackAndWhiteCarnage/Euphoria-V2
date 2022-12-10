@@ -53,14 +53,14 @@ const Summary: FC = () => {
 					<div>
 						Dostawa:{' '}
 						{isFreeShipping ? (
-							<Price isFree price={13.99} />
+							<Price isFree price={15} />
 						) : (
-							<Price price={13.99} />
+							<Price price={15} />
 						)}
 					</div>
 				</div>
 				<div className={classes.total}>
-					Razem: <Price price={price + extras + (isFreeShipping ? 0 : 13.99)} />
+					Razem: <Price price={price + extras + (isFreeShipping ? 0 : 15)} />
 				</div>
 				{hasOnlyPhotos ? (
 					<>

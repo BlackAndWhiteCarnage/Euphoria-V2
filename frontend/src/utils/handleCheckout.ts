@@ -16,7 +16,7 @@ const handleCheckout = async (
 
 	const onlyPhotoshoots = hasOnlyPhotoshoots(cart);
 
-	const amount = isFreeShipping ? 0 : 13.99 * 100;
+	const amount = isFreeShipping ? 0 : 15 * 100;
 
 	const unit = onlyPhotoshoots ? 'hour' : 'business_day';
 	const value = onlyPhotoshoots ? 2 : 14;
