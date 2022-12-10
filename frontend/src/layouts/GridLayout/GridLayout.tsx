@@ -26,29 +26,32 @@ const GridLayout = () => {
 				<Loader />
 			) : (
 				<Grid>
-					{products.map(
-						({
-							attributes: {
-								slug,
-								title,
-								price,
-								images,
-								imagesCount,
-								isPremium,
-							},
-						}) => (
-							<Card
-								href={`/${category}/${slug}`}
-								image={getImageUrl(images)}
-								imagesCount={imagesCount}
-								isPremium={isPremium}
-								key={slug}
-								name={title}
-								price={price}
-								slug={slug}
-							/>
-						)
-					)}
+					{products
+						.slice(0)
+						.reverse()
+						.map(
+							({
+								attributes: {
+									slug,
+									title,
+									price,
+									images,
+									imagesCount,
+									isPremium,
+								},
+							}) => (
+								<Card
+									href={`/${category}/${slug}`}
+									image={getImageUrl(images)}
+									imagesCount={imagesCount}
+									isPremium={isPremium}
+									key={slug}
+									name={title}
+									price={price}
+									slug={slug}
+								/>
+							)
+						)}
 				</Grid>
 			)}
 		</>
