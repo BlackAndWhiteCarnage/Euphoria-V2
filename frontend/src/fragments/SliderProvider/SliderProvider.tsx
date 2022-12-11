@@ -27,7 +27,7 @@ const SliderProvider: FC<SliderProviderProps> = ({
 			<Header
 				text={
 					!specyficCategory
-						? `Inne w kategorii ${ready && category}`
+						? ready && `Inne w kategorii ${ready && category}`
 						: specyficCategory
 				}
 			/>
