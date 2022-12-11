@@ -41,6 +41,10 @@ const Home = ({ coupons }: any) => {
 		<WithFormLayout>
 			<Head>
 				<title>EUPHORIA | Strona Główa</title>
+				<meta
+					name="description"
+					content="Euphoria - Noszona używana bielizna | Majtki | Majteczki | Skarpetki | Rajstopy | Pończochy | Fetysz"
+				/>
 			</Head>
 			{!fetching ? <Covers covers={mergeCovers(data, posters)} /> : <Loader />}
 			<main>

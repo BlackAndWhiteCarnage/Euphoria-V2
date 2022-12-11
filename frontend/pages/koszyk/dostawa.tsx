@@ -17,6 +17,10 @@ const Cart = () => (
 				href="https://geowidget.inpost.pl/inpost-geowidget.css"
 			/>
 			<title>EUPHORIA | Koszyk | Dostawa</title>
+			<meta
+				name="description"
+				content="Euphoria - Noszona używana bielizna | Majtki | Majteczki | Skarpetki | Rajstopy | Pończochy | Fetysz"
+			/>
 			<script src="https://geowidget.inpost.pl/inpost-geowidget.js" defer />
 		</Head>
 		<CartLayout step="Dostawa">

@@ -13,6 +13,10 @@ const Cart = () => (
 	<>
 		<Head>
 			<title>EUPHORIA | Koszyk | Podsumowanie</title>
+			<meta
+				name="description"
+				content="Euphoria - Noszona używana bielizna | Majtki | Majteczki | Skarpetki | Rajstopy | Pończochy | Fetysz"
+			/>
 		</Head>
 		<CartLayout step="Podsumowanie">
 			<Summary />

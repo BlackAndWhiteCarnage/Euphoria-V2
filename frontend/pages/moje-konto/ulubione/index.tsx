@@ -13,6 +13,10 @@ const UserAccountFavorites = () => (
 	<>
 		<Head>
 			<title>EUPHORIA | Ulubione</title>
+			<meta
+				name="description"
+				content="Euphoria - Noszona używana bielizna | Majtki | Majteczki | Skarpetki | Rajstopy | Pończochy | Fetysz"
+			/>
 		</Head>
 		<FavoritesLayout />
 	</>

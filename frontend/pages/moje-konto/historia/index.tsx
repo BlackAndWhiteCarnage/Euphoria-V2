@@ -36,6 +36,10 @@ const OrdersHistory = (orders: any) => (
 	<>
 		<Head>
 			<title>EUPHORIA | Historia Zamówień</title>
+			<meta
+				name="description"
+				content="Euphoria - Noszona używana bielizna | Majtki | Majteczki | Skarpetki | Rajstopy | Pończochy | Fetysz"
+			/>
 		</Head>
 		<OrdersHistoryLayout data={orders} />
 	</>
