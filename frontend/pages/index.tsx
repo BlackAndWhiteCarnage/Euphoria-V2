@@ -37,14 +37,12 @@ const Home = ({ coupons }: any) => {
 
 	const { data: posters, fetching } = results;
 
-	if (fetching) return <Loader />;
-
 	return (
 		<WithFormLayout>
 			<Head>
 				<title>EUPHORIA | Strona Główa</title>
 			</Head>
-			<Covers covers={mergeCovers(data, posters)} />
+			{!fetching ? <Covers covers={mergeCovers(data, posters)} /> : <Loader />}
 			<main>
 				<SliderProvider
 					specyficCategory="majtki"
