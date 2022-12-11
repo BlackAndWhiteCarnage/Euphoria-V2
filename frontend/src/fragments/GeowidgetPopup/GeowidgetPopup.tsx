@@ -31,12 +31,14 @@ const GeowidgetPopup: FC<GeowidgetPopupProps> = ({
 		<Popup {...props}>
 			<div className={classes.popup}>
 				<Header text="Wybierz paczkomat" />
-				<inpost-geowidget
-					onpoint="onpointselect"
-					token={process.env.NEXT_PUBLIC_GEOWIDGET}
-					language="pl"
-					config="parcelcollect"
-				/>
+				{props.isOpen && (
+					<inpost-geowidget
+						onpoint="onpointselect"
+						token={process.env.NEXT_PUBLIC_GEOWIDGET}
+						language="pl"
+						config="parcelcollect"
+					/>
+				)}
 			</div>
 		</Popup>
 	);

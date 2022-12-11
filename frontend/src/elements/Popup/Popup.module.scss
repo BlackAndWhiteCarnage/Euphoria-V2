@@ -21,10 +21,6 @@ $padding-mobile: u.rem-calc(30);
 	width: 100%;
 	z-index: 10000;
 
-	* {
-		pointer-events: none !important;
-	}
-
 	.content {
 		box-sizing: border-box;
 		display: block;
@@ -48,10 +44,6 @@ $padding-mobile: u.rem-calc(30);
 		opacity: 1;
 		pointer-events: all;
 		transition: 0.2s ease;
-
-		* {
-			pointer-events: all !important;
-		}
 
 		.content {
 			opacity: 1;
