@@ -6,7 +6,7 @@ import { FC, useEffect } from 'react';
 /**
  * Internal dependencies
  */
-import { Header, Popup } from 'elements';
+import { Button, Header, Popup } from 'elements';
 import { PopupProps } from 'elements/Popup/Popup';
 import classes from './GeowidgetPopup.module.scss';
 
@@ -39,6 +39,9 @@ const GeowidgetPopup: FC<GeowidgetPopupProps> = ({
 						config="parcelcollect"
 					/>
 				)}
+				<Button onClick={() => props.close()} size="large" type="alert">
+					Anuluj
+				</Button>
 			</div>
 		</Popup>
 	);
