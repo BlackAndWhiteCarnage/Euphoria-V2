@@ -10,24 +10,42 @@ import { toast } from 'react-hot-toast';
  */
 import { ReactComponent as Copy } from 'images/icons/copy.svg';
 import { Image } from 'types';
+import Button from 'elements/Button';
 import classes from './Cover.module.scss';
 
 export type CoverProps = {
 	discountCode?: string;
 	image: Image;
 	text: string;
+	link?: string;
 };
 
-const Cover: FC<CoverProps> = ({ discountCode, image: { src, alt }, text }) => {
+const Cover: FC<CoverProps> = ({
+	discountCode,
+	image: { src, alt },
+	text,
+	link,
+}) => {
 	const [copy, setCopy] = useState(false);
 
 	return (
 		<div
 			className={classnames(classes.wrapper, {
 				[classes['has-discount']]: discountCode,
+				[classes['has-link']]: link,
 			})}
 		>
 			<p className={classes.text}>{text}</p>
+			{link && (
+				<a
+					className={classes.link}
+					href={link}
+					target="_blank"
+					rel="noreferrer"
+				>
+					Sprawdź
+				</a>
+			)}
 			{discountCode && (
 				<button
 					className={classnames(classes.discountCode, {

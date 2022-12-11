@@ -21,13 +21,14 @@ const mergeCovers = (
 	});
 
 	strapiCovers?.posters?.data?.forEach(
-		({ attributes: { image, text } }: any) => {
+		({ attributes: { image, text, link } }: any) => {
 			covers.push({
 				text,
 				image: {
 					src: image,
 					alt: text,
 				},
+				link,
 			});
 		}
 	);

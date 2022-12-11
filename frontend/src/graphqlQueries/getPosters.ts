@@ -5,6 +5,7 @@ query {
 		attributes {
 		  image
 		  text
+		  link
 		}
 	  }
 	}

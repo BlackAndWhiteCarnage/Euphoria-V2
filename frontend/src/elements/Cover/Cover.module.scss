@@ -45,6 +45,10 @@
 		}
 	}
 
+	&.has-link {
+		flex-direction: column;
+	}
+
 	&::before {
 		content: '';
 		position: absolute;
@@ -86,6 +90,24 @@
 		font-size: u.rem-calc(18);
 		padding: u.rem-calc(10);
 		gap: u.rem-calc(10);
+	}
+}
+
+.link {
+	background: #070707;
+	padding: u.rem-calc(20) u.rem-calc(40);
+	border-radius: u.rem-calc(3);
+	font-size: u.rem-calc(20);
+	font-weight: 600;
+	
+	@include bp.down(md) {
+		padding: u.rem-calc(10) u.rem-calc(20);
+	}
+	
+	@include bp.down(sm) {
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 }
 
