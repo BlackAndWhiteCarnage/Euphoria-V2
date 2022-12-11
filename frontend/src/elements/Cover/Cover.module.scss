@@ -47,6 +47,15 @@
 
 	&.has-link {
 		flex-direction: column;
+
+		.text {
+			font-size: u.rem-calc(48);
+			width: 100%;
+			
+			@include bp.down(md) {
+				font-size: u.rem-calc(32);
+			}
+		}
 	}
 
 	&::before {
