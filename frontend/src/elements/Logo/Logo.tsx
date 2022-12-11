@@ -7,8 +7,13 @@ import { FC } from 'react';
  * Internal dependencies
  */
 import { ReactComponent as LogoImage } from 'images/logo.svg';
+import Link from 'next/link';
 import classes from './Logo.module.scss';
 
-const Logo: FC = () => <LogoImage className={classes.logo} />;
+const Logo: FC = () => (
+	<Link href="/">
+		<LogoImage className={classes.logo} />
+	</Link>
+);
 
 export default Logo;
