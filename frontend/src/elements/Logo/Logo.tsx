@@ -11,7 +11,7 @@ import Link from 'next/link';
 import classes from './Logo.module.scss';
 
 const Logo: FC = () => (
-	<Link href="/">
+	<Link href="/" title="Przejdź na stronę główną">
 		<LogoImage className={classes.logo} />
 	</Link>
 );

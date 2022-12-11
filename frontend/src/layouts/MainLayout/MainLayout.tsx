@@ -8,8 +8,8 @@ import { FC, PropsWithChildren } from 'react';
  */
 import classes from './MainLayout.module.scss';
 
-const MainLayout: FC<PropsWithChildren> = ({ children }) => {
-	return <div className={classes.layout}>{children}</div>;
-};
+const MainLayout: FC<PropsWithChildren> = ({ children }) => (
+	<div className={classes.layout}>{children}</div>
+);
 
 export default MainLayout;

@@ -21,12 +21,22 @@ const IconsProvider: FC = () => {
 	return (
 		<div className={classes.icons}>
 			<LinkedIcon
+				title="Ulubione"
 				href={!user ? '/ulubione' : '/moje-konto/ulubione'}
 				icon={<Heart />}
 				count={favorites.length}
 			/>
-			<LinkedIcon href="/moje-konto/historia" icon={<Person />} />
-			<LinkedIcon href="/koszyk" icon={<Shopper />} count={cart.length} />
+			<LinkedIcon
+				title="Twoje Konto"
+				href="/moje-konto/historia"
+				icon={<Person />}
+			/>
+			<LinkedIcon
+				title="Koszyk"
+				href="/koszyk"
+				icon={<Shopper />}
+				count={cart.length}
+			/>
 		</div>
 	);
 };

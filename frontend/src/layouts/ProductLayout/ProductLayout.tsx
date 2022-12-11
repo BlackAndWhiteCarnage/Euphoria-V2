@@ -69,11 +69,11 @@ const ProductLayout: FC = () => {
 							</div>
 						)}
 						<p className={classes.description}>
-							{console.log(customDescription)}
 							{description?.data && !customDescription
 								? description.data.attributes.description
 								: customDescription}
 						</p>
+
 						<Price price={price} />
 						<Button
 							disabled={isInCart}
@@ -110,6 +110,13 @@ const ProductLayout: FC = () => {
 									Usuń z koszyka
 								</Button>
 							</div>
+						)}
+						{imagesCount && (
+							<span className={classes.photoshootsInfo}>
+								Kupując sesje zdjęciowe nie kupujesz licencji na nie. Są one
+								wciąż tylko i wyłącznie moją własnością i nie wyrażam zgody na
+								ich upublicznianie, mimo to oczywiście możesz je pobrać!
+							</span>
 						)}
 					</div>
 				</Sticky>

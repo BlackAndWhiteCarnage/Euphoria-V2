@@ -4,7 +4,8 @@
   "info": {
     "singularName": "poster",
     "pluralName": "posters",
-    "displayName": "Poster"
+    "displayName": "Poster",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -19,6 +20,9 @@
       "type": "text",
       "required": true,
       "maxLength": 60
+    },
+    "link": {
+      "type": "string"
     }
   }
 }

@@ -27,6 +27,7 @@ const WithNavigationLayout: FC<PropsWithChildren> = ({ children }) => {
 				{routes.map(({ label, path }, i) => (
 					<Link href={path} key={i} legacyBehavior>
 						<a
+							title={`Przejdź do ${label}`}
 							href={path}
 							className={classnames(classes.navLink, {
 								[classes['is-active']]: route.asPath === path,

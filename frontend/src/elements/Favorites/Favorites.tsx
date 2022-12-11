@@ -24,6 +24,7 @@ const Favorites: FC<FavoritesProps> = ({ isFavorite, onClick }) => (
 		className={classnames(classes.favorites, {
 			[classes['is-favorite']]: isFavorite,
 		})}
+		title={isFavorite ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}
 	>
 		<FavoritesMinus
 			className={classnames(classes.favoritesIcon, classes.minus)}

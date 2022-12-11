@@ -6,33 +6,37 @@ import { FC } from 'react';
 /**
  * Internal dependencies
  */
-import { Header, Separator } from 'elements';
+import { Header, Loader, Separator } from 'elements';
 import { Slider } from 'fragments';
 import { useGetSliderProducts } from 'hooks';
 import classes from './SliderProvider.module.scss';
 
 type SliderProviderProps = {
 	specyficCategory?: string;
+	description?: string;
 };
 
-const SliderProvider: FC<SliderProviderProps> = ({ specyficCategory }) => {
-	const { items, ready, error, category } =
-		useGetSliderProducts(specyficCategory);
+const SliderProvider: FC<SliderProviderProps> = ({
+	specyficCategory,
+	description,
+}) => {
+	const { items, ready, category } = useGetSliderProducts(specyficCategory);
 
-	if (!ready) return null;
-	if (error) return <p>Error: {error.message}</p>;
 	if (items.length < 3) return null;
 
 	return (
-		<div className={classes.sliderWrap}>
+		<article className={classes.sliderWrap}>
 			<Header
 				text={
-					!specyficCategory ? `Inne w kategorii ${category}` : specyficCategory
+					!specyficCategory
+						? `Inne w kategorii ${ready && category}`
+						: specyficCategory
 				}
 			/>
-			<Slider items={items} />
-			<Separator mobileBottom={10} mobileTop={10} />
-		</div>
+			{description && <p className={classes.description}>{description}</p>}
+			<Separator top={10} bottom={10} mobileBottom={10} mobileTop={10} />
+			{ready ? <Slider items={items} /> : <Loader />}
+		</article>
 	);
 };
 

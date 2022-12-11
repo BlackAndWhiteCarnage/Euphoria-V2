@@ -47,7 +47,7 @@ const Card: FC<CardProps> = ({
 					}
 				/>
 			</div>
-			<Link href={href}>
+			<Link href={href} title={`Przejdź do - ${name}`}>
 				<div>
 					<div
 						className={classnames(classes.image, {

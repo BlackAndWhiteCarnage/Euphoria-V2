@@ -1,8 +1,26 @@
+@use "styles/utils/breakpoint" as bp;
 @use "styles/utils/unit" as u;
 
 .sliderWrap {
 	display: flex;
 	flex-direction: column;
-	gap: u.rem-calc(25);
-	margin: u.rem-calc(40) 0;
+	gap: u.rem-calc(20);
+	margin: u.rem-calc(40) 0 u.rem-calc(100);
+	
+	@include bp.down(md) {
+		margin: u.rem-calc(40) 0 u.rem-calc(60);
+	}
+}
+
+.description {
+	font-size: u.rem-calc(18);
+	max-width: u.rem-calc(600);
+	
+	@include bp.down(md) {
+		font-size: u.rem-calc(16);
+	}
+	
+	@include bp.down(sm) {
+		font-size: u.rem-calc(14);
+	}
 }

@@ -47,3 +47,30 @@
 	flex-direction: column;
 	white-space: nowrap;
 }
+
+.description {
+	font-size: u.rem-calc(14);
+	margin: u.rem-calc(10) 0 0;
+	color: #787878;
+
+	@include bp.down(md) {
+		font-size: u.rem-calc(12);
+	}
+}
+
+.itemsList {
+	margin: 0 0 u.rem-calc(10);
+	font-size: u.rem-calc(14);
+	display: flex;
+	list-style: none;
+	column-gap: u.rem-calc(5);
+	flex-wrap: wrap;
+
+	@include bp.down(md) {
+		font-size: u.rem-calc(12);
+	}
+
+	li {
+		color: #787878;
+	}
+}

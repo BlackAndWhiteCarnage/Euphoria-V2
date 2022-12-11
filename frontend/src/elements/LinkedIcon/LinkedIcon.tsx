@@ -11,14 +11,15 @@ import classnames from 'classnames';
 import classes from './LinkedIcon.module.scss';
 
 export type LinkedIconProps = {
+	title: string;
 	count?: number;
 	href: string;
 	icon: ReactElement;
 };
 
-const LinkedIcon: FC<LinkedIconProps> = ({ count, href, icon }) => (
-	<Link href={href}>
-		<div className={classes.linkedIcon}>
+const LinkedIcon: FC<LinkedIconProps> = ({ count, href, icon, title }) => (
+	<Link href={href} legacyBehavior>
+		<a className={classes.linkedIcon} href={href} title={title}>
 			{icon}
 			<span
 				className={classnames(classes.count, {
@@ -27,7 +28,7 @@ const LinkedIcon: FC<LinkedIconProps> = ({ count, href, icon }) => (
 			>
 				{count}
 			</span>
-		</div>
+		</a>
 	</Link>
 );
 
