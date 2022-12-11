@@ -22,8 +22,6 @@ const SliderProvider: FC<SliderProviderProps> = ({
 }) => {
 	const { items, ready, category } = useGetSliderProducts(specyficCategory);
 
-	if (items.length < 3) return null;
-
 	return (
 		<article className={classes.sliderWrap}>
 			<Header
@@ -35,7 +33,7 @@ const SliderProvider: FC<SliderProviderProps> = ({
 			/>
 			{description && <p className={classes.description}>{description}</p>}
 			<Separator top={10} bottom={10} mobileBottom={10} mobileTop={10} />
-			{ready ? <Slider items={items} /> : <Loader />}
+			{ready && items?.length > 3 ? <Slider items={items} /> : <Loader />}
 		</article>
 	);
 };
