@@ -1,1 +1,1 @@
-<img src="https://user-images.githubusercontent.com/71930296/236704610-15498cc5-b21a-4e3a-ac92-661b6d282cd7.svg" alt="" width='100%'/>
+<img src="(https://github.com/BlackAndWhiteCarnage/Euphoria-V2/assets/71930296/a9b5ba56-7551-473b-b2ff-d5c8d4ac0a11" alt="" width='100%'/>
